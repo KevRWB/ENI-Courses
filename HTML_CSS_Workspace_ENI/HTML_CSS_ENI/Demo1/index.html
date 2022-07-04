@@ -1,0 +1,108 @@
+<!-- document type, définit le type de document -->
+<!DOCTYPE html>
+<!-- lang pas défault du document -->
+<html lang="fr">
+<!-- head : configuration du document -->
+
+<head>
+    <!-- Définition de l'encodage : utf-8 est recommandé par le W3C -->
+    <meta charset="UTF-8">
+    <!-- Mode de compatibilité edge -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Premiers pas vers la responsivité -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre du document -->
+    <title>Accueil</title>
+    <!-- description de la page -> pour le référencement des moteurs de recherche -->
+    <meta name="description" content="La description de la page">
+    <!-- lien vers la feuille de style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- corps du document - DOM (document object model) -->
+
+<body>
+    <!-- Entete de la page -->
+    <header>
+        <img src="ressources/eni.png" alt="logo ENI - école informatique" title="Logo ENI" height="150px">
+        <!-- Element de l'entete -->
+        <!-- barre de navigation -->
+        <nav>
+            <!-- Elements de la barre de navigation -->
+            <ul class="menu_nav">
+                <li>Accueil</li>
+                <li>Page 2</li>
+                <li>Page 3</li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <!-- Contenu principale de la page -->
+        <section>
+            <h1>Ma première page en HTML</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo eum eligendi, ad dolorum nesciunt
+                exercitationem accusamus earum expedita nam placeat voluptatibus nobis, illum excepturi animi hic,
+                similique impedit quam quod</p>
+        </section>
+        <!--  première section-->
+        <section>
+            <article>
+                <!-- Mon premier article -->
+                <h2>Titre de mon article</h2>
+                <p>Le contenu de mon article<br>Encore un peu de contenu pour cette article avec un saut de ligne (br)</p>
+                <p>Test de la balise strong : <strong>Ceci est un message important ( écrit en gras par défault)</strong></p>
+                <p>Test de la balise em : <em>Ceci est un message d'importance relative (écrit en italique par défault)</em></p>
+                <!-- balise pre -->
+                <p>Un paragrpqhe qui conserve les espace :</p>
+                <pre>Une phrase qui     conserve   les espaces     !!! ! !! </pre>
+                <!--  balise citation -->
+                <p>Un paragraphe avec une citation. <cite>"Ceci est une citation"</cite></p>
+                <!-- balise code -->
+                <code>
+                    var a = 1+2;
+                </code>
+
+            
+            </article>
+            <article>
+                <!-- Mon deuxième article -->
+                <h2>Une deuxième article avec des images</h2>
+                <img src="ressources/code.jpg" alt="image d'un ecran avec du code - développement web" title="img_code" height="400px" >
+                <img src="ressources/cosmos_cartoon.png" alt="du cosmos en cartoon" title="cosmos_cartoon" height="400px">
+                <img src="ressources/eclipse_solaire.jpg"alt="image d'une eclipse solaire" title="eclipse_solaire" height="400px">
+                <img src="ressources/vague.jpg"alt="image d'un tube de vague" title="vague" height="400px" loading="lazy">
+            </article>
+
+            <article>
+                <h2>Test figcaption</h2>
+                <figure>
+                    <img src="ressources/geek.png" alt="gook" title="geek" height="150px">
+                    <img src="ressources/eni.png" alt="gook" title="geek" height="150px">
+                    <figcaption>Legende de la figure (fig caption)</figcaption>
+                </figure>
+            </article>
+        </section>
+        <!-- Seconde section -->
+        <section>
+            <!-- Contenu complémentaire -->
+            <aside>
+                <h3>Titre de mon aside</h3>
+                <p>Contenu de mon aside</p>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <!-- contenu de mon pied de page -->
+        <!-- regroupement des adresses -->
+        
+        <address>
+            <p>ENI - zac de la conterie - 35... Chartres de Bretagne</p>
+        </address>
+    </footer>
+
+</body>
+
+</html>

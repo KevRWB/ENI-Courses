@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple CSS</title>
+    <!-- Lien vers la feuille de style externe (priorité 3)-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- style interne (priorité 2) -->
+    <style>
+        h1 {
+            color: blanchedalmond;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- style inline (priorité 1) -->
+    <h1 style="color:aquamarine">Exemple CSS</h1>
+
+    <h2>Les sélecteurs</h2>
+    <p class="gras">Un texte en gras</p>
+    <p class="vert gras">Un texte en vert</p>
+    <p id="bleu">Un texte en bleu</p>
+
+    <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae obcaecati architecto consequatur
+        necessitatibus corporis eveniet quod, in nam nisi libero quibusdam facere. Tempore, delectus quisquam assumenda
+        perferendis corrupti officiis sequi!
+    </div>
+
+    <div title="titre">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque voluptate eos est provident tempore laboriosam
+        quo officiis et, error autem quisquam, nam nesciunt iusto reiciendis dolorum ad possim us deleniti hic.
+    </div>
+
+    <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem aliquam incidunt tenetur, praesentium atque
+        voluptate non minima quaerat iure possimus animi labore eaque, sapiente provident maxime? Distinctio pariatur
+        porro fuga!
+    </div>
+
+    <h2>Combinateurs</h2>
+    <section>
+        <p class="texte1">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam natus beatae magni impedit dignissimos
+            tempore nam corporis ab eos voluptate, rem hic aut asperiores blanditiis? Distinctio libero aliquid soluta
+            illum.
+        </p>
+        <p class="texte2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam natus beatae magni impedit dignissimos
+            tempore nam corporis ab eos voluptate, rem hic aut asperiores blanditiis? Distinctio libero aliquid soluta
+            illum.
+        </p>
+    </section>
+
+    <section class="textSpan">
+        <span class="texteSpan">Texte span lorem ipsum</span>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta sunt aut atque expedita perspiciatis dolores
+            rem repudiandae, suscipit dolor dicta numquam nostrum dolorem explicabo vero tempora animi deleniti culpa
+            amet?</p>
+    </section>
+
+</body>
+
+</html>

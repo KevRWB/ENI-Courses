@@ -1,0 +1,57 @@
+/* CSS for zoning TP ENI*/
+
+/* General */
+
+/* header */
+header{
+    background-color: rgb(4, 87, 143);
+    padding: 20px;
+}
+h1, .menu_fixe a{
+    color: white;
+    
+}
+
+.citation_header{
+    color: rgb(88, 172, 197);
+}
+
+li{
+    list-style-type: none;
+}
+
+/*Body*/
+body{
+    display: flex;
+}
+
+/* MAIN */
+
+/* articles */
+article{
+    margin: 20px;
+}
+
+.img_article{
+    float: left;
+    margin: 20px;
+}
+
+/* asides */
+.asides{
+    background-color: bisque;
+    width: 80vw;
+    padding: 20px;
+}
+
+.aside_title{
+    font-size: medium;
+    font-style: italic;
+    color: rgb(51, 198, 224);
+}
+
+/*footer*/
+footer{
+    display: inline-block;
+    
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fichier">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple Fil Ariane Simple</title>
+</head>
+<body>
+    <h1>Exemple Fil Ariane Simple</h1>
+    <ul itemscope itemtype="https://schema.org/BreadcrumList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="https://monsite.com">
+                <span itemprop="name">Page d'accueil</span> 
+                <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" itemtype="https://schema.org/WebPage" itemid="https://monsite.com/blog" href="https://monsite.com/blog">
+                <span itemprop="name">Blog</span>
+                <meta itemprop="position" content="2">
+            </a>
+        </li>
+        <li>
+            <a href="https://monsite.com/A propos">A propos</a>
+        </li>
+    </ul>
+
+
+</body>
+</html>

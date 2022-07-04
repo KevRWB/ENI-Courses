@@ -1,0 +1,39 @@
+/*---Style CSS for first site at ENI school*/
+
+/*Global*/
+li {
+    list-style: none;
+}
+
+
+h1{
+    color: rgb(11, 34, 83);
+}
+
+p{
+    font-size: large;
+    color: rgb(70, 70, 70);
+}
+
+/*header*/
+header{
+    display: flex;
+    background-color: rgb(73, 73, 75);
+}
+
+nav{
+    width: 50vw;
+    height: 10vh;
+    background-color: rgb(3, 3, 138);
+}
+.menu_nav{
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu_nav li{
+    margin: 10px;
+    color: aliceblue;
+}
+
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- ------------------------------------------ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENI - WEB COTE CLIENT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HEADER ------------------------------- -->
+    <header>
+        <div class="entete">
+            <img src="images/logo-eni.png" id="logo" alt="logo eni" title="logo eni">
+            <div class="container_h1">
+                <h1>Web Côté client</h1>
+            </div>
+        </div>
+        <nav class="fond_rose">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="HTML.html">HTML</a></li>
+                <li><a href="CSS.html">CSS</a></li>
+                <li><a href="BootStrap.html">BootStrap</a></li>
+                <li><a href="TP final.html">TP final</a></li>
+                <li><a href="connexion.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN ---------------------------- -->
+    <main>
+        <h2>Connexion</h2>
+        <!-- ############################## -->
+        <!-- FORMULAIRE -->
+
+        <!-- ##########   Formulaire en listes -->
+
+        <!-- #---------- -->
+        <fieldset id="fieldsetFormUn">
+            <legend>Formulaire de connexion</legend>
+            <form action="" method="POST" id="formUn">
+
+                <div id="labelAndInputBox">
+                    <div id="labels">
+                        <label for="name">Nom* :</label>
+                        <br>
+                        <label for="surname">Prénom* :</label>
+                        <br>
+                        <label for="birthDate">Date de naissance :</label>
+                        <br>
+                        <label for="login">Login :</label>
+                        <br>
+                        <label for="password">Mot de passe* :</label>
+                        <br>
+                        <label for="passwordDeux">Veuillez ressaisir votre mot de passe* :</label>
+                        <br>
+                        <p>Votre language informatique préféré :</p>
+                        <br>
+                    </div>
+                    <div id="inputs">
+                        <input type="text" name="name" id="name" pattern="[A-Za-z]{3,}" autofocus required placeholder=" Ex:Rabbit" value="Kevin">
+                        <br>
+                        <input type="text" name="surname" id="surname" pattern="[A-Za-z]{3,}" autofocus required maxlength="40" placeholder=" Ex: Rabbit">
+                        <br>
+                        <input type="date" name="birthDate" id="birthDate" min="1900-01-01" max="2020-12-31" size="10px">
+                        <br>
+                        <input type="text" name="login" id="login" pattern="[0-9A-Za-z]{3,}" maxlength="30" placeholder=" Ex: juju11">
+                        <br>
+                        <input type="password" name="password" id="password" required pattern="(?=.*[az])(?=.*[AZ])(?=.*[0-9]){8,20}" maxlength="40">
+                        <br>
+                        <input type="password" name="passwordDeux" id="passwordDeux" required pattern="[0-9A-Za-z]{8,20}"maxlength="40">
+                        <br>
+                        <input type="text" name="list" id="list" list="progList">
+                        <br>
+                        <datalist id="progList">
+                            <option value="C#"></option>
+                            <option value="Java"></option>
+                            <option value="Python"></option>
+                            <option value="PHP"></option>
+                            <option value="Fortran"></option>
+                            <option value="C"></option>
+                            <option value="C++"></option>
+                            <option value="Ruby"></option>
+                            <option value="Perl"></option>
+                            <option value="Cobol"></option>
+                            <option value="Dart"></option>
+                            <option value="Swift"></option>
+                            <option value="Objective-C "></option>
+                            <option value="Kotlin"></option>
+                            <option value="GO"></option>
+                            <option value="Rust"></option>
+                            <option value="JavaScript"></option>
+                        </datalist>
+                </div>
+                </div>
+                <div id="radioBox"> 
+                    <div class="radioUnic">
+                        <label for="etudiant">Etudiant</label>
+                        <input type="radio" name="radioUn" id="etudiant" checked>
+                    </div>        
+                    <div class="radioUnic">
+                        <label for="formateur">Formateur</label>
+                        <input type="radio" name="radioUn" id="formateur"> 
+                    </div> 
+                        
+                </div>
+                <div id="buttonsBox">
+                    <div id="boutonsForm">
+                        <button type="reset"name="reset" class="red" id="reset" value="Effacer le formulaire">Annuler saisie</button>
+                        <button type="button" class="grey" id="linkAccueil"><a href="index.html">Retour à l'accueil</a></button>
+                        <button type="submit" class="green" name="submit" id="submit" value="Connexion">Valider</button>
+                    </div>
+
+                </div>  
+                <p class="textItalicGrey">* : Champs obligatoires</p>         
+            </form>
+        </fieldset>
+
+        <!-- -------retour haut page---- -->
+        <div id="container_retour_haut">
+            <a href="#top" id="retour_haut_page"> &#8593; Retour en haut de la page &#8593; </a>
+        </div>
+
+
+    </main>
+
+    <!-- FOOTER--------------------- -->
+    <footer class="fond_rose">
+        <h3>Rechercher sur developper.mozilla.org:</h2>
+
+            <div id="bas_footer">
+                <a href="http://www.eni-training.com/Connect/Campus/login.aspx?cfgBdd=eni-ecole&cfgsite=CampusEnLigne&idlng=1 "
+                    title="plateforme de cours" target="_blank" rel="noopener noreferrer" >
+                    Plateforme de cours
+                </a>
+
+                <a href="https://www.eni-training.com/Client_Net/mediabook.aspx?idR=274799 " title="livre editions ENI"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="images/LivreHTML.jpg" alt="livre editions ENI" title="livre editions ENI">
+                </a>
+            </div>
+
+    </footer>
+</body>
+
+</html>

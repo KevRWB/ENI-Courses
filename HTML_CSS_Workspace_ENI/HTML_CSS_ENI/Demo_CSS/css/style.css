@@ -1,0 +1,63 @@
+/* Style sheet for Demo CSS - ENI */
+/* Author : Kevin RENAULT */
+/* Creation Date: 29/06/2022 */
+/* Last update: 29/06/2022 */
+
+/* Seleceur universel */
+*{
+    color: blue;
+}
+
+/* ------ Test */
+body{
+    background-color: grey;
+}
+
+h1{
+    color: blueviolet;
+    font-weight: bold;
+}
+
+/* ----- Selecteur de class */
+.gras{
+    font-weight: bold;
+}
+
+.vert{
+    color: rgb(32, 71, 32);
+}
+
+/*------ Selecteur d'id */
+#bleu{
+    color: blue;
+}
+
+/* ---------------------- */
+/* autres selecteurs */
+
+/* Selecteur sur attribut */
+[title]{
+    color: brown;
+}
+/* la dernière div  */
+div:last-of-type{
+    font-weight: bold;
+}
+
+/* Combinateurs*/
+.texte1, .texte2{
+    font-style: italic;
+}
+/* La classe texte2 */
+.texte2{
+    font-weight: bold;
+}
+
+/* Les sections avec la class texteSpan */
+section .texteSpan{
+    color: aquamarine;
+}
+/* Les enfants p de section */
+section >p{
+    font-size: 2em;
+}

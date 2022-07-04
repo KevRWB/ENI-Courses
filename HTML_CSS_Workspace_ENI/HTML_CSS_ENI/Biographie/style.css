@@ -1,0 +1,256 @@
+/* STYLE CSS FOR BIOGRAPHY;HTML */
+
+/*General*/
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+p, h1, h2, h2, li, th, tr, label, legend {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+li{
+    list-style: none;
+}
+
+body{
+    background-color: rgb(51, 51, 51);
+    margin: 0px;
+    padding: 0px;
+}
+
+h1{
+    padding: 10px;
+    font-size: 3em;
+    text-shadow: 5px 5px 10px black;
+}
+
+hr{
+    height: 2px;
+    background-color: rgb(116, 115, 115);
+    border: none;
+}
+
+/* -----HEADER------ */
+.header_top, nav ul, #header_top_right, #authentification, #div_histoire{
+    display: flex;
+}
+.header_top{
+    justify-content: space-between;
+    padding: 20px 0px 20px 20px;
+}
+
+/* header top */
+#logo{
+    height: 150px;
+    margin-right: 20px;
+    border-radius: 40%;
+    
+}
+
+/* Authentification */
+#authentification{
+    padding: 1vw;
+    background: linear-gradient(180deg, rgba(39, 46, 119, 0.911) 0%, rgba(9,9,121,1) 60%, rgb(51, 134, 151) 100%);
+    margin: 20px 0px 0px 0px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+#avatar{  
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+    transform-origin:center;
+    
+    animation-duration: 3s;
+    animation-name: animation_logo;
+    animation-iteration-count: infinite;
+}
+
+
+
+/* #avatar:hover{  
+
+    @keyframes  animation_logo{
+        from{
+            transform: scale(1);
+        }
+        25%{
+            transform: translate(-200px, 0px) rotate(-180deg);
+        }
+    
+        50%{
+            transform: translate(-200px, 100px) rotate(90deg);
+            opacity: 0;
+        }
+    
+        75%{
+            transform: translate(0px, 100px) rotate(180deg);
+        }
+    
+        to{
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+    }
+} */
+
+#authTxt{
+    display: flex;
+}
+
+#authTxt p{
+    color: rgb(2, 51, 124);
+    margin: 5px 10px;
+    padding: 0.4vw;
+    background: linear-gradient(180deg, rgba(63,134,203,0.9108018207282913) 0%, rgba(85,195,249,1) 100%);
+    border-radius: 5px;
+    transition: transform 0.2s;
+
+}
+
+#authTxt p:hover{
+    transform:scale(1.2);
+    background: linear-gradient(180deg, rgba(115, 154, 192, 0.911) 0%, rgb(75, 153, 192) 100%);
+
+}
+/* navigation */
+nav{
+    width: 42%;
+    margin: auto;
+    padding: 2vh 0vh;
+}
+nav ul{
+    justify-content: space-evenly;
+}
+
+nav ul li{
+    text-align: center;
+    padding: 10px;
+    width: 8vw;
+    border-radius:5px ;
+    background: rgb(0,3,36);
+    background: linear-gradient(180deg, rgba(44, 122, 185, 0.911) 0%, rgb(51, 134, 151) 100%);
+}
+
+nav ul li:hover{
+    transform: scale(1.1);
+    background: linear-gradient(180deg, rgba(143, 146, 180, 0.911) 0%, rgb(48, 205, 236) 100%);
+}
+
+/* ----MAIN----- */
+main{
+    width: 70%;
+    margin: auto;
+}
+/* Section description */
+#div_histoire{
+    width: 90%;
+
+    align-items: center;
+    padding: 20px;
+}
+
+#babyShark{
+    width: 10vw;
+    border-radius: 30%;
+    box-shadow: 7px 7px 20px black;
+}
+
+#div_histoire h2{
+    color: rgb(2, 45, 124);
+    background-color: rgb(212, 212, 212);
+    padding: 20px;
+    border-radius: 0px 15px 15px 0px;
+    min-width: 20vw;
+    position: relative;
+    right: 0.2vw;
+    z-index: -1;
+    box-shadow: 7px 7px 20px black;
+}
+
+/* video */
+#videoUn{
+    border: 5px solid rgb(77, 76, 76);
+    border-radius: 40px;
+    margin-left: 10vw;
+    width: 20vw;
+    box-shadow: 7px 7px 20px black;
+}
+
+/* Descritpion */
+#textDescription{
+    padding: 5vh, 0vh;
+}
+
+/* Section flex articles */
+.flex_articles{
+    display: flex;
+    justify-content: space-evenly;
+    margin:5vh 0px;
+}
+
+.article{
+    background: rgb(1,61,120);
+    background: linear-gradient(180deg, rgba(3, 85, 168, 0.911) 0%, rgb(3, 94, 139) 100%);
+    padding: 20px ;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+table{
+    border: 2px solid rgb(177, 177, 177, 0.5);
+    border-collapse: collapse;
+    background: linear-gradient(180deg, rgba(19, 57, 95, 0.911) 0%, rgb(24, 124, 173) 100%);
+    box-shadow: 2px 2px 5px black;
+    
+    
+}
+thead tr{
+    border: 1px solid rgb(177, 177, 177, 0.5);
+    
+}
+
+th, td{
+    padding: 0.5vw;
+    border-left:2px solid rgb(177, 177, 177,0.5) ;
+}
+
+/* FORMULAIRE */
+form{
+    margin: auto;
+    padding: 20px;
+    width: 30vw;
+    border: solid 2px grey;
+    border-radius: 5px;
+}
+
+input, textarea{
+    border-radius: 5px;
+}
+
+[submit]{
+    padding: 20px;
+}
+
+option{
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+
+/* ----FOOTER----- */
+footer{
+    text-align: center;
+    padding: 4vh 0vh;
+}

@@ -1,0 +1,69 @@
+!-- document type, définit le type de document -->
+<!DOCTYPE html>
+<!-- lang pas défault du document -->
+<html lang="fr">
+<!-- head : configuration du document -->
+
+<head>
+    <!-- Définition de l'encodage : utf-8 est recommandé par le W3C -->
+    <meta charset="UTF-8">
+    <!-- Mode de compatibilité edge -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Premiers pas vers la responsivité -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre du document -->
+    <title>Accueil</title>
+    <!-- description de la page -> pour le référencement des moteurs de recherche -->
+    <meta name="description" content="La description de la page">
+    <!-- lien vers la feuille de style CSS -->
+    <link rel="stylesheet" src="/style.css">
+</head>
+
+<!-- corps du document - DOM (document object model) -->
+
+<body>
+    <!-- Entete de la page -->
+    <header>
+        <!-- Element de l'entete -->
+        <!-- barre de navigation -->
+        <nav>
+            <!-- Elements de la barre de navigation -->
+        </nav>
+
+    </header>
+
+    <main>
+        <!-- Contenu principale de la page -->
+        <section>
+            <h1>Ma première page en HTML</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo eum eligendi, ad dolorum nesciunt
+                exercitationem accusamus earum expedita nam placeat voluptatibus nobis, illum excepturi animi hic,
+                similique impedit quam quod.</p>
+        </section>
+        <!--  première section-->
+        <section>
+            <article>
+                <!-- Mon premier article -->
+            </article>
+            <article>
+                <!-- Mon deuxième article -->
+            </article>
+        </section>
+        <!-- Seconde section -->
+        <section>
+            <!-- Contenu complémentaire -->
+            <aside></aside>
+        </section>
+    </main>
+
+    <footer>
+        <!-- contenu de mon pied de page -->
+        <!-- regroupement des adresses -->
+        <address>
+
+        </address>
+    </footer>
+
+</body>
+
+</html>

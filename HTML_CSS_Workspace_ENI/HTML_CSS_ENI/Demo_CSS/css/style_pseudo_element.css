@@ -1,0 +1,73 @@
+
+
+/* Class des liens */
+
+a{
+    text-decoration: none;
+    color: red;
+}
+
+a:hover{
+    color: blue;
+    font-size: 1.3em;
+    font-style: italic;
+    text-decoration: underline double;
+    position: relative;
+    top: -2px;
+    left: 2px;
+}
+a:visited{
+    font-style: italic;
+    color: blueviolet;
+}
+
+a:active{
+    color: pink;
+    font-size: 1.2em;
+}
+
+/* ---Style des input */
+input:focus{
+    background-color: aqua;
+
+}
+
+/* -----------Box Size---- */
+
+h1{
+    background-color: cadetblue;
+    width: 200px;
+    height: 150px;
+    padding: 10%;
+    border: solid 10px rgb(17, 34, 131);
+    border-radius: 20px 10px 50px 5px;
+    margin: 20px 30px;
+    box-shadow: 50px 10px 50px black;
+    
+}
+
+/* Table Style */
+table{
+    margin: 20px;
+    border: 2px solid black;
+    border-collapse:collapse;
+
+}
+td{
+    border: 1px solid black;
+    padding: 10px;
+    height: 20px;
+    width: 50px;
+    overflow: hidden;
+}
+
+/* rotation */
+.rotate:hover{
+    transform: rotate(20deg);
+    transition: transform 2s;
+}
+.perspective:hover{
+    transform: perspective(500px);
+    transition: transform 2s;
+
+}

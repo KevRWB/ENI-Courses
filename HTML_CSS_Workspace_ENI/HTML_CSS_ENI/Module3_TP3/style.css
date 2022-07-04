@@ -1,0 +1,276 @@
+
+/* STYLE CSS FOR TP3 MODULE 3 ENI */
+/*
+Author: Kevin
+Version:1.0.1
+Date de dernière modification : 28/06/2022
+*/
+/* INIT */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, p, a, li, label, input, fieldset, legend, button{
+    font-family: 'Quicksand', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* GENERAL */
+
+
+h1, h3, a{
+    color: rgb(255, 255, 255);
+}
+h2{
+    color: grey;
+    margin: 10px 0px;
+}
+
+.fond_rose{
+    background-color: rgb(220, 129, 248);
+}
+/* HEADER */
+
+/* Entete */
+.entete{
+    height: 40vh;
+    display: flex;
+    background: url(images/woman.jpg) top center;
+
+}
+
+
+
+#logo{
+    height: 20%;
+    margin: 20px;
+}
+
+.container_h1{
+    display: flex;
+    width: 80%;
+    justify-content: flex-end;
+    align-items: flex-end;    
+}
+
+h1{
+    font-size: 3em;
+    margin-bottom: 5%;
+}
+
+/* Navigation */
+
+nav, nav ul, nav ul li {
+    display: flex;
+}
+
+nav ul{
+    width: 90%;
+    margin: 20px;
+    justify-content: space-evenly;
+}
+
+/* MAIN */
+main{
+    margin: auto;
+    width: 80vw;
+    text-align: center;
+}
+
+/* Container modules */
+
+.liste_modules{
+    display: flex;
+    justify-content: space-evenly;
+    width: 95%;
+}
+
+.module{
+    text-align: center;
+    margin: 0px 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 15%;
+}
+
+/*Toutes les images des modules*/
+.liste_modules img{
+    width:100%;
+    padding-top: 10px;
+}
+
+.liste_modules h3, .liste_modules p{
+    padding: 5px 0px;
+}
+
+/*Retour haut page*/
+#container_retour_haut{
+    padding: 40px 0px;
+}
+#retour_haut_page{
+    color: black;
+}
+
+/* FOOTER */
+footer{
+    text-align: center;
+}
+
+footer h3{
+    padding: 20px 0px;
+}
+
+#bas_footer{
+    margin: auto;
+    padding: 3vh;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* ###### formulaire connexion  ###### */
+#fieldsetFormUn{
+    width: 40vw;
+    margin: auto;
+    padding: 3vh;
+    border-radius: 40px;
+    border: solid rgb(160, 70, 160) 4px;
+    background-color: rgb(251, 241, 253);
+   
+    
+}
+ legend{
+    align-self: left;
+    font-size: 1.2em;
+    color: rgb(95, 40, 112);
+ }
+
+ #formUn{
+    width: 100%;
+    margin: auto;
+ }
+
+ #labelAndInputBox{
+    display: flex;
+    text-align: left;
+ }
+
+ #labels, #inputs{
+    display: flex;
+    flex-direction: column;
+ }
+ #inputs{
+    margin-left: 20px;
+    width: 60%;
+ }
+
+ label, datalist,  #labels p {
+    font-size: 0.9em;
+    height: 36px;
+ }
+ input{
+    font-size: 1em;
+    height: 30px;
+ }
+
+ input:focus, datalist:focus{
+    outline: none;
+    background-color: rgb(244, 214, 252);
+    border: solid 2px rgb(67, 29, 68);
+ }
+ 
+ input,  datalist{
+    border: 1px rgb(185, 185, 185) solid;
+    border-radius: 5px;
+ }
+
+input::placeholder{
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+/* Radio buttons */
+#radioBox{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+input[type="radio"]{
+    appearance: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 18px;
+    margin-left: 5px;
+}
+
+input[type="radio"]:checked{
+    background-color: rgb(181, 108, 204);
+    outline:none;
+    border: 2px;
+    box-shadow: 2px 2px 3px black;
+}
+.radioUnic{
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* BOUTON BAS */
+ #formUn a, #formUn button{
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+
+ }
+
+ #radioBox, #buttonsBox{
+    margin-bottom:40px;
+    margin-top: 20px;
+ }
+
+ #formUn button{
+    padding: 10px 7px;
+    margin: 10px 5px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 200px;
+    transition: transform 0.3s;
+    font-size: 1.1em;
+    box-shadow: 3px 2px 10px black;
+ }
+
+ #formUn button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+ }
+
+ .green{
+    background-color:  rgb(22, 107, 22);
+ }
+ .grey{
+    background-color:  rgb(155, 151, 151);
+ }
+ .red{
+    background-color:  rgb(253, 43, 43);
+ }
+
+ .textItalicGrey{
+    color: rgb(117, 117, 117);
+    font-style: italic;
+    font-size: 0.9em;
+ }
+
+
+
