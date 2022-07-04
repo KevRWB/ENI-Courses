@@ -22,7 +22,7 @@ ALTER TABLE Employes
 -- CHANGE CONSTRAINTS
 
 ALTER TABLE Employes
-	ADD CONSTRAINT CK_Employes_Age CHECK(Age BETWEEN 18 AND 150);
+	WITH NOCHECK ADD CONSTRAINT CK_Employes_Age CHECK(Age BETWEEN 18 AND 150); -- WITH NOCHECK -> Ne teste pas les données déja présente dans la DB / WITH CHECK
 
 ALTER TABLE Employes
 	ADD CONSTRAINT CK_Employes_SalaireMax CHECK(Salaire < 9999);

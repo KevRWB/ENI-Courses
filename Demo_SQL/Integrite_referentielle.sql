@@ -1,0 +1,16 @@
+-- INTEGRITE REFERENTIELLE
+
+ALTER TABLE Employes WITH CHECK ADD
+	CONSTRAINT FK_Employes_CodeService FOREIGN KEY(CodeService)
+		REFERENCES Services(CodeService),
+	CONSTRAINT FK_Employes_CodeChef FOREIGN KEY(CodeChef)
+		REFERENCES Employes(CodeEmp);
+
+
+ALTER TABLE Conges WITH CHECK ADD
+	CONSTRAINT FK_Conges_Employe_CodeEmp FOREIGN KEY(CodeEmp)
+		REFERENCES Employes(CodeEmp);
+
+ALTER TABLE Conges_Mens WITH CHECK ADD
+	CONSTRAINT FK_Conges_Mens FOREIGN KEY(CodeEmp, Annee)
+		REFERENCES Conges(CodeEmp, Annee);
