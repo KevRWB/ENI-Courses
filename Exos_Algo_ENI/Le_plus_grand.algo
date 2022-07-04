@@ -1,0 +1,72 @@
+
+###############################
+#Fonction qui retourne le plus grand entre deux nombres
+
+Fonction lePlusGrand (nb1 : réel, nb2 : réel) Retourne réel
+
+Début
+	Si nb1 >= nb2 Alors
+		Retourne <- nb1
+	FSi
+	
+	Retourne <- nb2
+Fin
+
+###############################
+#Fonction qui retourne :
+#	1 si le premier nombre est plus grand que le deuxième
+#	-1 si le premier nombre est plus petit que le deuxième
+#	0 si les 2 nombres sont égaux
+
+Fonction compareNumbers (nb1 : réel, nb2 : réel) Retourne entier
+
+	Variable resultat : entier
+	
+Début
+
+	Si nb1 > nb2 Alors
+		resultat <- 1
+	Sinon
+		Si nb1 < nb2 Alors
+			resultat <- -1 
+		Sinon
+			resultat <- 0
+		FSi
+	FSi
+	
+	Retourne resultat
+	
+Fin
+
+###############################"
+#Algo principale qui appelle les deux fonctions
+
+Algo callFunctions
+	
+	Variable nb1, nb2, nbLePlusGrand, resultComparaison : réel 
+	
+
+Début
+
+	#saisie des nombres par l'utilisateur
+	écrire("Veuillez saisir 2 nombres")
+	nb1 <- saisir("Premier nombre ?")
+	nb2 <- saisir("Second nombre ?")
+	
+	#appelle fonction lePlusGrand
+	nbLePlusGrand <- nbLePlusGrand(nb1, nb2)
+	
+	écrire("Le nombre le plus grand est " & nbLePlusGrand)
+	
+	#appelle fonction compareNumbers
+	resultComparaison <- compareNumbers(nb1, nb2)
+	
+	#afficher résultats selons les 3 comparaison possibles (inférieur, supérieur ou égal)
+	Selon resultComparaison
+		cas 1 : écrire(nb1 & " est plus grand que " & nb2)
+		cas -1 : écrire(nb1 & " est plus petit que " & nb2)
+		cas 0 : écrire(nb1 & " est égal à " & nb2)
+	FSelon
+	
+Fin
+

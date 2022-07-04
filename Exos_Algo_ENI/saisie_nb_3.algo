@@ -1,0 +1,26 @@
+Algo saisieMultipleTrois
+#permet à l'utilisateur de saisir un nombre. L'algo valide si c'est un multiple de 3 ou non
+
+	Variable saisie : entier
+	
+	Constante MULTIPLE : entier <- 3
+
+Début
+	
+	#------permettre la saisie d'un nombre par l'utilisateur
+	saisie <- saisir("Entrez un multiple de 3")
+	
+	#------boucle: tant que le nombre saisi n'est pas un multiple de 3, message d'erreur et relance
+	TantQue saisie%MULTIPLE != 0 
+		
+		écrire("Erreur " & saisie & " n'est pas un multiple de " & MULTIPLE)
+	
+		#------relance de la saisie utilisateur
+		saisie <- saisir()
+	
+	FTq
+	
+	#-----Message de réussite
+	écrire("Ok " & saisie & " est un multiple de " & MULTIPLE)
+	
+Fin

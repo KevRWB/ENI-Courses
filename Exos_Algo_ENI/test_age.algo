@@ -1,0 +1,46 @@
+Algo testAge
+
+	Variable age : entier
+	Variable generation : caractère
+	
+Début
+	
+	age <- saisir("Votre age ?")
+	
+	affichageAge(age)
+	
+	generation <-  modelAge(age)
+
+Fin
+
+############################################
+
+Procédure affichageAge (age : entier)
+	Si age < 18 Alors
+		écrire("Vous êtes mineur")
+	Sinon
+		écrire("Vous êtes majeur")
+	FSi
+Début
+
+Fin
+
+-------------------------------------
+
+Fonction  modelAge(nombre : entier) Retourne caractère
+
+	Constante GENERATION_Y : caractère <- 'Y'
+	Constante GENERATION_Z : caractère <- 'Z'
+	
+	Variable generation : caractère
+	
+Début
+
+	Si nombre < 30 Alors
+		generation <- GENERATION_Y
+	Sinon 
+		generation <- GENERATION_Z
+	FSi
+	
+	Retourne generation
+Fin

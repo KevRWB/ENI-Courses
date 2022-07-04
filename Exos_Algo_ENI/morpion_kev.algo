@@ -1,0 +1,168 @@
+Algo morpion
+	
+	Constante TAILLE : entier <- 3
+	Constante CARAC_JOUEUR_UN : caractère <- 'X'
+	Constante CARAC_JOUEUR_DEUX : caractère <- 'O'
+	Constante VIDE : caractère <- '-'
+	
+	Constante TEXTE_JOUEUR_UN caractère <- '1'
+	Constante TEXTE_JOUEUR_DEUX caractère <- '2'
+		
+	Variable plateau : caractère[TAILLE][TAILLE]
+	Variable i, j, coordColonne, coordLigne : entier
+	Variable nbCoups, compteColonneJoueur, compteLigneJoueur : entier <- 0
+	
+	Variable nbCoupsMax : entier <- TAILLE * TAILLE
+	
+	Variable joueurUn : booléen <- VRAI
+	Variable texteJoueur, caracJoueur, caracDiagonale : caractère
+	
+	Variable verifDiagonale : booléen <- VRAI
+
+	Variable joueurUnWin : booléen <- FAUX
+	Variable joueurDeuxWin : booléen <- FAUX
+		
+Début
+	#---------------------------initialiser tableau avec valeurs "VIDE"
+	Pour i <- 0 à TAILLE - 1
+		Pour j <- 0 à TAILLE - 1
+			plateau[i][j] <- VIDE
+		FPour
+	FPour
+
+	#-----------------------------afficher la grille
+	Pour i <- 0 à LARGEUR - 1
+		Pour j <- 0 à HAUTEUR - 1
+			écrireSRC(plateau[i][j])
+		FPour
+		écrire()
+	FPour
+	
+	TantQue !joueurUnWin et !joueurDeuxWin et nbCoups < nbCoupsMax  # tant que pas de victoire d'un des joueurs ou nombre de coup max possible non atteint -> Jeu continue
+	
+		##############################################""
+		#----------------------------Tours des joueurs
+		
+		Selon joueurUn	#------modifier la consigne et le caractère saisie en fonction du joueur actif
+			cas VRAI : 
+				texteJoueur <- TEXTE_JOUEUR_UN
+				caracJoueur <- CARAC_JOUEUR_UN
+			cas FAUX : 
+				texteJoueur <- TEXTE_JOUEUR_DEUX
+				caracJoueur <- CARAC_JOUEUR_DEUX		
+		FSelon
+		
+		écrire("C'est au joueur " & texteJoueur & " de jouer") #----afficher consigne
+		
+		coordColonne <- saisir("Dans quelle colonne voulez-vous jouer ?") - 1  #----attribuer les coordonnées de la colonne en fonction de la saisie utilisateur (-1 pour correspondre à l'indice)
+		coordLigne <- saisir("Dans quelle ligne voulez-vous jouer ?") - 1 #-----attribuer les coordonnées de la ligne en fonction de la saisie utilisateur (-1 pour correspondre à l'indice)
+		
+		#--------------------------Test si joueur a donné des coordonnées valides
+		Si coordColonne <= TAILLE et coordLigne <= TAILLE Alors
+			
+			#---------incrément du nombre de coups joués
+			nbCoups ++
+			
+			#-----------------------------modifier tableau pour y insérer le caractère joué aux coordonées saisies
+			plateau[coordLigne][coordColonne] <- caracJoueur
+			
+			#-----------------------------afficher la grille
+			Pour i <- 0 à LARGEUR - 1
+				Pour j <- 0 à HAUTEUR - 1
+					écrireSRC(plateau[i][j])
+				FPour
+				écrire()
+			FPour
+			
+			#############################################
+			#-----------------test conditions de victoire
+			testVictoire()
+			
+			#------------------------------test lignes 
+			Pour i <- 0 à TAILLE - 1
+				Pour j <- 0 à TAILLE - 1
+					Si plateau[i][j] = caracJoueur Alors
+						compteLigneJoueur ++
+					FSi
+				FPour 
+			FPour
+			
+			#------------------------------test colonnes
+			Pour j <- 0 à TAILLE - 1
+				Pour i <- 0 à TAILLE - 1
+					Si plateau[i][j] = caracJoueur Alors
+						compteColonneJoueur ++
+					FSi
+				FPour 
+			FPour
+				
+			#-------------------valider victoire d'un joueur si ligne ou colonne vérifiée
+			Si compteLigneJoueur ou compteColonneJoueur = TAILLE Alors
+				Selon joueurUn
+				 cas VRAI : joueurUnWin <- VRAI
+				 cas FAUX : joueurDeuxWin <- VRAI
+				FSelon
+			FSi
+			
+			
+			#-----------------------------------------------------------------------
+			#---------------------------test diagonale si pas de lignes ou colonnes validées
+			Si !joueurUnWin ou !joueurDeuxWin Alors 
+			
+				Pour i <- 0 à TAILLE - 1 
+					Si plateau[i][i] != caracJoueur Alors
+						verifDiagonale <- FAUX
+					FSi
+				FPour
+				
+				Si !joueurUnWin ou !joueurDeuxWin Alors  #test si pas de victoire
+					#---------------------------test diagonale 2 
+					Pour i <- 0 à TAILLE - 1 
+						Si i = 0 Alors 	#----test si caractère est différent de celui du joueur actif, dans la case en haut à droite
+							Si plateau[i][TAILLE - 1)] != caracJoueur Alors
+								verifDiagonale <- FAUX
+							FSi
+						Sinon	
+							Si plateau[i][TAILLE - (i + 1)] != caracJoueur Alors #---test des case en diagonale de {en haut à droite} à {en bas à gauche}
+								verifDiagonale <- FAUX
+							FSi
+						FSi
+					FPour
+				FSi
+				
+				#-------------------valider victoire d'un joueur si diagonale vérifiée
+				Si verifDiagonale Alors
+					Selon joueurUn
+					 cas VRAI : joueurUnWin <- VRAI
+					 cas FAUX : joueurDeuxWin <- VRAI
+					FSelon
+				FSi
+				
+				#####################################
+				#--------------------Changer de joueur
+				Si joueurUn Alors 
+					joueurUn <- FAUX
+				Sinon
+					joueurUn <- VRAI
+				FSi
+				
+			FSi	
+			
+		FSi #fin de test saisie  valide par l'utilisateur
+	FTq
+	
+	
+	###############################################"
+	#------------------------Affichage des résultats
+	Si joueurUnWin Alors
+		écrire("bravo joueur 1")
+	Sinon 
+		Si joueurDeuxWin Alors
+			écrire("bravo joueur 2")
+		Sinon
+			écrire("Aucun vainqueur cette fois-ci...")
+		FSi
+	FSi
+Fin
+
+

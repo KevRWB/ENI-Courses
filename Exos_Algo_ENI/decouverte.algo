@@ -1,0 +1,424 @@
+Algo vitesseMoyenne
+#calcul de la vitesse moyenne en fonction de temps et distance (min/km)
+
+	Variable distance, vitesseMoyenne : réel
+	Variable temps : entier
+
+	Constante MIN_PAR_HEURE : entier <- 60
+
+Début
+	#permettre la saisie et l'affichage de la distance parcourue
+	distance <- saisir("Saisissez la distance parcourue (km))"
+	#permettre la saisir et l'affichage du temps en minutes
+	temps <- saisir ("Saisissez le temps de parcours (min))"
+	
+	#calcul de la vitesse moyenne (vitesse = distance / temps), temps en minutes, réduit en heures
+	vitesseMoyenne <- distance * MIN_PAR_HEURE / temps
+	
+	#affichage du résultat
+	écrire("Vous vous êtes déplacé à une vitesse de " & vitesseMoyenne & " km/h"
+
+Fin
+
+------------------------------------------------
+
+Algo
+	Variable age : entier
+	Variable nom : texte
+Début
+	
+	age <- saisir("Saisir votre âge ?")
+	nom <- saisir("Saisir votre nom ?")
+	
+	#SI age supérieur à 18 alors je rendre dans mon bloc de condition
+	Si age >= 18 et nom = "michel" Alors
+		écrire("Vous êtes majeur")
+	FSi
+	
+	#Si une des conditions est vraie, alors on rentre dans le bloc
+	Si age >= 18 ou nom = "michel" Alors
+		écrire("Vous êtes majeur")
+	FSi
+	
+	
+Fin
+
+------------------------------------------------
+#condtion SI
+Algo risqueDeVerglas
+
+	Variable temperature : réel
+	Constante VERGLAS : entier <- 2
+
+Début
+	#saisie utilisateur de la température extérieure
+	temperature <- saisir("Quel est le température extérieure (°C)?")
+
+	#condition : si température saisie < 2, afficher "risque de verglas"
+	Si temperature < VERGLAS Alors
+		écrire("risque de verglas")
+	FSi
+
+Fin
+
+------------------------------------------------
+#condition SI forme double (ELSE)
+Algo MeteoV2
+
+	Variable temperature : réel
+	Constante VERGLAS : entier <- 2
+	Constante PAS_CHAUD : entier <- 15
+	Constante BONNE : entier <- 30
+	
+Début
+	#permettre la saisie de la température par l'utilisateur
+	temperature <- saisir("Quel est la température ?")
+	
+	#4 conditions d'affichage
+	
+	Si température < VERGLAS Alors
+		écrire("Risque de verglas")
+	
+	Sinon 
+		Si temperature < PAS_CHAUD Alors
+			écrire("C'est pas chaud")
+		
+		Sinon 
+			Si temperature < BONNE Alors
+				écrire("Bonne température")
+	
+			Sinon 
+				écrire("trop chaud")
+			FSi
+		FSi
+	FSi
+	
+Fin
+
+-------------------------------------------------
+Algo meteoV3
+	Variable temperature : réel 
+	Constante VERGLAS : entier <- 2
+	Constante MOYEN_CHAUD : entier <- 15
+	Constante CHAUD : entier <- 30
+
+Début
+	temperature <- saisir("Quel est la température ?")
+	
+	Si temperature < 2 Alors
+		écrire("risque de verglas")
+	FSi
+	
+	Si temperature >= VERGLAS et temperature < MOYEN_CHAUD Alors	
+		écrire("C'est pas chaud")
+	FSi
+	
+	Si temperature >= MOYEN_CHAUD et temperature < CHAUD Alors	
+		écrire("Bonne température")
+	FSi
+	
+	Si temperature >= CHAUD Alors
+		écrire("trop chaud")
+	FSi
+		
+Fin
+	
+
+------------------------------------------------
+
+Algo zoo
+#défini le cri d'un animal en fonction de son espèce
+
+	Variable animal : texte
+
+Début
+	#Permet la saisie d'une espèce d'alors
+	animal <- saisir("Choisir un animal")
+	
+	#Selon l'espèce, écrire le cri
+	Selon animal
+		cas "chien" : écrire ("wouf")
+		cas "chat" : écrire ("miaou")
+		cas "vache" : écrire ("meeuuh")
+		autre : écrire("Je n'ai pas compris votre animal")
+	FSelon
+
+Fin
+
+-----------------------------------------------
+
+Algo nomDuMois
+#Ecrire le nom du mois en fonction de son numéro, saisi par l'utilisateur
+
+Variable numMois : entier
+Variable nomMois : texte
+
+Début
+	#permettre la saisir d'un mois en chiffres
+	numMois <- saisir("veuillez saisir un numéro de mois (1 à 12)?")
+
+	#test si numéro du mois saisi est bien compris entre 1 et 12
+	Si numMois >= 1 et nomMois <= 12 Alors
+		#Switch case en fonction des différentes valeur de numMois
+		Selon numMois
+			cas 1 : nomMois <- "Janvier"
+			cas 2 : nomMois <- "Février"
+			cas 3 : nomMois <- "Mars"
+			cas 4 : nomMois <- "Avril"
+			cas 5 : nomMois <- "Mais"
+			cas 6 : nomMois <- "Juin"
+			cas 7 : nomMois <- "Juiller"
+			cas 8 : nomMois <- "Aout"
+			cas 9 : nomMois <- "Septembre"
+			cas 10 : nomMois <- "Octobre"
+			cas 11 : nomMois <- "Novembre"
+			cas 12 : nomMois <- "Décembre"
+		FSelon
+		#afficher le nom du mois
+		écrire (nomMois)
+	
+	Sinon 
+		écrire("votre nombre n'est pas compris entre 1 et 12")	
+	FSi
+	
+Fin
+
+------------------------------------------------------------------
+
+Algo tempsCuisson
+	#Afficher le temps de cuisson en fonction du type de viande, du poids de la viande et du type de cuisson
+	
+	Variable typeViande,typeCuisson : texte
+	Variable poidsViande,tempsCuisson : entier
+	
+	Constante COEF_BOEUF_BLEU : réel <- 1.2
+	Constante COEF_BOEUF_A_POINT : réel <- 2.04
+	Constante COEF_BOEUF_BIEN_CUIT : réel <- 3
+	
+	Constante COEF_AGNEAU_BLEU : réel <- 2.25
+	Constante COEF_AGNEAU_A_POINT : réel <- 3.75
+	Constante COEF_AGNEAU_BIEN_CUIT : réel <- 6
+	
+Début
+
+	#saisie du type de viande par l'utiliseur
+	typeViande <- saisir("quel est votre viande ? BOEUF ou AGNEAU ?")
+
+	#saisie du type de cuisson par l'utiliseur
+	typeCuisson <- saisir("Quel cuisson désirez-vous ? BLEU, A POINT ou BIEN CUIT")
+	
+	#saisie du poids de la viande par l'utiliseur
+	poidsViande <- saisir("combien pèse votre viande (en grammes)")
+
+	
+	#test si type de viande = boeuf ou agneau
+	Si typeViande = "BOEUF" ou typeViande = "AGNEAU" Alors
+	
+		#test type de cuisson = BLEU, A POINT ou BIEN CUIT
+		Si typeCuisson = "BLEU" ou typeCuisson = "A POINT" ou typeCuisson = "BIEN CUIT" Alors
+			#Switch case selon les types de viande
+			Selon typeViande
+				cas "BOEUF" :
+					#Switch case selon type de cuisson
+					Selon typeCuisson
+						cas "BLEU": tempsCuisson <- COEF_BOEUF_BLEU * poidsViande
+						cas "A POINT" : tempsCuisson <- COEF_BOEUF_A_POINT * poidsViande
+ 						cas "BIEN CUIT" : tempsCuisson <- COEF_BOEUF_BIEN_CUIT * poidsViande
+					FSelon
+				cas "AGNEAU" : 
+					Selon typeCuisson
+						#Switch case selon type de cuisson
+						cas "BLEU": tempsCuisson <- COEF_AGNEAU_BLEU * poidsViande
+						cas "A POINT" : tempsCuisson <- COEF_AGNEAU_A_POINT * poidsViande
+						cas "BIEN CUIT" : tempsCuisson <- COEF_AGNEAU_BIEN_CUIT * poidsViande
+					FSelon
+			FSelon
+			#affichage du résultat
+			écrire("Pour que votre " & typeViande & " de " & poidsViande & " soit " & typeCuisson & ", il vous faudra " & tempsCuisson & " secondes")
+		#texte si type de cuisson invalide	
+		Sinon
+			écrire("je n'ai pas compris votre type de cuisson")
+		FSi
+	#texte si type de viande invalide
+	Sinon
+		écrire("Je n'ai pas compris votre type de viande")
+	FSi
+
+Fin
+
+--------------------------------------------------------------
+Algo bulletinDePaie
+#afficher un bulleton de paie simplifié à partir des informations saisies(nom, prénom, statut, nombre d'heure travaillées, taux horaire, nombre d'enfants)
+	
+	Variable nom, prenom, statut : texte
+	Variable statutSelection : entier
+
+	Variable nombreHeures, tauxHoraire, nombreEnfants : entier
+	
+	Variable nombreHeuresNormales : réel
+	Variable nombreHeures50 : réel <- 0
+	Variable nombreHeure60 : réel <- 0
+	
+
+	Constante COEFF_DETTE : réel <- 3,49
+	Constante COEFF_SOCIALE : réel <- 6,15
+	Constante COEFF_ASSU_MALADIE : réel <- 0,95
+	
+	Constante PRIME_FAMILIALE_1 : entier <- 20
+	Constante PRIME_FAMILIALE_2 : entier <- 50
+	Constante PRIME_FAMILIALE_3 : entier <- 70
+	Constante BONUS_PAR_ENFANT_SUPP : entier <- 20
+	
+	Constante LIMITE_HEURE_1 : entier <-180
+	Constante LIMITE_HEURE_2 : entier <- 169
+	
+	Constante TAUX_50 : réel <- 1.5
+	Constante TAUX_60 : réel <- 1.6
+	
+	Variable salaireBrut, salaireNet, salaireNetAPayer : réel
+	Variable primeFamiliale : réel <- 0
+	
+	
+	Variable contribDette, contribSociale, contribAssuMaladie, totalCotisSalariales : réel
+	
+Début
+	#-------------saisie des données utilisateur
+	
+	nom <- saisir("Nom de la personne")
+	prenom <- saisir("Prénom de la personne ?")
+	statutSelection <- saisir("Statut ? 1-Agent de service 2- Employé de bureau 3-Cadre")
+	nombreHeures <- saisir("Nombre d'heures travaillées ?")
+	tauxHoraire <- saisir("Taux horaire ?")
+	nombreEnfants <- saisir("Nombre d'enfants ?")
+	
+	#------------selection statut
+	
+	Selon statutSelection
+		cas 1 : statut <- "Agent de service"
+		cas 2 : statut <- "Employé de bureau"
+		cas 3 : statut <- "Cadre"
+
+	#-----------calcul salaire
+	
+	#--------------calcul nombre heures normales / 50% /60%
+	
+	Si nombreHeures > LIMITE_HEURE_1 et nombreHeures <= LIMITE_HEURE_2 Alors
+		nombreHeuresNormales <- LIMITE_HEURE_1
+		nombreHeures50 <- nombreHeures - LIMITE_HEURE_1
+	Sinon
+		Si nombreHeures < LIMITE_HEURE_2 Alors
+			nombreHeuresNormales <- LIMITE_HEURE_1
+			nombreHeures50 <- LIMITE_HEURE_2 - LIMITE_HEURE_2
+			nombreHeure60 <- nombreHeures - LIMITE_HEURE_2			
+	FSi
+	
+	#----------calcul salaireBrut
+	
+	salaireBrut <- (nombreHeuresNormales * tauxHoraire)+(nombreHeures50 * tauxHoraire*TAUX_50)+(nombreHeure60 * tauxHoraire * TAUX_60)
+	
+	#----------calcul cotisations
+	
+	contribDette <- salaireBrut * COEFF_DETTE
+	contribSociale <- salaireBrut * COEFF_SOCIALE
+	contribAssuMaladie <- salaireBrut * COEFF_ASSU_MALADIE
+	
+	totalCotisSalariales <- contribDette + contribAssuMaladie + contribSociale
+	
+	#-------------calcul salaire net
+	
+	salaireNet <- salaireBrut - totalCotisSalariales
+	
+	#calcul net à payer
+	
+	salaireNetAPayer <- salaireNet + primeFamiliale
+	
+	
+	#-----------calcul prime familiale
+	
+	Si nombreEnfants = 1 Alors
+		primeFamiliale <- PRIME_FAMILIALE_1
+	Sinon
+		Si nombreEnfants = 2 Alors
+			primeFamiliale = PRIME_FAMILIALE_2
+		Sinon
+			Si nombreEnfants > 2 Alors
+				primeFamiliale = PRIME_FAMILIALE_3 + ((BONUS_PAR_ENFANT_SUPP * nombreEnfants) - 2)
+			FSi
+		FSi
+	
+	FSi
+	
+	#-----------Affichage des données
+	
+	écrire("Bulletin de "& prenom & " " & nom)
+	écrire("Statut : " & statut)
+	écrire("Salaire brut: " & salaireBrut & "( " & nombreHeuresNormales & "sans majoration, " & nombreHeures50 & "h avec une majoration de 50%, " & nombreHeure60 & "h avec une majoration de 60%")
+	écrire("Calcul des cotisations:")
+	écrire("Contribution pour le remboursement de la dette sociale et contribution sociale généralisées imposable")
+	écrire(salaireBrut & "€ x "	& COEFF_DETTE & "% = " & contribDette & "€")
+	écrire("Contribution sociale généralisée non imposable")
+	écrire(salaireBrut & "€ x "	& COEFF_SOCIALE & "% = " & contribSociale & "€")
+	écrire("Assurance maladie")
+	écrire(salaireBrut & "€ x "	& COEFF_ASSU_MALADIE & "% = " & contribAssuMaladie & "€")
+	
+	écrire("Total des cotisations salariales: " & totalCotisSalariales & " €")
+	écrire("Salaire net: "& salaireNet & " €")
+	écrire("-Prime familiale: " & primeFamiliale & " €")
+	écrire("Salaire net à payer: " & salaireNetAPayer & " €")
+	
+Fin
+
+-------------------------------------------------------------------
+
+Algo testTantQue
+	Variable animal : texte
+	Constante compte : entier <- 10
+Début
+	animal <-saisir("quel est le meilleur amie de l'Homme ?")
+	compte
+	TantQue compte < 0
+		TantQue animal != "chien"
+			compte --
+			écrire("vous vous êtes trompé, il vous reste " & compte & " essais")
+			animal <- saisir("réessayez, quel est le meilleur ami de l'Homme ?")
+		FTq
+	FTq
+	écrire("bravo, c'est bien le chien")
+
+Fin
+
+------------------------------------------------------------------
+
+Algo testBouclePour
+	Variable m : entier
+	Constante TABLE : entier <- 8
+	
+Début
+	écrire("Table de " & TABLE)
+	
+	Pour m <- 0 à 10
+		écrire(m & " x " & TABLE " = " m * TABLE)
+	FPour
+
+Fin
+
+---------------------------------------------------------
+
+Algo testBouclePourV2
+
+	Variable saisieCompte : entier
+	Variable compte : entier
+	
+Début
+	#saisie du temps de compte à rebours par l'utilisateur
+	saisieCompteompte <- saisir("Veuillez entrez votre temps de compte à rebours (de 1 à 20)?")
+	
+	#test de si saisieCompte est bien compris entre 1 et 20
+	Si compte >= 1 et compte <= 20 Alors
+	
+		Pour compte <- saisieCompte à 0 par -1
+			écrire("Attention il reste " & compte)
+		FPour
+		
+	FSi
+Fin

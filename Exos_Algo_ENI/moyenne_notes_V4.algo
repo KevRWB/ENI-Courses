@@ -1,0 +1,38 @@
+Algo moyenneNotesV4
+
+	Constante TAILLE_TAB : entier 100
+	Constante STOP : entier <- -1
+	
+	Variable tabNotes : réel[TAILLE_TAB]
+	Variable i,nbNotes, sumNotes : entier <- 0
+	Variable notesSaisies : texte
+	
+	Variable saisie, moyenneNotes : réel
+
+Début
+
+	écrire("Veuillez entrer un note. -1 pour arrêter")  #afficher la consigne à l'utilisateur
+	
+	saisie <- saisir("Note ?")   #permettre la saisie d'une note par l'utilisateur
+	
+	TantQue saisie != STOP  #tant que la saisie de l'utilisateur est différente de la valeur STOP, on entre dans la boucle
+		
+		tabNotes[nbNotes] <- saisie #ajouter la valeur saisie dans le tableau
+
+		nbNotes++	#incrémentation du nombre de notes saisies
+		
+		saisie <- saisir("Note ?") #relance de saisie utilisateur
+	FTq
+	
+	
+	Pour i <- 0 à nbNotes - 1 	 #Calcul de la somme des notes du tableau
+		sumNotes <- sumNotes + tabNotes[i]
+	FPour
+		
+	moyenneNotes <- sumNotes / nbNotes  #Calcul de la moyenne des notes
+	
+	notesSaisies 
+	
+	écrire("La moyenne des notes est de " & moyenneNotes)  #affichage de la moyenne des notes
+
+Fin

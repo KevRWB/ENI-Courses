@@ -1,0 +1,42 @@
+Algo nbOccurence
+
+	Constante TAILLE_TAB : entier <- 10
+	Constante STOP : entier <- -1
+	Variable tab : entier[TAILLE_TAB]
+	Variable i : entier
+	Variable saisie : entier <- 0
+	
+	
+Début
+	#initialisation des valeurs du tableau à 0
+	Pour i <- 0 à TAILLE_TAB - 1 par 1
+		tab[i] <- 0
+	FPour
+	
+	
+	#tant que saisir utilisateur différente de la valeur STOP -> on rentre dans la boucle 
+	TantQue saisie != STOP
+
+		#permettre la saisir d'un chiffre de 0 à 9 par l'utilisateur
+		saisie <- saisir("Entrer une valeur comprise entre 0 à 9:")
+		
+		#teste si saisie bien comprise entre -1 et 9
+		Si saisie < STOP ou saisie >= TAILLE_TAB Alors
+			#afficher message erreur
+			écrire("Veuillez entrer un chiffre entre -1 et 9")
+		Sinon		
+			#incrémentation du nombre de valeur saisie par l'utilisateur dans le tableau
+			tab[saisie] ++
+			
+			#relance de saisie
+			saisie <- saisir("Autre valeur, svp:")
+		FSi
+		
+	FTq
+	
+	#écrire le nombre de chaque occurence du tableau
+	Pour i <- 0 à TAILLE_TAB -1 par 1
+		écrire("Nombre de " & i & ": " & tab[i])
+	FPour
+
+Fin

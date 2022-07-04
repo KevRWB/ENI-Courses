@@ -1,0 +1,84 @@
+Algo rendezLaMonnaie
+#Programmer le monnayeur d'une machine à café
+
+	Variable valeurPiece, monnaieARendre : réel
+	Variable montantInsere : réel <- 0
+	
+	Constante PRIX_CAFE : réel <- 0.6
+	Constante PIECE_005 : réel <- 0.05
+	Constante PIECE_01 : réel <- 0.1
+	Constante PIECE_02 : réel <- 0.2
+	Constante PIECE_05 : réel <- 0.5
+	Constante PIECE_1 : entier <- 1
+	Constante PIECE_2 : entier <- 2
+	
+	Variable nbpiece005, nbpiece01, nbpiece02, nbpiece05 ,nbpiece1 ,nbpiece2 : réel <- 0
+	
+Début
+	
+	TantQue montantInsere < PRIX_CAFE 
+	
+		#permettre la saisie de la valeur de la pièce insérée
+		valeurPiece <- saisir("Entrez la valeur de la pièce:")
+		
+		Si valeurPiece != PIECE_005 et valeurPiece != PIECE_01 et valeurPiece != PIECE_02 et valeurPiece != PIECE_05 et valeurPiece != PIECE_1 etvaleurPiece != PIECE_2 Alors
+			écrire("Pièce non acceptée, entrez une autre pièce")
+		Sinon
+			#ajouter valeur piece montant inséré
+			montantInsere <- montantInsere + valeurPiece
+			
+			#afficher crédit manquant si montant inséré inférieur au prix du café
+			Si montantInsere < PRIX_CAFE Alors
+				écrire("Crédit insuffisant (" & montantInsere & "€/" & PRIX_CAFE "€")	
+			FSi
+		FSi
+		
+	FTq
+	
+	#calcul de la monnaie à rendre
+	monnaieARendre <- montantInsere - PRIX_CAFE
+	###################################################
+	#définir les pièces à rendre
+	Si  monnaieARendre > PIECE_2 Alors
+			nbpiece2 = monnaieARendre div PIECE_2
+			monnaieARendre <- monnaieARendre - (nbpiece2 * PIECE_2)
+	FSi
+	###################################################
+	
+	TantQue monnaieARendre >= 2
+		nbpiece02 <- monnaieARendre 
+		monnaieARendre <- monnaieARendre - 
+	
+	###################################################
+		
+	
+	#affichage de la monnaie à rendre
+	écrire("Voici votre café et votre monnaie (" & monnaieARendre & "€) :")
+	
+	#affichage nombre de pièces à rendre
+	Si nbpiece005 != 0 Alors
+		écrire (nbpiece005 & "pièce(s) de " & PIECE_005 & "€")
+	FSi
+	
+	Si nbpiece01 != 0 Alors
+		écrire (nbpiece01 & "pièce(s) de " & PIECE_01 & "€")
+	FSi
+	
+	Si nbpiece02 != 0 Alors
+		écrire (nbpiece02 & "pièce(s) de " & PIECE_02 & "€")
+	FSi
+	
+	Si nbpiece05 != 0 Alors
+		écrire (nbpiece05 & "pièce(s) de " & PIECE_05 & "€")
+	FSi
+	
+	Si nbpiece1 != 0 Alors
+		écrire (nbpiece1 & "pièce(s) de " & PIECE_1 & "€")
+	FSi
+	
+	Si nbpiece2 != 0 Alors
+		écrire (nbpiece2 & "pièce(s) de " & PIECE_2 & "€")
+	FSi
+	
+Fin
+
