@@ -1,4 +1,5 @@
 --FOREIGN KEYS
+--Mise en place de l'intégrité référentielle
 
 ALTER TABLE Fiches ADD
 	CONSTRAINT FK_Fiches_noCli FOREIGN KEY(noCli)

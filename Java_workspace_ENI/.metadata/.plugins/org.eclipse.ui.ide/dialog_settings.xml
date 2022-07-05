@@ -13,4 +13,12 @@
 			<item value="D:\Java_workspace_ENI\JAVA_Workspace_ENI\cuissonFunctions"/>
 		</list>
 	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="492"/>
+		<item key="DIALOG_Y_ORIGIN" value="251"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
 </section>
