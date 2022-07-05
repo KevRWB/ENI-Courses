@@ -40,6 +40,8 @@ public class Pendu {
 		}
 		
 		System.out.println(Arrays.toString(tabMotVide));
+		
+		input.close();
 	
 	}
 
