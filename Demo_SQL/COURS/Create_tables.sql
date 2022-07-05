@@ -22,7 +22,7 @@ CREATE TABLE Fiches(
 		CONSTRAINT CK_Fiches_etat CHECK (etat = 'EC' OR etat = 'RE' OR etat = 'SO')
 		CONSTRAINT DF_Fiches_etat DEFAULT 'EC',
 
-	CONSTRAINT CK_Fiches_datePaye CHECK(etat = 'SO' AND datePaye > dateCrea)
+	CONSTRAINT CK_Fiches_datePaye CHECK(datePaye > dateCrea AND etat = 'SO')
 );
 
 CREATE TABLE LignesFic(
