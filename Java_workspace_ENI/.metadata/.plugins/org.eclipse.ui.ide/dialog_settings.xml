@@ -6,6 +6,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\ENI-_Courses\Java_workspace_ENI\exoEni"/>
+			<item value="D:\ENI-_Courses\Java_workspace_ENI"/>
 			<item value="D:\Java_workspace_ENI\JAVA_Workspace_ENI\exoEni"/>
 			<item value="D:\Java_workspace_ENI\JAVA_Workspace_ENI\nombrePremiers"/>
 			<item value="D:\Java_workspace_ENI\JAVA_Workspace_ENI\BatailleNavale"/>

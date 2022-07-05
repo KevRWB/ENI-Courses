@@ -66,3 +66,19 @@ CREATE TABLE Tarifs(
 	prixJour NUMERIC(5,2) not null	CONSTRAINT UN_Tarifs_libelle UNIQUE
 									CONSTRAINT CK_Tarifs_prisJour CHECK( prixJour > 0)
 );
+
+--CREATE INDEX
+
+CREATE NONCLUSTERED INDEX  FK_Fiches_noFic ON Fiches(noCli ASC);
+
+CREATE NONCLUSTERED INDEX  FK_LignesFic_refart ON LignesFic(refart ASC);
+
+CREATE NONCLUSTERED INDEX  FK_LignesFic_noFic ON  Fiches(noFic ASC);
+
+CREATE NONCLUSTERED INDEX  FK_Articles ON Articles(codeGam, codeCate ASC);
+
+CREATE NONCLUSTERED INDEX  FK_GrilleTarifs_CodeTarif ON Tarifs(codeTarif ASC);
+
+CREATE NONCLUSTERED INDEX  FK_GrilleTarifs_codeGam ON Gammes(codeGam ASC);
+
+CREATE NONCLUSTERED INDEX  FK_GrilleTarifs_codeCate ON Categories(codeCate ASC);
