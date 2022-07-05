@@ -21,14 +21,12 @@ ALTER TABLE Conges DROP
 	CONSTRAINT FK_Conges_Employe_CodeEmp;
 
 ALTER TABLE Employes DROP 
-	CONSTRAINT FK_Employes_CodeService;
+	CONSTRAINT FK_Employes_CodeService,
+	CONSTRAINT FK_Employes_CodeChef;
 
 ALTER TABLE Conges_Mens DROP 
 	CONSTRAINT FK_Conges_Mens;
 
-ALTER TABLE Employes DROP 
-	CONSTRAINT FK_Employes_CodeChef;
-
 -- SUPPRIMER TABLEAU
 
-DROP TABLE Conges;
+DROP TABLE Conges_Mens, Conges, Employes, Services;
