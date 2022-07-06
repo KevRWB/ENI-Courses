@@ -13,8 +13,17 @@ FROM Services s
 INNER JOIN Employes e ON e.codeService = s.codeService;
 
 ----------------------------------------
-SELECT s.CodeService, libelle, nom, prenom, c.Annee, c.NbJoursAcquis, cm.mois, cm.NbJoursPris
+SELECT s.CodeService, 
+    libelle, 
+    nom, 
+    prenom, 
+    c.Annee AS [Année Congés], 
+    c.NbJoursAcquis, 
+    cm.mois AS[Mois de congés], 
+    cm.NbJoursPris
 FROM Services s
 INNER JOIN Employes e ON e.codeService = s.codeService
 INNER JOIN Conges c ON c.codeEmp = e.codeEmp
-INNER JOIN Conges_Mens cm ON cm.CodeEmp = c.codeEmp AND cm.Annee = c.Annee;
+INNER JOIN Conges_Mens cm ON cm.CodeEmp = c.codeEmp AND cm.Annee = c.Annee
+
+WHERE c.Annee = 2006;
