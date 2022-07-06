@@ -27,3 +27,12 @@ INNER JOIN Conges c ON c.codeEmp = e.codeEmp
 INNER JOIN Conges_Mens cm ON cm.CodeEmp = c.codeEmp AND cm.Annee = c.Annee
 
 WHERE c.Annee = 2006;
+
+-------------------------------------
+SELECT e.Nom,
+    e.Prenom,
+    s.CodeService,
+    s.Libelle
+FROM Employes e 
+INNER JOIN Services s ON s.CodeService = e.CodeService
+ORDER BY Nom;
