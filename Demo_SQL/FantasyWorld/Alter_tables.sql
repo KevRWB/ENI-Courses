@@ -1,0 +1,6 @@
+/*
+ALTER TABLES
+*/
+
+ALTER TABLE Heroes DROP
+    COLUMN HeroRACE;

@@ -31,15 +31,14 @@ CREATE TABLE Weapons(
 	WeapSPD		NUMERIC(2)		not null	
 );
 
-/*
-INSERT HEROES
-*/
-
-INSERT INTO Heroes(HeroName, HeroPV, HeroATT, HeroSPD, HeroRACE)VALUES(
-	'Ragnar',
-	20,
-	30,
-	15,
-	'Barbare'
+CREATE TABLE Races(
+	RaceID 			NUMERIC(2)		CONSTRAINT PK_Races_RacesID PRIMARY KEY
+								IDENTITY(1,1),
+	RacePvBonus		NUMERIC(2) 		not null,
+	RaceAttBonus	NUMERIC(2)		not null,
+	RaceSpdBonus	NUMERIC(2)		not null,
+	RaceStory		VARCHAR(500)	null
 );
+
+
 
