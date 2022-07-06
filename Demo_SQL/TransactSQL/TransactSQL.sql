@@ -15,3 +15,5 @@ select CONVERT(CHAR, DATEADD(DAY, 30, GETDATE()), 103);
 select SUBSTRING('SQL Server -SQL et Transact-SQL', CHARINDEX('Server', 'SQL Server -SQL et Transact-SQL'),  LEN('Server')  );
 
 select GETDATE();
+
+select DATEADD(HOUR, 6, GETDATE());
