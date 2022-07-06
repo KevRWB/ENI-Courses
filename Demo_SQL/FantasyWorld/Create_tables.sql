@@ -2,8 +2,6 @@
 FANTASY WORLD
 CREATE TABLES
 */
-
-
 CREATE TABLE Heroes(
 	HeroID		NUMERIC(3)		CONSTRAINT PK_Heroes_HeroNum PRIMARY KEY
 								IDENTITY(0,1),
@@ -14,7 +12,6 @@ CREATE TABLE Heroes(
 	HeroRACE	VARCHAR(30)		null
 	
 );
-
 
 CREATE TABLE Monsters(
 	MonstID		NUMERIC(3)		CONSTRAINT PK_Monsters_MonstID PRIMARY KEY not null

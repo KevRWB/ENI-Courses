@@ -19,7 +19,7 @@ CREATE TABLE Services(
 	CodeService CHAR(5)		not null,
 	Libelle VARCHAR(30)		not null,
 	CONSTRAINT PK_Services PRIMARY KEY(CodeService),
-	CONSTRAINT UN_Services_Libelle UNIQUE(Libelle) -- CONSTRAINT de SECONDARY KEY (valeur qui ne peut pas être saisie plus d'une fois)
+	CONSTRAINT UN_Services_Libelle UNIQUE(Libelle) -- CONSTRAINT de SECONDARY KEY (valeur qui ne peut pas ï¿½tre saisie plus d'une fois)
 );
 
 CREATE TABLE Conges_Mens(
