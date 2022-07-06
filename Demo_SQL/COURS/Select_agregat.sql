@@ -35,5 +35,11 @@ FROM  Employes;
     ROUND(MAX(Salaire), 2)  AS [Salaire max]
  FROM Employes
  WHERE UPPER(RTRIM(CodeService)) IN ('RESHU', 'INFOR') 
- GROUP BY DATEPART(YEAR, DateEmbauche) 
+ GROUP BY DATEPART(YEAR, DateEmbauche)
+ ORDER BY([Année Embauche]) DESC 
 ;
+
+-------------------------------------------------------
+SELECT codeService, nom, prenom
+FROM Employes
+ORDER BY CodeService, nom;

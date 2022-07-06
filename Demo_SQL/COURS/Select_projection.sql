@@ -23,3 +23,6 @@ SELECT CodeEmp,
 		 SalaireAugmente = Salaire *2
 		FROM Employes;
 
+SELECT * 
+FROM clients; 
+
