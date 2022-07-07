@@ -10,7 +10,13 @@ GROUP BY CodeService;
 
 SELECT nom,  e.codeService, Salaire
 FROM Employes e
-CROSS JOIN #T1
+INNER JOIN #T1 ON e.CodeService = #T1.CodeService
 WHERE Salaire = SalaireMax;
+
+-----Alternative
+SELECT nom,  e.codeService, Salaire
+FROM Employes e
+CROSS JOIN #T1 
+WHERE Salaire = SalaireMax AND e.CodeService = #T1.CodeService;
 
 DROP TABLE #T1;
