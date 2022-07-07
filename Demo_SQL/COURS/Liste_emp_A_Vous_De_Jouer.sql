@@ -37,3 +37,16 @@ SELECT cm.CodeEmp,
 FROM Conges_Mens cm
 FULL OUTER JOIN Employes e ON e.CodeEmp = cm.CodeEmp
 WHERE cm.Annee = 2006;
+
+------------------------------------
+/*
+Différence WHERE / HAVING  -> WHERE sur colonne unique   HAVING sur "colonne" regroupée ou calculée
+*/
+SELECT codeService,
+	COUNT(*) AS nbEmployes
+FROM Employes
+--WHERE codeService = 'INFOR'
+GROUP BY codeService
+HAVING COUNT(*) >= 2;
+
+-------------------------------
