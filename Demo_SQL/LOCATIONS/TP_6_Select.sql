@@ -163,3 +163,4 @@ GROUP BY lf.noFic;
 
 
 
+

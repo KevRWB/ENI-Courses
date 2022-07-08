@@ -2,5 +2,8 @@
 ALTER TABLES
 */
 
-ALTER TABLE Heroes DROP
-    COLUMN HeroRACE;
+ALTER TABLE Heroes
+    ALTER COLUMN HeroRaceId NUMERIC(2,0) not null;
+
+ALTER TABLE Heroes ADD
+    CONSTRAINT chek CHECK(HeroID = 0 THEN HeroName = IS NOT NULL);
