@@ -56,3 +56,66 @@ BEGIN
     dbms_output.put_line('Salaire: '|| v_sal || '€');
 END;
 /
+
+----------------
+DECLARE   
+  v_sal emp.sal%type;
+BEGIN
+  UPDATE emp SET sal = sal*1.1 WHERE ename='SMITH'
+  RETURNING sal INTO v_sal;
+  dbms_output.put_line(v_sal);
+END;
+/
+
+----------------
+--Extraire le salaire d'un employé (exJONES)
+--SI salaire indéfreur à 1000 -> 'bas salaire'
+--si entre 1000 et 3000 ' salaire moyen'
+--sinon 'salaire correct'
+
+DECLARE   
+  v_sal emp.sal%type;
+BEGIN
+  SELECT sal INTO v_sal FROM emp WHERE ename = 'JONES';
+    IF v_sal < 1000 THEN
+      dbms_output.put_line('Bas salaire');
+    ELSIF v_sal < 3000 THEN
+       dbms_output.put_line('Salaire moyen');
+    ELSE 
+       dbms_output.put_line('Salaire correct');
+    END IF;
+END;
+/
+
+----V2 regrouper l'affichage dans une variable
+DECLARE   
+  v_sal emp.sal%type;
+  v_resultat varchar(30);
+BEGIN
+  SELECT sal INTO v_sal FROM emp WHERE ename = 'JONES';
+    IF v_sal < 1000 THEN
+      v_resultat:= 'Bas salaire';
+    ELSIF v_sal < 3000 THEN
+        v_resultat:= 'Salaire moyen';
+    ELSE 
+        v_resultat:= 'Salaire correct';
+    END IF;
+    
+    dbms_output.put_line(v_resultat);
+END;
+/
+----CASE----
+DECLARE   
+v_salaire emp.sal%type;
+v_resultat varchar2(30);
+BEGIN
+  CASE 
+  WHEN v_salaire < 1000 THEN v_resultat:='bas salaire';
+  WHEN v_salaire < 3000 THEN v_resultat:='Salaire moyen';
+  ELSE 
+    v_resultat:='Bon salaire';
+  END CASE;
+  
+  dbms_output.put(v_resultat);
+END;
+/
