@@ -119,3 +119,32 @@ BEGIN
   dbms_output.put(v_resultat);
 END;
 /
+-----FOR LOOP--------
+CREATE TABLE test (code NUMBER, nom VARCHAR(20));
+----------------------
+BEGIN
+  FOR i IN 1..3 LOOP
+    INSERT INTO test VALUES (i, 'NOM'||i);
+  END LOOP;
+END;
+/
+----WHILE LOOP-----
+DECLARE
+  v_count integer:=1;
+BEGIN
+  WHILE v_count <= 3 LOOP
+    INSERT INTO test VALUES (v_count, 'NOM'||v_count);
+    v_count := v_count +1;
+  END LOOP;
+END;
+---LOOP LOOP (DO WHILE LOOP)--------------
+DECLARE
+  v1 integer :=0;
+BEGIN
+  
+  LOOP
+    v1:= v1+1;
+    INSERT INTO test VALUES(v1, 'NOM' || v1);
+    EXIT WHEN v1=3;
+  END LOOP;
+END;
