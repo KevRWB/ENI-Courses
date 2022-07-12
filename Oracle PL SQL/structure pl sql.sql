@@ -291,3 +291,58 @@ END;
 /
 
 ----------------EXCEPTIONS PERSONNALISEES
+--------
+DECLARE
+  v_nb number;
+BEGIN
+  select count(*) into v_nb from emp;
+  
+  if v_nb < 20 then
+    raise_application_error(-20000, 'Pas assez employés');
+  else
+    dbms_output.put_line('Nombre employés' || v_nb);
+  end if;
+  
+  EXCEPTION
+    when others then
+      dbms_output.put_line(sqlcode || ' : ' || sqlerrm );    
+END;
+/
+-------------------------
+-----------EXO exceptions ---- afficher le nom des employés communs au numéro de département (deptNo) 
+DECLARE
+  v_dep dept.deptno%type := 30;
+  v_nom emp.ename%type;
+  cursor c1 is select ename from emp where deptno=v_dep;
+
+BEGIN
+  select deptno into v_dep from dept where deptno=v_dep;     
+  
+  open c1;
+    loop
+      fetch c1 into v_nom;
+      exit when c1%notfound;
+      dbms_output.put_line(v_nom);
+    end loop;
+    dbms_output.put_line(c1%rowcount);
+    
+  close c1;
+  
+   EXCEPTION
+    when no_data_found then
+      dbms_output.put_line('Département inconnu' );
+END;
+/
+---------------------------------
+--------------TYPE TABLE
+declare
+  type t1 is table of emp%rowtype;
+  v1 t1;
+begin
+  select * bulk collect into v1 from emp;
+  forall i in v1.first..v1.last
+    update emp set sal=sal*1.1 where empno=v1(i).empno;
+end;
+/
+--------------------------
+  
