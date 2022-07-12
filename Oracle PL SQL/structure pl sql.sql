@@ -148,3 +148,52 @@ BEGIN
     EXIT WHEN v1=3;
   END LOOP;
 END;
+---------------TEST ECRITURE PLEIN DE DONNEES--------------
+
+CREATE TABLE t10 (code NUMBER, nom VARCHAR(20), prenom VARCHAR(20));
+
+begin
+  FOR i in 1..6000000 loop
+    insert into t10 values(i,'NOM'||i, 'PRENOM'||i);
+  END LOOP;
+  
+  COMMIT;
+  
+END;
+
+ALTER SYSTEM FLUSH shared_pool;
+ALTER SYSTEM FLUSH buffer_cache;
+
+analyze table t10 comput statistics;
+CREATE INDEX i_nom on T10(NOM);
+SELECT * FROM t10 WHERE nom = 'NOM3000000';
+
+----------CURSEUR (plus d'une ligne retournée par le SELECT)
+----CURSEUR BOUCLE FOR
+DECLARE
+  cursor c_emp is select ename from emp;
+BEGIN
+
+  for i in c_emp loop
+    dbms_output.put_line(i.ename);
+  end loop;
+END;
+/
+--- CURSEUR BOUBLE LOOP
+DECLARE
+  cursor c_emp is select ename from emp; -- déclaration du curseur
+  v_nom   emp.ename%type;   -- variable dont le type est égal au type de sa colonne
+  ---OU -> v_liste emp%rowtype ( Selection multiple)
+BEGIN
+  open c_emp; -- Ouverture du curseur
+  loop        -- début de loop
+    fetch c_emp into v_nom; -- cherche la valeur dans le curseur (équivalent SELECT)
+    exit when c_emp%notfound;  ---sortie de boucle qd curseur ne trouve plus de données
+    dbms_output.put_line(v_nom); -- Affiche v_nom
+                  --Ou (v_nom.ename  -- Selection multiple)
+  end loop;
+  dbms_output.put_line('Nombre employes : ' ||c_emp%rowcount); ---Compte des lignes
+ 
+  close c_emp; -- Fermeture du curseur
+END;
+/
