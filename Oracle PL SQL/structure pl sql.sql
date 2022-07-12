@@ -197,3 +197,44 @@ BEGIN
   close c_emp; -- Fermeture du curseur
 END;
 /
+------
+-----Bloc pl/sql nom des emplpyés travaillant à DALLAS
+
+DECLARE
+  cursor c_names IS SELECT ename  FROM emp e 
+  INNER JOIN dept d ON d.deptno = e.deptno
+  WHERE loc = 'DALLAS';
+BEGIN
+  FOR i IN c_names LOOP
+     dbms_output.put_line(i.ename);
+  END LOOP;
+END;
+/
+
+-----Creer nouvelle colonne numEmp dans DEPT
+-----compter le nombre d'employés par département -> Insérer dans la colonne numEmp
+ALTER TABLE dept ADD
+  (nbEmp number(3) default 0);
+--------------
+DECLARE 
+  CURSOR c1 is select deptno, count(*) as nb from emp group by deptno;
+BEGIN
+  for i in c1 loop
+    update dept set nbEmp = i.nb where deptno = i.deptno;
+  end loop;
+END;
+/
+---CUSREURS PARAMETRES----
+DECLARE
+  cursor c1 (v_dep emp.deptno%type) is select ename from emp where deptno=v_dep;
+  v_nom emp.ename%type;
+BEGIN
+  open c1(20)
+    loop
+      fetch c1 into v_nom;
+      dbms_output.put_line(v_nom);
+      exit when c1%notfound;
+    end loop;
+  close c1;
+END;
+/
