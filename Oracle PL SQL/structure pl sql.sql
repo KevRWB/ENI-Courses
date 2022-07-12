@@ -238,3 +238,56 @@ BEGIN
   close c1;
 END;
 /
+---------EXCEPTIONS---------
+
+
+DECLARE
+  v_nom varchar(5);
+  v_prenom varchar(5);
+BEGIN
+  ----BLOC UN
+  BEGIN -- Creation de blocs imbriqués permettant d'isoler les exceptions
+  v_nom:='Traudeau';
+    exception
+    when value_error then
+        dbms_output.put_line('Nom trop grand'); -- si erreur 'value-error' -> Output 'Nom trop grand'
+    when others then    
+        dbms_output.put_line(sqlcode||' : '||sqlerrm);
+  END;
+  --BLOC DEUX
+  BEGIN
+    v_prenom:= 'Caroline';
+        exception
+           when value_error then
+            dbms_output.put_line('Prenom trop grand');
+           when others then    
+            dbms_output.put_line(sqlcode||' : '||sqlerrm);
+  END;
+  --OUTPUT et EXCEPTIONS du programme général
+  dbms_output.put_line('OK');
+  dbms_output.put_line('Nom : ' || v_nom || ' - Prenom : ' ||v_prenom);
+    exception
+           when others then    
+            dbms_output.put_line(sqlcode||' : '||sqlerrm);
+END;
+/
+
+----------------EXCEPTIONS NON PREDEFINIEES
+CREATE TABLE t20 (nom varchar(5));
+--------
+DECLARE
+  ---declare exception
+  trop_grand exception;
+  PRAGMA exception_init(trop_grand, -12899);
+
+BEGIN
+  insert into t20 values('Delphine');
+  EXCEPTION
+    when trop_grand then
+      dbms_output.put_line('Nom trop grand');
+    when others then
+      dbms_output.put_line(sqlcode ||' : ' ||sqlerrm);
+END;
+/
+
+----------------EXCEPTIONS PERSONNALISEES
