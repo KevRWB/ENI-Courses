@@ -525,4 +525,22 @@ END;
 show error
 
 
----------------------------------
+---------TRIGGER ON VIEW---------
+CREATE OR REPLACE TRIGGER tr_manager
+  INSTEAD OF INSERT on v_manager
+  FOR EACH ROW
+BEGIN
+  insert into emp(empno, ename, job, sal, deptno)
+  values(:NEW.empno, :NEW.ename, 'MANAGER', :NEW.sal, :NEW.deptno);
+END;
+/
+
+CREATE OR REPLACE VIEW v_manager AS 
+  SELECT empno, ename, sal, deptno FROM emp 
+  WHERE job = 'MANAGER';
+
+SELECT * FROM v_manager;
+
+insert into v_manager values(222, 'Ludivine', 4000, 40);
+commit;
+--------------------------------
