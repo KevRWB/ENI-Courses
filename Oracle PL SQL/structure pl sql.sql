@@ -471,7 +471,7 @@ where sal >= (select sal from emp where ename='JONES');
 select emp.ename, emp.sal from emp, emp x
 where emp.sal >= x.sal and x.ename='Jones';
 
--------TRIIGER ------------
+-------TRIIGER  MISE A JOUR DU NOMBRE D'EMPLOYES PAR SERVICE----------
 CREATE or REPLACE TRIGGER tr_nbemp 
   AFTER INSERT or DELETE or UPDATE
   OF deptno ON emp
@@ -489,5 +489,25 @@ BEGIN
   end if;
 END;
 /
---------------------------
+------------TRIGGER 2 ARCHIVAGE DE DONNEES-----
+  CREATE TABLE t_archive
+  (code number, salaire number(7,2), date_modif date);
   
+CREATE OR REPLACE TRIGGER tr_archive
+  AFTER UPDATE OF sal ON emp
+  FOR EACH ROW
+BEGIN
+  INSERT INTO t_archive
+  VALUES 
+    (:OLD.empno, :OLD.sal, sysdate);  
+END;
+/
+-----------TRIGGER FATAL ERROR ON DELETE ROW
+create or replace 
+TRIGGER tr_archive
+  BEFORE DELETE  ON emp
+  FOR EACH ROW
+BEGIN
+  raise_application_error(-20000, 'Tatane de forain dans ta gueule'); 
+END;
+/
