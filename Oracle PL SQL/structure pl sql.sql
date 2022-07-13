@@ -506,8 +506,23 @@ END;
 create or replace 
 TRIGGER tr_archive
   BEFORE DELETE  ON emp
-  FOR EACH ROW
 BEGIN
   raise_application_error(-20000, 'Tatane de forain dans ta gueule'); 
 END;
 /
+------------PAS DE BAISSE DE SALAIRE SINON FATAL ERROR
+create or replace 
+TRIGGER tr_checkSal 
+  BEFORE UPDATE of sal ON emp
+  FOR EACH ROW
+  --when(NEW.sal < OLD.sal)
+BEGIN
+  if :OLD.sal > :NEW.sal then
+    raise_application_error(-20000, 'Faut pas baisser le salaire, non mais oh !');
+  end if;
+END;
+/
+show error
+
+
+---------------------------------
