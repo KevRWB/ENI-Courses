@@ -418,5 +418,42 @@ show errors
 
 execute p_emp(30); -- || exec p-emp(40)
 show errors
----------------------------
+-------------FONCTIONS
+create or replace function f_carre (x real)
+  return real is
+begin
+  return x*x;
+end;
+/
+show errors
+
+select f_carre(3.14) from dual;
+
+-- EXO Fonction pour retourner le salaire d'un employé dont l'empno est passé en paramètre
+
+CREATE OR REPLACE FUNCTION f_sal (v_empno emp.empno%type) RETURN emp.sal%type IS
+  v_sal emp.sal%type;
+BEGIN
+  select sal into v_sal from emp where empno = v_empno;
+  RETURN v_sal;
+END;
+/
+show errors
+
+select f_sal(7839) from dual;
+
+---- Compter le nombre d'employés et placer le résultat dans une variable
+--Compter le nombre n'employés dont le job est MANAGER -> stocké dans une autre variable
+--Calculer le % de MANAGER-> Afficher
+DECLARE
+  v_nbEmp int;
+  v_nbManager int;
+  v_pourcManager number(6,2);
+BEGIN
+  select count(*) into v_nbEmp from emp;
+  select count(*) into v_nbManager from emp where job = 'MANAGER';
+  v_pourcManager := (v_nbManager /v_nbEmp * 100);
+  dbms_output.put_line('Pourcentage de manager : ' || v_pourcManager || '%');
+END;
+/
   
