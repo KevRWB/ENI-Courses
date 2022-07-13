@@ -442,18 +442,52 @@ show errors
 
 select f_sal(7839) from dual;
 
----- Compter le nombre d'employés et placer le résultat dans une variable
+-- Compter le nombre d'employés et placer le résultat dans une variable
 --Compter le nombre n'employés dont le job est MANAGER -> stocké dans une autre variable
 --Calculer le % de MANAGER-> Afficher
+-- Si nombre employé = 0 -> erreur Fatale
 DECLARE
   v_nbEmp int;
   v_nbManager int;
   v_pourcManager number(6,2);
 BEGIN
   select count(*) into v_nbEmp from emp;
+  if v_nbEmp = 0 then
+    raise_application_error (-20001, 'is_zero');
+  end if;
+    
   select count(*) into v_nbManager from emp where job = 'MANAGER';
   v_pourcManager := (v_nbManager /v_nbEmp * 100);
   dbms_output.put_line('Pourcentage de manager : ' || v_pourcManager || '%');
+    
 END;
 /
+-------------------
+-------------------------------
+--Sous reqêtes
+select ename, sal from emp
+where sal >= (select sal from emp where ename='JONES');
+--Synonymes locaux
+select emp.ename, emp.sal from emp, emp x
+where emp.sal >= x.sal and x.ename='Jones';
+
+-------TRIIGER ------------
+CREATE or REPLACE TRIGGER tr_nbemp 
+  AFTER INSERT or DELETE or UPDATE
+  OF deptno ON emp
+  FOR EACH ROW
+
+BEGIN
+  if inserting then
+    update dept set nbemp = nbemp+1 where deptno=:NEW.deptno;
+  elsif deleting then
+    update dept set nbemp = nbemp-1 where deptno=:OLD.deptno;
+  elsif updating then
+    update dept set nbemp = nbemp+1 where deptno=:NEW.deptno;
+    update dept set nbemp = nbemp-1 where deptno=:OLD.deptno;
+  
+  end if;
+END;
+/
+--------------------------
   
