@@ -344,5 +344,79 @@ begin
     update emp set sal=sal*1.1 where empno=v1(i).empno;
 end;
 /
---------------------------
+---------------PROCEDURES
+-----V1 with cursor
+
+CREATE OR REPLACE PROCEDURE p_emp (v_dep dept.deptno%type) IS
+  v_num dept.deptno%type;
+  v_nbemp integer; 
+  vide exception;
+  cursor c_emp is select * from emp where deptno = v_dep;
+
+BEGIN
+    select deptno into v_num from dept where deptno = v_dep;
+    
+    select count(*) into v_nbemp from emp where deptno = v_dep;
+      if v_nbemp = 0 then
+        RAISE vide;
+      else
+        for i in c_emp loop
+          dbms_output.put_line(i.ename);
+        end loop;
+      end if;
+      
+  exception
+    when no_data_found then
+      dbms_output.put_line('Département ' || v_dep ||' inconnu');
+    when vide then
+      dbms_output.put_line('Pas d''employés');
+    when others then 
+      dbms_output.put_line(sqlcode);
+END p_emp;
+/
+show errors
+
+execute p_emp(60); -- || exec p-emp(40)
+show errors
+--------V2 with table
+--Nom des employés d'un departement passé en paramètre
+--Vérifier que le departement existe et qu'il contient des employés
+--execute p_emp(10) --> Liste des employés
+--execute p-emp(22) --> message(département inconnu)
+--execute p-emp(40) --> message (pas d'employés)
+
+CREATE OR REPLACE PROCEDURE p_emp (v_dep dept.deptno%type) IS
+  v_num dept.deptno%type;
+  v_nbemp integer; 
+  vide exception;
+
+  type t1 is table of emp%rowtype;
+  v1 t1;
+BEGIN
+    select deptno into v_num from dept where deptno = v_dep;
+    
+    select count(*) into v_nbemp from emp where deptno = v_dep;
+      if v_nbemp = 0 then
+        RAISE vide;
+      else
+         select * bulk collect into v1 from emp where deptno = v_dep;
+         for i in v1.first..v1.last loop
+          dbms_output.put_line(v1(i).ename);
+        end loop;
+      end if;
+      
+  exception
+    when no_data_found then
+      dbms_output.put_line('Département ' || v_dep ||' inconnu');
+    when vide then
+      dbms_output.put_line('Pas d''employés');
+    when others then 
+      dbms_output.put_line(sqlcode);
+END p_emp;
+/
+show errors
+
+execute p_emp(30); -- || exec p-emp(40)
+show errors
+---------------------------
   
