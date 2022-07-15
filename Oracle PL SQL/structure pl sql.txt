@@ -1,23 +1,3 @@
-BLOC PL/SQL
+Cours PACKAGE
 
-  [DECLARE]
-    variables ou constantes
-    cursors
-    exceptions
-    procedures ou fonctions
-  BEGIN
-    instructions SQL
-    structures de contrôle
-    
-    [EXCEPTION]
-    Gestion des erreurs
-  
-  END;
-
-  [/]
-
-commentaires
-    --uncommentaire
-    /*
-    commentaire multi lignes
-    */
+crate or 
