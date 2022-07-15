@@ -39,3 +39,26 @@ BEGIN
   end loop;    
 END;
 /
+
+---------------------------------------
+/*
+deptno
+nom emp
+nomemp
+deptno
+nom emp
+nom emp
+*/
+DECLARE
+  cursor v_dept is select deptno from dept;
+  cursor v_emp (v_dept emp.deptno%type) is select ename from emp where deptno = v_dept;
+BEGIN
+  for i in v_dept loop
+    dbms_output.put_line(i.deptno);
+    for j in v_emp(i.deptno) loop
+       dbms_output.put_line(j.ename);
+    end loop;
+  end loop;
+END;
+/
+--------------------------------
