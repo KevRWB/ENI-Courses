@@ -1,0 +1,6 @@
+Le nombre : 2
+Le nombre : 30
+Le nombre : 45
+Le nombre : 45
+Le nombre : 78
+Le nombre : 98
