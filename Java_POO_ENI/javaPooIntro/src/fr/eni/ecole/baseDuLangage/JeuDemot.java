@@ -25,12 +25,18 @@ public class JeuDemot {
 		//afficher mot melanger
 		afficher(motAlea);
 		
-		char[] motTest = {'C', 'E', 'S','C', 'E', 'S'};
-		//check letters
-		System.out.println(motTest);
-		checkLetters(motTest, "ECC");
-		
-		
+		//--dans le dico ?
+		char[] mot = {'a', 'b', 'a', 't'};
+
+		try {
+			dansLeDico(mot);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// ################# METHODS ######################
@@ -160,6 +166,28 @@ public class JeuDemot {
 		return lettersOk;
 	}
 	
-	//-----------------------------------------
+	//---Dans le dico -> Check si mot saisi par l'utilisateur est dans la liste du dictionnaire--------------------------
+	
+	private static boolean dansLeDico(char[]tabMot) throws FileNotFoundException, IOException{
+		boolean wordIsInDico = false;
+		String userWord = new String(tabMot).toUpperCase();
+		try (
+			FileInputStream fichier = new FileInputStream("./dictionnaire.txt");
+			Scanner s = new Scanner(fichier))
+			{		
+				
+			while(s.hasNextLine()) {		
+				String ligne = s.nextLine().toUpperCase();
+				if(userWord.equals(ligne)) {
+					wordIsInDico = true;
+				}			
+			}
+			
+			if(wordIsInDico) {
+				System.out.println("Mot dans dico");
+			}else System.out.println("Mot pas dans le dico");			
+		}
+		return wordIsInDico;
+	}
 }
 
