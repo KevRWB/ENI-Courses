@@ -11,6 +11,11 @@ public class JeuDemot {
 
 	// #### -- MAIN PROGRAM -- #####
 	public static void main(String[] args) {
+		
+		//---INTRODUCTION
+		System.out.println("Bienvenu dans le Maximot");
+		System.out.println("Mot au hasard dans le dictionnaire, mélangé :");
+		
 		char [] motAlea = null;
 		
 		//tirer mot aleatoire
@@ -25,18 +30,38 @@ public class JeuDemot {
 		//afficher mot melanger
 		afficher(motAlea);
 		
-		//--dans le dico ?
-		char[] mot = {'a', 'b', 'a', 't'};
-
-		try {
-			dansLeDico(mot);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//--boucle de jeu
+		System.out.println("Quel mot proposez-vous ?");
+		Scanner input = new Scanner(System.in);
+		String motUser = input.nextLine();
+		
+		boolean victoire = false;
+		
+		while(!victoire) {
+			// check si lettres correspondent
+			while (!checkLetters(motAlea, motUser)){
+				System.out.println("Les lettre ne correspondent pas");
+				System.out.println("Saisissez un nouveau mot :");
+				motUser = input.nextLine();
+			}
+			
+			// test si victoire			
+			try {
+				if(dansLeDico(motUser.toUpperCase().toCharArray())) {
+					victoire = true;
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		//Message victoire
+		System.out.println("Vous avez gagné");
+		
+		input.close();
 	}
 	
 	// ################# METHODS ######################
@@ -109,6 +134,7 @@ public class JeuDemot {
 	 for(int i = 0; i < newTableau.length; i++) {
 		 newTableau[i] = '#';
 	 }
+	 // copy tableau -> char[] tab = Arrays.copyOf(tabDeux, tabDeux.length);
 	 // generatet random index
 	 Random rand = new Random();
 	 int randIndex = rand.nextInt(newTableau.length);
@@ -157,11 +183,6 @@ public class JeuDemot {
 					lettersOk = false;
 				}
 			}
-			
-			System.out.println(tabUser);
-			System.out.println(tableTemp);
-			if (lettersOk) System.out.println("Vrai");
-			else System.out.println("False");	
 		}	
 		return lettersOk;
 	}
