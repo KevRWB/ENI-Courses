@@ -15,7 +15,7 @@ public class EcritureFichier {
 				f = new FileWriter("./valeurs.txt");
 				
 				for (int i = 0; i < valeurs.length; i++)
-					f.write(String.format("%.3f%n", valeurs[i]));
+					f.write(String.format("%.2f%n", valeurs[i]));
 				System.out.println("Enregistrement ok");
 			} finally {
 				if ( f != null)
