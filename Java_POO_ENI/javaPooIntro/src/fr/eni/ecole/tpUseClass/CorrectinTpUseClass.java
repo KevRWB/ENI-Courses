@@ -21,7 +21,21 @@ public class CorrectinTpUseClass {
 		Scanner input = new Scanner(System.in);
 		String inputUser = input.next();
 		
+		switch(inputUser) {
+		case "-": 
+			date.add(GregorianCalendar.MONTH, -1);
+			afficherMois(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH));
+		break;
+		case "+": 
+			date.add(GregorianCalendar.MONTH, +1);
+			afficherMois(date.get(GregorianCalendar.YEAR), date.get(GregorianCalendar.MONTH));
+		break;
+		case "q":
+		break;
 		
+		default:
+			
+		}
 		
 	}
 	//### METHODS
