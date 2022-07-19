@@ -36,7 +36,15 @@ public class JeuDeLettres {
 				}else {
 					System.out.println("Mot non présent dans le dictionnaire...");
 				}
-			}	
+			}
+			
+			//Le mot tiré au sort est dévoilé au joueur
+			System.out.println("Le mot était : ");
+			afficher(mot);
+			
+			//ferme Scanner
+			input.close();
+			
 		//catch de toutes le exceptions possibles
 		}catch(Exception e) {
 			System.out.println("Erreur lors de la lecture du dictionnaire");
