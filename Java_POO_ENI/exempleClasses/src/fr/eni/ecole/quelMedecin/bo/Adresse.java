@@ -32,12 +32,12 @@ public class Adresse {
 		// Si mentions complémentaires -> 
 		if(this.mentionComp == null && this.mentionCompNum == null) {
 			System.out.println(this.numVoie+ " " + (this.nomVoie));
-			System.out.println(this.CP + " " + this.ville);
+			System.out.println(String.format("%05d %s", this.CP, this.ville));
 		// SI pas de mention complémentaire -> 
 		}else {
 			System.out.println(this.mentionComp);
 			System.out.println(this.numVoie+ " " + (this.mentionCompNum)+ " " + (this.nomVoie));
-			System.out.println(this.CP + " " + this.ville);
+			System.out.println(String.format("%05d %s", this.CP, this.ville));
 		}
 	}
 }

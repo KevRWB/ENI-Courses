@@ -37,9 +37,10 @@ public class Patient {
 		System.out.println("Numéro de sécurité sociale : " + this.numSecu);
 		
 		//Creation formatage Date
-		//DateTimeFormatter format = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+		DateTimeFormatter format = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
 		System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(dateNaissance));
-		
+		System.out.println(format.format(dateNaissance));
+		//Autre formatage de date
 		System.out.printf("Date de naissance : %02d %s %d%n" , this.dateNaissance.getDayOfMonth(), 
 								this.dateNaissance.getMonth().getDisplayName(TextStyle.FULL, Locale.FRANCE),  
 								this.dateNaissance.getYear());		
