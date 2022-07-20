@@ -8,28 +8,25 @@ public class De {
 	private int faceTiree;	
 	private static Random rnd = new Random();
 	
-	//constructeur
-	public De(int nbFaces) {
-		this.nbFaces = nbFaces;
-		this.lancer(); // initialise faceTiree par un lancer
+	//CONSTRUCTEUR
+	public De(int nbFaces) throws Exception{
+		this.setNbFaces(nbFaces); // set nbFace avec la method setNbFace
+		this.faceTiree = lancer(); // initialise faceTiree par un lancer
 	}
-	//constructeur par default
-	public De() {
+	//CONSTRUCTEUR par default
+	public De() throws Exception{
 		this(6); // this (constructeur existant)  (6) spécifié par le nombre d'arguments
 	}
 	
-	//Methods	
+	//METHODS
 	//getter nbFaces - accès en lecture
 	public int getNbFaces() {
 		return this.nbFaces; //this -> Accès à la la l'attribut d'instance
 	}	
-	//setter nbFaces - Accès en écriture
+	//setter nbFaces - Accès en écriture - avec method de verification Exception
 	public void setNbFaces(int nbFaces)throws Exception{ 
-		if(nbFaces<=0) {
-			//retourne erreur
-			throw new Exception("Un dé doit au moins avoir 1 face");
-		}	//si exception, suite n'est pas executée
-			this.nbFaces = nbFaces;	
+		verifNbFaces(nbFaces);
+		this.nbFaces = nbFaces;	
 	}	
 	//Lancer de dé
 	public int lancer() {
@@ -39,5 +36,12 @@ public class De {
 	//Getter faceTiree
 	public int getFaceTiree() {
 		return this.faceTiree;
+	}
+	
+	//verification nombre faces - method de class static privée
+	private static void verifNbFaces(int nbFaces) throws Exception{
+		if(nbFaces <=1) {
+			throw new Exception("Un dé a minimum deux faces");
+		}
 	}
 }	
