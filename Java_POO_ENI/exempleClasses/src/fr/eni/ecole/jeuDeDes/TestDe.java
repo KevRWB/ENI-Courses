@@ -4,7 +4,8 @@ public class TestDe {
 
 	public static void main(String[] args) {
 		//Instance de la class "De" - pas de construceur donc constructeur par default (java lang object)
-		De monDe = new De();
+		De monDe = new De();//avec le constructeur
+		De autreDe = new De(6);
 		
 		//Set le nombre de faces du dé - avec try exception
 		try {					//Surround by try catch car peut retourner un exception

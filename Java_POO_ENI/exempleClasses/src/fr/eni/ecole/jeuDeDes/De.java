@@ -8,6 +8,16 @@ public class De {
 	private int faceTiree;	
 	private static Random rnd = new Random();
 	
+	//constructeur
+	public De(int nbFaces) {
+		this.nbFaces = nbFaces;
+		this.lancer(); // initialise faceTiree par un lancer
+	}
+	//constructeur par default
+	public De() {
+		this(6); // this (constructeur existant)  (6) spécifié par le nombre d'arguments
+	}
+	
 	//Methods	
 	//getter nbFaces - accès en lecture
 	public int getNbFaces() {
