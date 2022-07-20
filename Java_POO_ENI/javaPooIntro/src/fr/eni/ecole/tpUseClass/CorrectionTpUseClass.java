@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class CorrectinTpUseClass {
+public class CorrectionTpUseClass {
 
 	public static void main(String[] args) {
 		GregorianCalendar date = new GregorianCalendar();//Création d'un objet calendrier au mois et à l'année en cours
@@ -53,11 +53,10 @@ public class CorrectinTpUseClass {
 					System.out.println("Saisie incorrecte");
 				}
 			}
-		}while(!inputUser.equalsIgnoreCase("q")); // tant que saisie différente de "q" (en ignorant majuscules)
-		
-		
-		
+		}while(!inputUser.equalsIgnoreCase("q")); // tant que saisie différente de "q" (en ignorant majuscules)		
 	}
+	
+	
 	//### METHODS
 	private static void afficherMois(int annee, int mois) {
 		//Creation d'une instance de GregorianCalendar
