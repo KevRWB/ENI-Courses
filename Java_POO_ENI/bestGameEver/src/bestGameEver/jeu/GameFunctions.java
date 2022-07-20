@@ -16,12 +16,24 @@ public class GameFunctions {
 			int ptsAttack = monsterAttack(rollDice(facesDice), monster);
 			heroRemoveLife(ptsAttack, hero);
 		}
-	//Hero turn
-			public static void heroTurn(Monster monster, Hero hero, int facesDice) {
-				System.out.println("Tour de " + hero.getName());
-				int ptsAttack = heroAttack(rollDice(facesDice), hero);
-				monsterRemoveLife(ptsAttack, monster);
-			}
+		//Hero turn
+		public static void heroTurn(Monster monster, Hero hero, int facesDice) {
+			System.out.println("Tour de " + hero.getName());
+			int ptsAttack = heroAttack(rollDice(facesDice), hero);
+			monsterRemoveLife(ptsAttack, monster);
+		}
+		//fonction check initiative
+		public static boolean heroHasInit(Hero hero, Monster monster) {
+			if(hero.getInitiative() >= monster.getInitiative()) {
+				return true;
+			}else return false;
+		}
+		//fonction print init
+		public static void printInit(boolean heroHasInit) {
+			if(heroHasInit) {
+				System.out.println("Vous avez l'initiative pour ce combat, vous aller donc lancer la première attaque !");
+			}else System.out.println("Le monstre l'initiative pour ce combat. Il va donc lancer la première attaque !");
+		}
 	
 		//Fonction roll dice and print dice result
 		public static int rollDice(int faces) {
@@ -37,6 +49,7 @@ public class GameFunctions {
 			//print results
 			System.out.println("Jet du hero : " + resultDe);
 			System.out.println("Avec votre attaque de "+ hero.getAtt() + ", vous infligez " + ptsAttack + " points de dégâts au monstre");
+			System.out.println();
 			//return statement
 			return ptsAttack;
 		}
@@ -47,6 +60,7 @@ public class GameFunctions {
 			//print results
 			System.out.println("Jet du monstre : " + resultDe);
 			System.out.println("Avec son attaque de "+ monster.getAtt() + ", il vous fait " + ptsAttaque + " points de dégâts");
+			System.out.println();
 			//return statement
 			return ptsAttaque;
 		}
@@ -61,6 +75,7 @@ public class GameFunctions {
 			System.out.println("Votre défense : " + hero.getDef() + ", vous perdez " + pvLost + " PV");
 			if(hero.getLife() > 0) {//check if hero's life is > 0
 			System.out.println("Il vous reste " + hero.getLife() + " PV");
+			System.out.println();
 			}
 		}
 		//fonction remove life to monster
@@ -74,6 +89,7 @@ public class GameFunctions {
 			System.out.println("Défense du monstre : " + monster.getDef() + ", il perd " + pvLost + " PV");
 			if(monster.getLife() > 0) {
 				System.out.println("Il reste " + monster.getLife() + " PV au monstre");
+				System.out.println();
 			}
 		}
 		//fonction print available heroes
@@ -99,7 +115,25 @@ public class GameFunctions {
 			System.out.println("Attaque : " + hero.getAtt());
 			System.out.println("Défense : " + hero.getDef());
 			System.out.println("Points de vie : " + hero.getLife());
+			System.out.println("Initiative : " + hero.getInitiative());
 			System.out.println("-------------------");
+		}
+		//fonction print monster
+		public static void printMonster(Monster monster) {
+			System.out.println("--------------------");
+			System.out.println(monster.getName());
+			System.out.println("Attaque : " + monster.getAtt());
+			System.out.println("Défense : " + monster.getDef());
+			System.out.println("Points de vie : " + monster.getLife());
+			System.out.println("Initiative : " + monster.getInitiative());
+			System.out.println("-------------------");
+				}
+		//select random monster
+		public static Monster selectRdMonster(ArrayList<Monster> list) {
+			Random rnd = new Random();
+			int nbMonsters = list.size();
+			int numMonster = rnd.nextInt(nbMonsters);
+			return list.get(numMonster);
 		}
 		
 }
