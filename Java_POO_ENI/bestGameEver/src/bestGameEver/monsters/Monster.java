@@ -2,18 +2,26 @@ package bestGameEver.monsters;
 
 public class Monster {
 	//--attributs
+	private int index;
 	private String name;
 	private int att;
 	private int def;
-	private int vie;
+	private int life;
+	private int initiative;
 	//constructeur
-	public Monster(String name, int att, int def, int vie) {
+	public Monster(int index, String name, int att, int def, int life, int initiative){
+		this.index = index;
 		this.name = name;
 		this.att = att;
 		this.def = def;
-		this.vie = vie;
+		this.life = life;
+		this.initiative = initiative;
 	}
 	//getters setters
+	public int getIndex() {
+		return index;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -32,18 +40,24 @@ public class Monster {
 	public void setDef(int def) {
 		this.def = def;
 	}
-	public int getVie() {
-		return vie;
+	public int getLife() {
+		return life;
 	}
-	public void setVie(int vie) {
-		this.vie = vie;
+	public void setLife(int Life) {
+		this.life = Life;
+	}
+	public int getInitiative() {
+		return this.initiative;
+	}
+	public void setInitiative(int initiative) {
+		this.initiative = initiative;
 	}
 	// --- METHODS
 	public void afficherMonster() {
 		System.out.println("Nom : " + this.name);
 		System.out.println("Attaque : " + this.att);
 		System.out.println("Défense : " + this.def);
-		System.out.println("Points de vie : " + this.vie);
+		System.out.println("Points de vie : " + this.life);
 	}
 	
 }

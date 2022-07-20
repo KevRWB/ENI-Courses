@@ -1,21 +1,29 @@
 package bestGameEver.heros;
 
 public class Hero {
+	private int index;
 	private String name;
 	private int att;
 	private int def;
-	private int vie;
+	private int life;
+	private int initiative;
 	
-	public Hero(String name, int att, int def, int vie) {
+	public Hero(int index,String name, int att, int def, int life, int initiative) {
 		this.name = name;
 		this.att = att;
 		this.def = def;
-		this.vie = vie;
+		this.life = life;
+		this.index = index;
+		this.initiative = initiative;
 				
 	}
 	
 	//  METHODS
 	//getters
+	public int getIndex() {
+		return this.index;
+	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -25,18 +33,24 @@ public class Hero {
 	public int getDef() {
 		return this.def;
 	}
-	public int getVie() {
-		return this.vie;
+	public int getLife() {
+		return this.life;
 	}
-	public void removeVie(int nb) {
-		this.vie = this.vie - nb;
+	public void setLife(int life) {
+		this.life = life;
+	}
+	public int getInitiative() {
+		return this.initiative;
+	}
+	public void setInitiative(int initiative) {
+		this.initiative = initiative;
 	}
 	//affichage
 	public void afficherHero() {
 		System.out.println("Nom : " + this.name);
 		System.out.println("Attaque : " + this.att);
 		System.out.println("Défense : " + this.def);
-		System.out.println("Points de vie : " + this.vie);
+		System.out.println(life);
 	}
 
 }
