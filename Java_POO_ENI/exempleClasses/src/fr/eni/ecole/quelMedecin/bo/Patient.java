@@ -14,8 +14,9 @@ public class Patient {
 	private long numSecu;
 	private LocalDate dateNaissance;
 	private String commentaire;
+	private Adresse adresse;
 	
-	public Patient(String nom, String prenom, String tel, char sexe, long numSecu, LocalDate dateNaissance, String commentaire) {
+	public Patient(String nom, String prenom, String tel, char sexe, long numSecu, LocalDate dateNaissance, String commentaire, Adresse adresse) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
@@ -23,6 +24,7 @@ public class Patient {
 		this.numSecu = numSecu;
 		this.dateNaissance = dateNaissance;
 		this.commentaire = commentaire;
+		this.adresse = adresse;
 	}
 	
 	//METHODS
@@ -50,5 +52,7 @@ public class Patient {
 			System.out.println("Commentaires : " + this.commentaire);
 		}
 		
+		//print adresse
+		this.adresse.afficher();
 	}
 }

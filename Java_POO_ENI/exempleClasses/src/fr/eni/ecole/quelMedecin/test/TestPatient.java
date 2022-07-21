@@ -1,4 +1,4 @@
-package fr.eni.ecole.quelMedecin.test;
+/*package fr.eni.ecole.quelMedecin.test;
 
 import java.time.LocalDate;
 
@@ -23,3 +23,4 @@ public class TestPatient {
 	}
 }
 
+*/

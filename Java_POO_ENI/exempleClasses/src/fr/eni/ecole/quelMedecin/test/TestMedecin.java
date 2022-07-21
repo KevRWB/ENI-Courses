@@ -1,4 +1,4 @@
-package fr.eni.ecole.quelMedecin.test;
+/*package fr.eni.ecole.quelMedecin.test;
 
 import fr.eni.ecole.quelMedecin.bo.MedecinGeneraliste;
 
@@ -29,3 +29,4 @@ public class TestMedecin {
 		djemila.afficher();
 	}
 }
+*/
