@@ -92,14 +92,7 @@ public class GameFunctions {
 				System.out.println();
 			}
 		}
-		//fonction print available heroes
-		public static void printHeroesList(ArrayList<Hero> list) {
-			System.out.println("Voici les héros disponibles :");
-			System.out.println("------------------------");
-			for(Hero hero : list) {
-				printHero(hero);
-			}
-		}
+
 		//Fonction select hero
 		public static Hero selectHero(ArrayList<Hero> list) {
 			System.out.println("Choisissez votre héro (numéro): ");
@@ -108,16 +101,7 @@ public class GameFunctions {
 			Hero heroSelected = list.get(select -1);
 			return heroSelected;
 		}
-		//fonction print hero
-		public static void printHero(Hero hero) {
-			System.out.println("--------------------");
-			System.out.printf("%d : %s%n", hero.getIndex(), hero.getName());
-			System.out.println("Attaque : " + hero.getAtt());
-			System.out.println("Défense : " + hero.getDef());
-			System.out.println("Points de vie : " + hero.getLife());
-			System.out.println("Initiative : " + hero.getInitiative());
-			System.out.println("-------------------");
-		}
+		
 		//fonction print monster
 		public static void printMonster(Monster monster) {
 			System.out.println("--------------------");

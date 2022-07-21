@@ -9,8 +9,8 @@ public class Monster {
 	private int life;
 	private int initiative;
 	//constructeur
-	public Monster(int index, String name, int att, int def, int life, int initiative){
-		this.index = index;
+	public Monster(String name, int att, int def, int life, int initiative){
+		this.index ++;
 		this.name = name;
 		this.att = att;
 		this.def = def;
@@ -59,5 +59,25 @@ public class Monster {
 		System.out.println("Défense : " + this.def);
 		System.out.println("Points de vie : " + this.life);
 	}
+	//ToString
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Monster [index=");
+		builder.append(index);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", att=");
+		builder.append(att);
+		builder.append(", def=");
+		builder.append(def);
+		builder.append(", life=");
+		builder.append(life);
+		builder.append(", initiative=");
+		builder.append(initiative);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 	
 }

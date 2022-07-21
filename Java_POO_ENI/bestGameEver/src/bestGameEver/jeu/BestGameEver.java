@@ -1,8 +1,6 @@
 package bestGameEver.jeu;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import bestGameEver.heros.*;
 import bestGameEver.monsters.*;
 
@@ -11,31 +9,18 @@ public class BestGameEver {
 	private static final int D6 = 6;
 	
 	public static void main(String[] args) {
-		
-		//create heroes & heroes list
-		Hero ragnar = new Hero(1,"Ragnar", 6, 4, 20, 5);
-		Hero zogzog = new Hero(2,"ZogZog", 7, 3, 20, 1);
-		ArrayList<Hero> heroesList = new ArrayList<Hero>();
-		heroesList.add(ragnar); heroesList.add(zogzog);
-		
-		//create monsters & monsters list
-		Monster zombie = new Monster(1, "Zombie", 2, 4, 10, 1);
-		Monster wolf = new Monster(2, "Loup", 5, 2, 7, 6);
-		//creer array stockage monsters
-		ArrayList<Monster> monstersList = new ArrayList<Monster>();
-		monstersList.add(zombie); monstersList.add(wolf);
-		
-		//Print heroes list
-		GameFunctions.printHeroesList(heroesList);
+			
+		//Print heroes list3
+		HeroesList.printHeroesList(HeroesList.getHeroesList());
 		//select hero
-		Hero hero = GameFunctions.selectHero(heroesList);
+		Hero hero = GameFunctions.selectHero(HeroesList.getHeroesList());
 		//Print selected hero
 		System.out.println("Vous avez selectionné:");
-		GameFunctions.printHero(hero);
+		Hero.printHero(hero);
 		
 		//Print random monster selected
 		System.out.println("Vous allez vous battre contre un :");
-		Monster monster = (GameFunctions.selectRdMonster(monstersList));
+		Monster monster = (GameFunctions.selectRdMonster(MonstersList.getMonstersList()));
 		GameFunctions.printMonster(monster);
 		
 		//Boucle de jeu
@@ -75,8 +60,5 @@ public class BestGameEver {
 			System.out.println("Bravo, vous avez vaincu le monstre !");
 		}
 	}
-	
-	
-	
 	
 }

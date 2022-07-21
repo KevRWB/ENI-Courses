@@ -1,21 +1,20 @@
 package bestGameEver.heros;
 
 public class Hero {
-	private int index;
+	private int index = 1;
 	private String name;
 	private int att;
 	private int def;
 	private int life;
 	private int initiative;
 	
-	public Hero(int index,String name, int att, int def, int life, int initiative) {
+	public Hero(String name, int att, int def, int life, int initiative) {
 		this.name = name;
 		this.att = att;
 		this.def = def;
 		this.life = life;
-		this.index = index;
 		this.initiative = initiative;
-				
+		this.index ++;		
 	}
 	
 	//  METHODS
@@ -46,11 +45,36 @@ public class Hero {
 		this.initiative = initiative;
 	}
 	//affichage
-	public void afficherHero() {
-		System.out.println("Nom : " + this.name);
-		System.out.println("Attaque : " + this.att);
-		System.out.println("Défense : " + this.def);
-		System.out.println(life);
+	//fonction print hero
+	public static void printHero(Hero hero) {
+		System.out.println("--------------------");
+		System.out.printf("%d : %s%n", hero.getIndex(), hero.getName());
+		System.out.println("Attaque : " + hero.getAtt());
+		System.out.println("Défense : " + hero.getDef());
+		System.out.println("Points de vie : " + hero.getLife());
+		System.out.println("Initiative : " + hero.getInitiative());
+		System.out.println("-------------------");
 	}
+	//toString
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Hero [index=");
+		builder.append(index);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", att=");
+		builder.append(att);
+		builder.append(", def=");
+		builder.append(def);
+		builder.append(", life=");
+		builder.append(life);
+		builder.append(", initiative=");
+		builder.append(initiative);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 
 }
