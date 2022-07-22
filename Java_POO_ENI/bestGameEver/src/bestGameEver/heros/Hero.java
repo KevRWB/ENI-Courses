@@ -1,7 +1,7 @@
 package bestGameEver.heros;
 
 public class Hero {
-	private int index = 1;
+	private int index = 0;
 	private String name;
 	private int att;
 	private int def;
@@ -16,13 +16,11 @@ public class Hero {
 		this.initiative = initiative;
 		this.index ++;		
 	}
-	
 	//  METHODS
 	//getters
 	public int getIndex() {
 		return this.index;
 	}
-	
 	public String getName() {
 		return this.name;
 	}
@@ -56,7 +54,6 @@ public class Hero {
 		System.out.println("-------------------");
 	}
 	//toString
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -75,6 +72,4 @@ public class Hero {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-
 }
