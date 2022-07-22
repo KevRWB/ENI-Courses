@@ -41,18 +41,133 @@ public class Patient {
 		//Creation formatage Date
 		DateTimeFormatter format = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
 		System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(dateNaissance));
-		System.out.println(format.format(dateNaissance));
+		//System.out.println(format.format(dateNaissance));
 		//Autre formatage de date
-		System.out.printf("Date de naissance : %02d %s %d%n" , this.dateNaissance.getDayOfMonth(), 
-								this.dateNaissance.getMonth().getDisplayName(TextStyle.FULL, Locale.FRANCE),  
-								this.dateNaissance.getYear());		
+		//System.out.printf("Date de naissance : %02d %s %d%n" , this.dateNaissance.getDayOfMonth(), 
+		//						this.dateNaissance.getMonth().getDisplayName(TextStyle.FULL, Locale.FRANCE),  
+		//						this.dateNaissance.getYear());	
+		System.out.print("Commentaires : ");
 		if(this.commentaire == null) {
-			System.out.println("[Aucun commentaire]");
+			System.out.print("[Aucun commentaire]");
 		}else {
-			System.out.println("Commentaires : " + this.commentaire);
+			System.out.print(this.commentaire);
 		}
-		
+		System.out.println();
 		//print adresse
 		this.adresse.afficher();
 	}
+
+	/**
+	 * @return the nom
+	 */
+	public String getNom() {
+		return nom;
+	}
+
+	/**
+	 * @param nom the nom to set
+	 */
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	/**
+	 * @return the prenom
+	 */
+	public String getPrenom() {
+		return prenom;
+	}
+
+	/**
+	 * @param prenom the prenom to set
+	 */
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	/**
+	 * @return the tel
+	 */
+	public String getTel() {
+		return tel;
+	}
+
+	/**
+	 * @param tel the tel to set
+	 */
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	/**
+	 * @return the sexe
+	 */
+	public char getSexe() {
+		return sexe;
+	}
+
+	/**
+	 * @param sexe the sexe to set
+	 */
+	public void setSexe(char sexe) {
+		this.sexe = sexe;
+	}
+
+	/**
+	 * @return the numSecu
+	 */
+	public long getNumSecu() {
+		return numSecu;
+	}
+
+	/**
+	 * @param numSecu the numSecu to set
+	 */
+	public void setNumSecu(long numSecu) {
+		this.numSecu = numSecu;
+	}
+
+	/**
+	 * @return the dateNaissance
+	 */
+	public LocalDate getDateNaissance() {
+		return dateNaissance;
+	}
+
+	/**
+	 * @param dateNaissance the dateNaissance to set
+	 */
+	public void setDateNaissance(LocalDate dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
+
+	/**
+	 * @return the commentaire
+	 */
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	/**
+	 * @param commentaire the commentaire to set
+	 */
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	/**
+	 * @return the adresse
+	 */
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	/**
+	 * @param adresse the adresse to set
+	 */
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+	
+	
 }

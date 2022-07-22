@@ -7,7 +7,7 @@ import fr.eni.ecole.quelMedecin.bo.Adresse;
 import fr.eni.ecole.quelMedecin.bo.Creneau;
 import fr.eni.ecole.quelMedecin.bo.MedecinGeneraliste;
 import fr.eni.ecole.quelMedecin.bo.Patient;
-//import fr.eni.ecole.quelMedecin.bo.RendezVous;
+import fr.eni.ecole.quelMedecin.bo.RendezVous;
 
 public class TestBo {
 
@@ -17,8 +17,8 @@ public class TestBo {
 
 	public static void main(String[] args) {
 		VerifAssociationAdresse();
-		VerifCreneaux();
-		//VerifRendezVous();
+		//VerifCreneaux();
+		VerifRendezVous();
 	}
 
 	private static void VerifAssociationAdresse() {
@@ -73,7 +73,7 @@ public class TestBo {
 		System.out.println("------------------------------------------------------------------");
 		melanie.afficher();
 	}
-	/*
+
 	private static void VerifRendezVous() {
 		System.out.println("__________________________________________________________________");
 		System.out.println("__________________________ Rendez-Vous ___________________________");
@@ -83,5 +83,6 @@ public class TestBo {
 				LocalDate.of(1992, 11, 21), null, nio);
 		RendezVous rdv = new RendezVous(c1, adhemar, LocalDate.of(2020, 5, 23));
 		rdv.afficher();
-	}*/
+	}
+
 }

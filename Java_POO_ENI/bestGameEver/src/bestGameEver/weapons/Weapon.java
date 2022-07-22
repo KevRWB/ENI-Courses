@@ -1,7 +1,7 @@
 package bestGameEver.weapons;
 
 public class Weapon {
-	private int index = 0;
+	private int index;
 	private String name;
 	private int att;
 	private int speed;
@@ -9,9 +9,9 @@ public class Weapon {
 	private boolean isDistance;
 	private int distance;
 	//CONSTRUCTOR
-	public Weapon(String name, int att, int speed, int price, boolean isDistance, int distance) {
+	public Weapon(int index, String name, int att, int speed, int price, boolean isDistance, int distance) {
 		super();
-		this.index ++;
+		this.index= index;
 		this.name = name;
 		this.att = att;
 		this.speed = speed;
@@ -62,27 +62,4 @@ public class Weapon {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
-	//PRINT WEAPON
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Weapon [index=");
-		builder.append(index);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", att=");
-		builder.append(att);
-		builder.append(", speed=");
-		builder.append(speed);
-		builder.append(", price=");
-		builder.append(price);
-		builder.append(", isDistance=");
-		builder.append(isDistance);
-		builder.append(", distance=");
-		builder.append(distance);
-		builder.append("]");
-		return builder.toString();
-	}
-
-	
 }

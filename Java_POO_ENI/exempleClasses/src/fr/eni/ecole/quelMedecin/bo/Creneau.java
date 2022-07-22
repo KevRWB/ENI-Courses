@@ -24,8 +24,10 @@ public class Creneau {
 
 
 	//AFFICHER
-	public void afficher() {
-		System.out.println(this.getHeureDebut() + " " + this.getHeureDebut().plusMinutes(15) + " (" + this.getDureeCreneauMn() + " mintutes)" );
+	public String afficher() {
+		String print = this.getHeureDebut() + " " + this.getHeureDebut().plusMinutes(15) + " (" + this.getDureeCreneauMn() + " minutes)" ;
+		System.out.println(print);
+		return print;		
 	}
 	
 	//GETTER SETTER
