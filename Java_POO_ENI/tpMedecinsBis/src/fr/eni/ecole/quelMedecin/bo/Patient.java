@@ -12,10 +12,11 @@ public class Patient {
 	private long numSecu;
 	private LocalDate dateNaissance;
 	private String commentaire;
+	private Adresse adresse;
 	
 	//CONSTRUCTOR
 	public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numSecu,
-			LocalDate dateNaissance, String commentaire) {
+			LocalDate dateNaissance, String commentaire, Adresse adresse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -24,10 +25,14 @@ public class Patient {
 		this.numSecu = numSecu;
 		this.dateNaissance = dateNaissance;
 		this.commentaire = commentaire;
+		this.adresse = adresse;
+		
 	}
 	//METHODS
 	public void afficher() {
 		System.out.println(toString());
+		System.out.println("Adresse : ");
+		this.adresse.afficher();
 	}
 	
 	//ToString
@@ -58,7 +63,7 @@ public class Patient {
 		}else {
 			builder.append(commentaire);
 		}
-			
+
 		return builder.toString();
 	}
 

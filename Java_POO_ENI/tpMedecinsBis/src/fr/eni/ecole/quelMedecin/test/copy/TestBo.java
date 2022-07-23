@@ -16,9 +16,9 @@ public class TestBo {
 	private static MedecinGeneraliste melanie = new MedecinGeneraliste("Malalaniche", "Mélanie", "02.28.03.17.28", sh);
 
 	public static void main(String[] args) {
-		VerifAssociationAdresse();
+		//VerifAssociationAdresse();
 		//VerifCreneaux();
-		//VerifRendezVous();
+		VerifRendezVous();
 	}
 
 	private static void VerifAssociationAdresse() {
