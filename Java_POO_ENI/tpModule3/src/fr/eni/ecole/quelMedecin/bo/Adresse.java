@@ -1,5 +1,10 @@
 package fr.eni.ecole.quelMedecin.bo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.GregorianCalendar;
+
 public class Adresse {
 private String mentionComp;
 private int numero;
@@ -7,6 +12,7 @@ private String compNumero;
 private String voie;
 private int cp;
 private String ville;
+private LocalDate date = LocalDate.of(2022, 12, 24);
 public Adresse(String mentionComp, int numero, String compNumero, String voie, int cp, String ville) {
 	this.setMentionComp(mentionComp);
 	this.setNumero(numero); 
@@ -58,6 +64,7 @@ public void setVille(String ville) {
 }
 public void afficher() {
 	System.out.println(this.toString());
+	System.out.println(this.sbToString());
 }
 @Override
 public String toString() {
@@ -79,5 +86,16 @@ public String toString() {
 	builder.append(ville);
 	return builder.toString();
 }
+public String sbToString() {
+	StringBuilder sb = new StringBuilder();
+	sb.append("Hello voici la date du jour :");
+	sb.append(String.format("%n"));
+	DateTimeFormatter formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+	sb.append(date.format(formatDate)); 
+	
+	return sb.toString();
+}
 
 }
+
+
