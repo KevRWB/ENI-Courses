@@ -16,7 +16,7 @@ public class TestFormes {
 		System.out.println(unCercle.getCouleur());
 		//--------------
 		if(unCarre instanceof Carre) {
-			System.out.println(((Carre)unCarre).getCote());
+			System.out.println(((Carre)unCarre).aire());
 		}
 		//---------
 		Forme[] desFormes = new Forme[4];
@@ -40,10 +40,10 @@ public class TestFormes {
 		//Afficher information des éléments
 		for (int i = 0; i < desFormes.length; i++) {
 			if(desFormes[i] instanceof Carre) {
-				System.out.println("C'est un carré de côté " + ((Carre)desFormes[i]) );
+				System.out.println("C'est un carré de côté " + ((Carre)desFormes[i]).getCote() );
 			}else if (desFormes[i] instanceof Cercle) {
-				System.out.println("C'est un cercle");
-			}else System.out.println("C'est une forme");
+				System.out.println("C'est un cercle de rayon " +  ((Cercle) desFormes[i]).getRayon() );
+			}else System.out.println("C'est une forme de couleur " + desFormes[i].getCouleur() );
 		}
 		
 		

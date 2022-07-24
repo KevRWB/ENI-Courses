@@ -6,7 +6,6 @@ public class Forme {
 	protected Color couleur;
 	//CONSTRUCTOR
 	public Forme(Color couleur) {
-		super();
 		this.couleur = couleur;
 	}
 	//GET SET

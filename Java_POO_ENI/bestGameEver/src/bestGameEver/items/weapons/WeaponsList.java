@@ -1,4 +1,4 @@
-package bestGameEver.weapons;
+package bestGameEver.items.weapons;
 
 import java.util.ArrayList;
 
