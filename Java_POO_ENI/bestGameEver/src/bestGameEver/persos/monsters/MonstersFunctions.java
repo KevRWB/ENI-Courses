@@ -1,25 +1,26 @@
-package bestGameEver.monsters;
+package bestGameEver.persos.monsters;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import bestGameEver.heros.Hero;
-import bestGameEver.heros.HeroesFunctions;
+import bestGameEver.fonctions.Functions;
 import bestGameEver.jeu.FightFunctions;
+import bestGameEver.persos.heroes.Hero;
+import bestGameEver.persos.heroes.HeroesFunctions;
 
 public class MonstersFunctions {
 	//Monster turn
 	public static void monsterTurn(Monster monster, Hero hero, int facesDice) {
 		System.out.println("Tour du " + monster.getName());
 		//Lancer de dés
-		int dice = FightFunctions.rollDice(facesDice);
+		int dice = Functions.rollDice(facesDice);
 		//Test si coup critique
 		if(FightFunctions.isCritique(dice, facesDice)) {
 			System.out.println("COUP CRITIQUE !");
 			dice = dice + 2;
 		}
 		//Attack 
-		int ptsAttack = monsterAttack(FightFunctions.rollDice(facesDice), monster);
+		int ptsAttack = monsterAttack(Functions.rollDice(facesDice), monster);
 		HeroesFunctions.heroRemoveLife(ptsAttack, hero);
 	}
 	
@@ -57,32 +58,18 @@ public class MonstersFunctions {
 		int numMonster = rnd.nextInt(nbMonsters);
 		return list.get(numMonster);
 	}
-	//fonction print monster
-		public static void printMonster(Monster monster) {
-			System.out.println("--------------------");
-			System.out.println(monster.getName());
-			System.out.println("Attaque : " + monster.getAtt());
-			System.out.println("Défense : " + monster.getDef());
-			System.out.println("Points de vie : " + monster.getLife());
-			System.out.println("Initiative : " + monster.getInitiative());
-			System.out.println("-------------------");
+	//fonction print a monster
+	public static void printMonster(Monster monster) {
+		System.out.println("MONSTRES :");	
+		monster.printMonsterStats();
+		monster.printMonsterWeapons();
+	}
+	//fonction print every monsters
+	public static void printMonsters() {
+		System.out.println("MONSTRES :");
+		for(Monster monster : MonstersList.getMonstersList()) {
+			monster.printMonsterStats();
+			monster.printMonsterWeapons();
 		}
-	//Print ToString
-		public static String toString(Monster monster) {
-			StringBuilder builder = new StringBuilder();
-			builder.append("Monster [index=");
-			builder.append(monster.getIndex());
-			builder.append(", name=");
-			builder.append(monster.getName());
-			builder.append(", att=");
-			builder.append(monster.getAtt());
-			builder.append(", def=");
-			builder.append(monster.getDef());
-			builder.append(", life=");
-			builder.append(monster.getLife());
-			builder.append(", initiative=");
-			builder.append(monster.getInitiative());
-			builder.append("]");
-			return builder.toString();
-		}
+	}	
 }

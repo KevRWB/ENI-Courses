@@ -1,16 +1,16 @@
 package bestGameEver.tests;
 
-import bestGameEver.items.potions.Potion;
-import bestGameEver.items.potions.PotionsFunctions;
-import bestGameEver.items.potions.PotionsList;
+import bestGameEver.fonctions.Functions;
+import bestGameEver.persos.heroes.Hero;
+import bestGameEver.persos.heroes.HeroesList;
+
 
 public class Tests {
 
 	public static void main(String[] args) {
 		
-		Potion potion = PotionsList.getPotionsList().get(0);
-		System.out.println(potion.getShortDescription());
-
+		Hero hero = Functions.selectHero(HeroesList.getHeroesList());
+		hero.printHeroStats();
+		hero.printHeroWeapons();
 	}
-
 }

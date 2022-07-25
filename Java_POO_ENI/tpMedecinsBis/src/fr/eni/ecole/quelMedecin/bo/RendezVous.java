@@ -21,7 +21,7 @@ public class RendezVous {
 		DateTimeFormatter format = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
 		System.out.print("Rendez-vous du " + date.format(format) + " ");
 		this.creneau.afficher();
-		System.out.println("avec le Dr " + this.creneau.getMedecin().getNom());
+		System.out.println("avec le Dr " + creneau.getMedecin().getNom());
 		System.out.println("Pour ");
 		this.patient.afficher();
 		

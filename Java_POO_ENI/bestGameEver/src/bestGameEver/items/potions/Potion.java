@@ -18,7 +18,6 @@ public class Potion extends Item {
 	}
 	//AFFICHER
 	//Afficher potion
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -26,7 +25,7 @@ public class Potion extends Item {
 		builder.append("Index=");
 		builder.append(index);
 		builder.append(", nom=");
-		builder.append(nom);
+		builder.append(name);
 		builder.append(", shortDescription=");
 		builder.append(shortDescription);
 		builder.append(", description=");

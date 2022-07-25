@@ -3,10 +3,10 @@ package bestGameEver.jeu;
 import java.util.Random;
 import java.util.Scanner;
 
-import bestGameEver.heros.Hero;
-import bestGameEver.heros.HeroesFunctions;
-import bestGameEver.monsters.Monster;
-import bestGameEver.monsters.MonstersFunctions;
+import bestGameEver.persos.heroes.Hero;
+import bestGameEver.persos.heroes.HeroesFunctions;
+import bestGameEver.persos.monsters.Monster;
+import bestGameEver.persos.monsters.MonstersFunctions;
 
 public class FightFunctions {
 
@@ -72,12 +72,6 @@ public class FightFunctions {
 			}else System.out.println("Le monstre l'initiative pour ce combat. Il va donc lancer la première attaque !");
 		}
 	
-		//Fonction roll dice and print dice result
-		public static int rollDice(int faces) {
-			Random rnd = new Random();
-			int randNb = rnd.nextInt(faces)+1;
-			return randNb;
-		}
 		
 		//Fonction coup critique
 		public static boolean isCritique(int dice, int faces) {

@@ -2,21 +2,15 @@ package fr.eni.ecole.quelMedecin.bo;
 
 import java.time.LocalTime;
 
-public class MedecinGeneraliste {
-	private String nom;
-	private String prenom;
-	private String numTel;
-	private static int tarif = 25;
-	private Adresse adresse;
-	private Creneau[] creneaux = new Creneau[15];
-	private int nbCreneaux = 0;
+public class MedecinGeneraliste extends Personne{
+	
+	protected static int TARIF = 25;
+	protected Creneau[] creneaux = new Creneau[15];
+	protected int nbCreneaux = 0;
 	//CONSTRUCTOR
 	public MedecinGeneraliste(String nom, String prenom, String numTel, Adresse adresse) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.numTel = numTel;
-		this.adresse = adresse;
+		super(nom, prenom, numTel, adresse);
+	
 	}
 	//METHODS
 	
@@ -47,10 +41,10 @@ public class MedecinGeneraliste {
 		this.numTel = numTel;
 	}
 	public static int getTarif() {
-		return tarif;
+		return TARIF;
 	}
 	public static void setTarif(int tarif) {
-		MedecinGeneraliste.tarif = tarif;
+		MedecinGeneraliste.TARIF = tarif;
 	}
 	public String getNom() {
 		return nom;
@@ -58,16 +52,10 @@ public class MedecinGeneraliste {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(nom.toUpperCase());
-		builder.append(" " + prenom);
-		builder.append(String.format("%n"));
-		builder.append("Téléphone : " + numTel);
-		builder.append(String.format("%n"));
-		builder.append("Tarif : " + tarif + "€");
+		builder.append(super.toString());
+		builder.append("Tarif : " + TARIF + "€");
 		
 		return builder.toString();
 	}
-	
-	
-	
+
 }

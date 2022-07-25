@@ -1,12 +1,14 @@
-package bestGameEver.heros;
+package bestGameEver.persos.heroes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import bestGameEver.fonctions.Functions;
 import bestGameEver.jeu.BestGameEver;
 import bestGameEver.jeu.FightFunctions;
-import bestGameEver.monsters.Monster;
-import bestGameEver.monsters.MonstersFunctions;
+import bestGameEver.persos.monsters.Monster;
+import bestGameEver.persos.monsters.MonstersFunctions;
+import bestGameEver.persos.monsters.MonstersList;
 
 public class HeroesFunctions {
 	
@@ -14,7 +16,7 @@ public class HeroesFunctions {
 	public static void heroTurn(Monster monster, Hero hero, int facesDice) {
 		System.out.println("Tour de " + hero.getName());
 		//Lancer de dés
-		int dice = FightFunctions.rollDice(facesDice);
+		int dice = Functions.rollDice(facesDice);
 		//Test si coup critique
 		if(FightFunctions.isCritique(dice, facesDice)) {
 			System.out.println("COUP CRITIQUE !");
@@ -60,34 +62,19 @@ public class HeroesFunctions {
 		return heroSelected;
 	}
 	////affichage
-	//fonction print hero
+	//fonction print a hero
 	public static void printHero(Hero hero) {
-		System.out.println("--------------------");
-		System.out.printf("%d : %s%n", hero.getIndex(), hero.getName());
-		System.out.println("Attaque : " + hero.getAtt());
-		System.out.println("Défense : " + hero.getDef());
-		System.out.println("Points de vie : " + hero.getLife());
-		System.out.println("Initiative : " + hero.getInitiative());
-		System.out.println("-------------------");
+		System.out.println("HEROS :");	
+		hero.printHeroStats();
+		hero.printHeroWeapons();
 	}
+	//fonction print every heroes
+		public static void printHeroes() {
+			System.out.println("HEROS :");
+			for(Hero hero : HeroesList.getHeroesList()) {
+				hero.printHeroStats();
+				hero.printHeroWeapons();
+			}
+		}
 	
-	//toString
-
-	public static String toString(Hero hero) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Hero [index=");
-		builder.append(hero.getIndex());
-		builder.append(", name=");
-		builder.append(hero.getName());
-		builder.append(", att=");
-		builder.append(hero.getAtt());
-		builder.append(", def=");
-		builder.append(hero.getDef());
-		builder.append(", life=");
-		builder.append(hero.getLife());
-		builder.append(", initiative=");
-		builder.append(hero.getInitiative());
-		builder.append("]");
-		return builder.toString();
-	}
 }

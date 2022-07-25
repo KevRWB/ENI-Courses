@@ -4,28 +4,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-public class Patient {
-	private String nom;
-	private String prenom;
-	private String numeroDeTelephone;
+public class Patient extends Personne{
+
 	private char sexe;
 	private long numSecu;
 	private LocalDate dateNaissance;
 	private String commentaire;
-	private Adresse adresse;
+
 	
 	//CONSTRUCTOR
-	public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numSecu,
+	public Patient(String nom, String prenom, String numTel, char sexe, long numSecu,
 			LocalDate dateNaissance, String commentaire, Adresse adresse) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.numeroDeTelephone = numeroDeTelephone;
+		super(nom, prenom, numTel, adresse);
+	
 		this.sexe = sexe;
 		this.numSecu = numSecu;
 		this.dateNaissance = dateNaissance;
 		this.commentaire = commentaire;
-		this.adresse = adresse;
+
 		
 	}
 	//METHODS
@@ -39,12 +35,7 @@ public class Patient {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(nom.toUpperCase());
-		builder.append(" "+ prenom);
-		builder.append(String.format("%n"));
-		builder.append("Téléphone : ");
-		builder.append(numeroDeTelephone);
-		builder.append(String.format("%n"));
+		builder.append(super.toString());
 		builder.append("Sexe : ");
 		if(this.sexe == 'M') {
 			builder.append("Masculin");

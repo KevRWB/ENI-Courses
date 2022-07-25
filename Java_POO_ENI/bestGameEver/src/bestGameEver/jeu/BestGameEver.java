@@ -2,8 +2,8 @@ package bestGameEver.jeu;
 
 import java.util.Scanner;
 
-import bestGameEver.heros.*;
-import bestGameEver.monsters.*;
+import bestGameEver.persos.heroes.*;
+import bestGameEver.persos.monsters.*;
 
 public class BestGameEver {
 	

@@ -1,23 +1,55 @@
 package bestGameEver.items.weapons;
 
-public class Weapon {
-	private int index;
-	private String name;
+import bestGameEver.items.Item;
+
+public class Weapon extends Item {
 	private int att;
 	private int speed;
-	private int price;
 	private boolean isDistance;
 	private int distance;
 	//CONSTRUCTOR
-	public Weapon(int index, String name, int att, int speed, int price, boolean isDistance, int distance) {
-		super();
-		this.index= index;
-		this.name = name;
+	public Weapon(int index, String name, String shortDescription, String description, int price, int weight, int att, int speed, boolean isDistance, int distance) {
+		super(index, name, shortDescription, description, price, weight );
 		this.att = att;
 		this.speed = speed;
-		this.price = price;
 		this.isDistance = isDistance;
 		this.distance = distance;
+	}
+	//METHODS 
+	//afficher
+	public void afficher() {
+		System.out.println(toString());
+	}
+	//toString METHOD
+	@Override
+ 	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("- "+ name.toString() + " - ");
+		builder.append(String.format("%n"));
+		builder.append("Attaque : ");
+		builder.append(att);
+		builder.append("   Vitesse : ");
+		builder.append(speed);
+		if(isDistance) {
+			builder.append("Distance : ");
+			builder.append(distance);
+		}
+		builder.append(String.format("%n"));
+		if(shortDescription != null) {
+			builder.append(", shortDescription=");
+			builder.append(shortDescription);
+			builder.append(String.format("%n"));
+		}
+		if(description != null) {
+			builder.append(", description=");
+			builder.append(description);
+			builder.append(String.format("%n"));
+		}
+		builder.append("Poids : ");
+		builder.append(weight);
+		builder.append("kg");
+		builder.append(String.format("%n"));
+		return builder.toString();
 	}
 	// GETTERS / SETTERS
 	public String getName() {
@@ -32,23 +64,11 @@ public class Weapon {
 	public void setAtt(int att) {
 		this.att = att;
 	}
-	public int getIndex() {
-		return index;
-	}
-	public void setIndex(int index) {
-		this.index = index;
-	}
 	public int getSpeed() {
 		return speed;
 	}
 	public void setSpeed(int speed) {
 		this.speed = speed;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
 	}
 	public boolean isDistance() {
 		return isDistance;
@@ -62,4 +82,6 @@ public class Weapon {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
+	
+
 }

@@ -5,12 +5,13 @@ public class Carre extends Forme {
 	private int cote;
 	//CONSTRUCTOR
 	public Carre(Color couleur, int cote) {
+		//fait appel au constructeur du parent -> Toujours en première position
 		super(couleur);
 		this.cote = cote;
 	}
-		
-	public double aire () {
-		return cote*cote;
+	@Override	
+	public String calculAire () {
+		return "Aire = " + cote*cote;
 	}
 	//GET SET
 	public int getCote() {
@@ -19,6 +20,17 @@ public class Carre extends Forme {
 	public void setCote(int cote) {
 		this.cote = cote;
 	}
+	//ToString
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		//fait appel ) la methode toString du parent
+		builder.append(super.toString());
+		builder.append("Carre [cote=");
+		builder.append(cote);
+		builder.append("]");
+		return builder.toString();
+	}
 	
-
+	
 }

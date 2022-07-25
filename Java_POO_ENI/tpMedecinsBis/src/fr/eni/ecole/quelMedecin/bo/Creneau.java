@@ -19,9 +19,7 @@ public class Creneau {
 		super();
 		this.heureDebut = heureDebut;
 		this.duree = duree;
-	}
-	
-	
+	}	
 	//METHODS
 	
 	//Afficher creneau
