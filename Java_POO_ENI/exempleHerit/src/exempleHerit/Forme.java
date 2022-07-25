@@ -2,16 +2,14 @@ package exempleHerit;
 
 import java.awt.Color;
 
-public class Forme {
+public abstract class Forme {
 	protected Color couleur;
 	//CONSTRUCTOR
 	public Forme(Color couleur) {
 		this.couleur = couleur;
 	}
 	//METHODS
-		public String calculAire() {
-			return "Je ne sais pas calculer l'aire d'un forme quelconque";
-		}
+		public abstract double calculAire();
 	
 	//GET SET
 	public Color getCouleur() {

@@ -3,9 +3,9 @@ package bestGameEver.persos.heroes;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import bestGameEver.fonctions.FightFunctions;
 import bestGameEver.fonctions.Functions;
 import bestGameEver.jeu.BestGameEver;
-import bestGameEver.jeu.FightFunctions;
 import bestGameEver.persos.monsters.Monster;
 import bestGameEver.persos.monsters.MonstersFunctions;
 import bestGameEver.persos.monsters.MonstersList;

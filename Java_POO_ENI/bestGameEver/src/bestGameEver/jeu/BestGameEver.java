@@ -2,6 +2,7 @@ package bestGameEver.jeu;
 
 import java.util.Scanner;
 
+import bestGameEver.fonctions.FightFunctions;
 import bestGameEver.persos.heroes.*;
 import bestGameEver.persos.monsters.*;
 

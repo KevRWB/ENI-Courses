@@ -1,8 +1,9 @@
-package bestGameEver.jeu;
+package bestGameEver.fonctions;
 
 import java.util.Random;
 import java.util.Scanner;
 
+import bestGameEver.jeu.BestGameEver;
 import bestGameEver.persos.heroes.Hero;
 import bestGameEver.persos.heroes.HeroesFunctions;
 import bestGameEver.persos.monsters.Monster;
@@ -81,13 +82,5 @@ public class FightFunctions {
 				return true;
 			} else return false;
 		}
-		
-	
-		
-
-		
-		
-		
-		
-		
+				
 }

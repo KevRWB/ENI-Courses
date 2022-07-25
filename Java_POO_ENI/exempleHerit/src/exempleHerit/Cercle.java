@@ -12,8 +12,8 @@ public class Cercle extends Forme {
 	}
 	//METHODS
 	@Override
-	public String calculAire() {
-		return "Aire = " + Math.PI*rayon*rayon ;
+	public double calculAire() {
+		return Math.PI*rayon*rayon ;
 	}
 	//GET / SET
 	public int getRayon() {

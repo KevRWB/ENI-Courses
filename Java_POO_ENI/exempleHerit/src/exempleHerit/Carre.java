@@ -10,8 +10,8 @@ public class Carre extends Forme {
 		this.cote = cote;
 	}
 	@Override	
-	public String calculAire () {
-		return "Aire = " + cote*cote;
+	public double calculAire () {
+		return cote*cote;
 	}
 	//GET SET
 	public int getCote() {

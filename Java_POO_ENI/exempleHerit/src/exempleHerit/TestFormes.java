@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TestFormes {
 
 	public static void main(String[] args) {
-		Forme uneForme = new Forme(Color.BLUE);
+		Forme uneForme = new Carre(Color.BLUE, 12);
 		Forme unCarre = new Carre(Color.GREEN,10);
 		Cercle unCercle = new Cercle(Color.yellow,8);
 		//---------------
@@ -35,9 +35,10 @@ public class TestFormes {
 				desFormes[i] = new Cercle(Color.YELLOW, 10);
 				break;
 			default:
-				desFormes[i] = new Forme(Color.BLUE);
+				desFormes[i] = new Cercle(Color.BLUE, 5);
 			}
 		}
+		sc.close();
 		
 		//Afficher information des éléments
 		for (int i = 0; i < desFormes.length; i++) {

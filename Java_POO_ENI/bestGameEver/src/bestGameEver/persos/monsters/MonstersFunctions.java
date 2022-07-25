@@ -3,8 +3,8 @@ package bestGameEver.persos.monsters;
 import java.util.ArrayList;
 import java.util.Random;
 
+import bestGameEver.fonctions.FightFunctions;
 import bestGameEver.fonctions.Functions;
-import bestGameEver.jeu.FightFunctions;
 import bestGameEver.persos.heroes.Hero;
 import bestGameEver.persos.heroes.HeroesFunctions;
 
