@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Gyropode extends Gyro {
 	
 	private final static String TYPE = "Gyropode";
-	private final static double PRIX_LOC = 19.90;
+	private final static double PRIX_LOC = 29.90;
 	private String tailleMini;
 	
 	//CONSTRUCTOR
@@ -18,7 +18,7 @@ public class Gyropode extends Gyro {
 	//PRINT
 	@Override
 	public String afficher() {
-		String affichage = toString();
+		String affichage = toString() + (fillSpaces(toString(), PRIX_LOC)) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
@@ -30,7 +30,10 @@ public class Gyropode extends Gyro {
 		builder.append(super.toString());
 		builder.append(" " + autonomie + " km d'autonomie ");
 		builder.append("[" + tailleMini + "m min" + "]");
-		builder.append(" ");
+		return builder.toString();
+	}
+	public String toStringPrice() {
+		StringBuilder builder = new StringBuilder();
 		builder.append(String.format("%.2f €/heure", getPrixLoc()));
 		return builder.toString();
 	}

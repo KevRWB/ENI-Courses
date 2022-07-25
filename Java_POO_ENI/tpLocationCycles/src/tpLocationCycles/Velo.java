@@ -24,7 +24,7 @@ public class Velo extends Cycle implements ChangementVitesse {
 	//PRINT
 	@Override
 	public String afficher() {
-		String affichage = toString();
+		String affichage = toString() + (fillSpaces(toString(), PRIX_LOC)) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
@@ -35,7 +35,10 @@ public class Velo extends Cycle implements ChangementVitesse {
 		builder.append(TYPE + " ");
 		builder.append(super.toString());
 		builder.append(" " + nbVitesses + " vitesses");
-		builder.append(" ");
+		return builder.toString();
+	}
+	public String toStringPrice() {
+		StringBuilder builder = new StringBuilder();
 		builder.append(String.format("%.2f €/heure", getPrixLoc()));
 		return builder.toString();
 	}

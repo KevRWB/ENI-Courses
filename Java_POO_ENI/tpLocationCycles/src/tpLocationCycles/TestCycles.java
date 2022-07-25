@@ -20,11 +20,7 @@ public class TestCycles {
 		weebot.afficher();
 		immotion.afficher();
 		ninebot.afficher();	
-		
-		System.out.println(segway.afficher().length());
-		
+	
 	}
-	
-	
 	
 }

@@ -36,8 +36,21 @@ public abstract class Cycle {
 		return builder.toString();
 	}
 	//FONCTION REMPLISSAGE ESPACES
-	public void fillSpaces() {
-		int size = 100;
+	public String fillSpaces(String str, double price) {
+		int size = 65;
+		int priceToFill = 0;
+		if(price >=10) {
+			priceToFill = 1;
+		}else if(price >= 100) {
+			priceToFill = 2;
+		}
+		
+		int sizeToFill = size - str.length() - priceToFill;
+		StringBuilder txt = new StringBuilder(); 
+		for (int i = 0; i < sizeToFill; i++) {
+			txt.append(" ");
+		}
+		return txt.toString();
 	}
 	
 	//Anciennetée véhicule

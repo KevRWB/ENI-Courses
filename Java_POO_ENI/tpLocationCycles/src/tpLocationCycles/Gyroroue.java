@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Gyroroue extends Gyro {
 	
 	private final static String TYPE = "Gyroroue";
-	private final static double PRIX_LOC = 29.90;
+	private final static double PRIX_LOC = 18.90;
 	
 	//CONSTRUCTOR
 	public Gyroroue(String marque, String modele, LocalDate dateAchat,int autonomie) {
@@ -14,7 +14,7 @@ public class Gyroroue extends Gyro {
 	//PRINT
 	@Override
 	public String afficher() {
-		String affichage = toString();
+		String affichage = toString() + (fillSpaces(toString(), PRIX_LOC)) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
@@ -25,7 +25,10 @@ public class Gyroroue extends Gyro {
 		builder.append(TYPE + " ");
 		builder.append(super.toString());
 		builder.append(" " + autonomie + " km d'autonomie ");
-		builder.append(" ");
+		return builder.toString();
+	}
+	public String toStringPrice() {
+		StringBuilder builder = new StringBuilder();
 		builder.append(String.format("%.2f €/heure", getPrixLoc()));
 		return builder.toString();
 	}
