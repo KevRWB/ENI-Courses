@@ -22,7 +22,7 @@ public class Gyroroue extends Gyro {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(TYPE + " ");
+		builder.append(" - "+ TYPE + " ");
 		builder.append(super.toString());
 		builder.append(" " + autonomie + " km d'autonomie ");
 		return builder.toString();

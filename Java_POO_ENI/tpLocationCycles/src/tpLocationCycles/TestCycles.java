@@ -14,6 +14,7 @@ public class TestCycles {
 		Gyroroue ninebot = new Gyroroue("Segway", "Ninebot One E+", LocalDate.of(2022, 01, 5), 30);
 		
 		//AFFICHAGES
+		System.out.println("Voici les cycles que nous proposons à la location :");
 		lapierre.afficher();
 		btwin.afficher();
 		segway.afficher();

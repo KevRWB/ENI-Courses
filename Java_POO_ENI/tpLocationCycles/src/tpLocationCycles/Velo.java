@@ -32,7 +32,7 @@ public class Velo extends Cycle implements ChangementVitesse {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(TYPE + " ");
+		builder.append(" - "+ TYPE + " ");
 		builder.append(super.toString());
 		builder.append(" " + nbVitesses + " vitesses");
 		return builder.toString();
