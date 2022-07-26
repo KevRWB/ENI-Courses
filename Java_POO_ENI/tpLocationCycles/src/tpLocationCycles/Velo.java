@@ -2,29 +2,29 @@ package tpLocationCycles;
 
 import java.time.LocalDate;
 
-public class Velo extends Cycle implements ChangementVitesse {
+public class Velo extends Cycle implements VitessesVelo, Prix {
 	private final static String TYPE = "Velo";
-	private final static double PRIX_LOC = 4.90;
+	private static double prixLoc = 4.90;
 	private int nbVitesses;
 	
 	//CONSTRUCTOR
 	public Velo(String marque, String modele, LocalDate dateAchat, 
 			int nbVitesses) {
 		super(marque, modele, dateAchat);
-		this.nbVitesses = nbVitesses;
+		setNbVitesses(nbVitesses);
 	}
 	
+	//#### ---------METHODS
 	//Fonction changement de vitesses
 	@Override
 	public void chgtVitesses() {
 		
 	}
 
-	
 	//PRINT
 	@Override
 	public String afficher() {
-		String affichage = toString() + (fillSpaces(toString(), PRIX_LOC)) + toStringPrice();
+		String affichage = toString() + (fillSpaces(toString(), prixLoc)) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
@@ -47,20 +47,19 @@ public class Velo extends Cycle implements ChangementVitesse {
 	public int getNbVitesses() {
 		return nbVitesses;
 	}
-
-	
-
 	public void setNbVitesses(int nbVitesses) {
 		this.nbVitesses = nbVitesses;
 	}
-
 	public static String getType() {
 		return TYPE;
 	}
-
-	public static double getPrixLoc() {
-		return PRIX_LOC;
-	}
 	
+	//STATIC METHOD
+	public void setPrixLoc(int tarif) {
+		prixLoc = tarif;
+	}
+	public double getPrixLoc() {
+		return prixLoc;
+	}
 }
 

@@ -2,19 +2,21 @@ package tpLocationCycles;
 
 import java.time.LocalDate;
 
-public class Gyroroue extends Gyro {
+public class Gyroroue extends Gyro implements Prix{
 	
 	private final static String TYPE = "Gyroroue";
-	private final static double PRIX_LOC = 18.90;
+	private static double prixLoc = 18.90;
 	
 	//CONSTRUCTOR
 	public Gyroroue(String marque, String modele, LocalDate dateAchat,int autonomie) {
 		super(marque, modele, dateAchat, autonomie);	
 	}
+	
+	//#### ---------METHODS
 	//PRINT
 	@Override
 	public String afficher() {
-		String affichage = toString() + (fillSpaces(toString(), PRIX_LOC)) + toStringPrice();
+		String affichage = toString() + (fillSpaces(toString(), prixLoc)) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
@@ -33,13 +35,21 @@ public class Gyroroue extends Gyro {
 		return builder.toString();
 	}
 	
-	//GETTER
+	//GETTER / SETTERS
 	public static String getType() {
 		return TYPE;
+	}	
+	@Override
+	public void setAutonomie() {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public static double getPrixLoc() {
-		return PRIX_LOC;
+	//STATIC METHOD
+	public void setPrixLoc(int tarif) {
+		prixLoc = tarif;
 	}
-
+	public double getPrixLoc() {
+		return prixLoc;
+	}
 }

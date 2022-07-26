@@ -8,14 +8,15 @@ public abstract class Cycle {
 	protected String modele;
 	protected LocalDate dateAchat;
 	
-	//CONSTRUCTOR
+	//#### ---------CONSTRUCTOR
 	public Cycle(String marque, String modele, LocalDate dateAchat) {
 		this.marque = marque;
 		this.modele = modele;
 		this.dateAchat = dateAchat;
 
 	}
-	//METHODS
+	
+	//#### ---------METHODS
 	//AFFICHER
 	public String afficher() {
 		String affichage = toString();
@@ -53,7 +54,7 @@ public abstract class Cycle {
 		return txt.toString();
 	}
 	
-	//Anciennetée véhicule
+	//ANCIENETE DU VEHICULE
 	public int yearsOld(LocalDate dateAchat) {
 		   Period diff = Period.between(dateAchat, LocalDate.now());
 		   int yearsOld = diff.getYears();

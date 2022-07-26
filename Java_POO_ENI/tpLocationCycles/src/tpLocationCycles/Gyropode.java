@@ -2,23 +2,24 @@ package tpLocationCycles;
 
 import java.time.LocalDate;
 
-public class Gyropode extends Gyro {
+public class Gyropode extends Gyro implements TailleMini, Prix{
 	
 	private final static String TYPE = "Gyropode";
-	private final static double PRIX_LOC = 29.90;
+	private static double prixLoc = 29.90;
 	private String tailleMini;
 	
 	//CONSTRUCTOR
 	public Gyropode(String marque, String modele, LocalDate dateAchat, 
 				int autonomie, String tailleMini) {
 		super(marque, modele, dateAchat, autonomie);
-		this.tailleMini = tailleMini;
+		setTailleMini(tailleMini);
 	}
 	
+	//#### ---------METHODS
 	//PRINT
 	@Override
 	public String afficher() {
-		String affichage = toString() + (fillSpaces(toString(), PRIX_LOC)) + toStringPrice();
+		String affichage = toString() + (fillSpaces(toString(), prixLoc)) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
@@ -46,10 +47,16 @@ public class Gyropode extends Gyro {
 	}
 	public static String getType() {
 		return TYPE;
-	}
-	public static double getPrixLoc() {
-		return PRIX_LOC;
-	}
+	}	
+	@Override
+	public void setAutonomie() {
 	
-
+	}
+	//STATIC METHOD
+	public void setPrixLoc(int tarif) {
+		prixLoc = tarif;
+	}
+	public double getPrixLoc() {
+		return prixLoc;
+	}
 }
