@@ -3,20 +3,30 @@ package bestGameEver.items.weapons;
 import bestGameEver.items.Item;
 
 public class Weapon extends Item {
+	private int index;
 	private int att;
 	private int speed;
 	private boolean isDistance;
 	private int distance;
+	private static int nbWeapons;
+	//INIT METHODS
+		static {
+			nbWeapons = 1;
+		}
 	//CONSTRUCTOR
-	public Weapon(int index, String name, String shortDescription, String description, int price, int weight, int att, int speed, boolean isDistance, int distance) {
-		super(index, name, shortDescription, description, price, weight );
+	public Weapon(String name, String shortDescription, String description, int price, int weight, int att, int speed, boolean isDistance, int distance) {
+		super(name, shortDescription, description, price, weight );
 		this.att = att;
 		this.speed = speed;
 		this.isDistance = isDistance;
 		this.distance = distance;
+		index = nbWeapons;
+		nbWeapons ++;
 	}
+	
 	//METHODS 
-	//afficher
+	
+	//PRINT
 	public void afficher() {
 		System.out.println(toString());
 	}

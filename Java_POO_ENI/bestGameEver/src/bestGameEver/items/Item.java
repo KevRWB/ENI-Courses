@@ -1,16 +1,15 @@
 package bestGameEver.items;
 
 public class Item {
-	protected int index;
+	
 	protected String name;
 	protected String shortDescription;
 	protected String description;
 	protected int price;
 	protected double weight;
 	//CONSTRUCTOR
-	public Item(int index, String nom, String shortDescription, String description, int price, double weight) {
+	public Item(String nom, String shortDescription, String description, int price, double weight) {
 
-		this.index = index;
 		this.name = nom;
 		this.shortDescription = shortDescription;
 		this.description = description;
@@ -18,12 +17,6 @@ public class Item {
 		this.weight = weight;
 	}
 	//GETTERS / SETTERS
-	public int getIndex() {
-		return index;
-	}
-	public void setIndex(int index) {
-		this.index = index;
-	}
 	public String getName() {
 		return name;
 	}

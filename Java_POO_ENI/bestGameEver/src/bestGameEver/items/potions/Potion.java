@@ -3,27 +3,31 @@ package bestGameEver.items.potions;
 import bestGameEver.items.Item;
 
 public class Potion extends Item {
-	
+	private int index;
 	private int bonusLife;
 	private int bonusDef;
 	private int bonusAtt;
+	private static int nbPotions;
+	//INIT METHODS
+		static {
+			nbPotions = 1;
+		}
 
 	//CONSTRUCTOR
-	public Potion(int index, String nom, String shortDescription, String description, int price, int weight,
+	public Potion(String nom, String shortDescription, String description, int price, int weight,
 			int bonusLife, int bonusDef, int bonusAtt) {
-		super(index, nom, shortDescription, description, price, weight);
+		super(nom, shortDescription, description, price, weight);
 		this.bonusLife = bonusLife;
 		this.bonusDef = bonusDef;
 		this.bonusAtt = bonusAtt;
+		index = nbPotions;
+		nbPotions ++;
 	}
 	//AFFICHER
 	//Afficher potion
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		
-		builder.append("Index=");
-		builder.append(index);
 		builder.append(", nom=");
 		builder.append(name);
 		builder.append(", shortDescription=");

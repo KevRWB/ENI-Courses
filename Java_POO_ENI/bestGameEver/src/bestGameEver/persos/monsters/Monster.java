@@ -17,12 +17,19 @@ public class Monster extends Perso{
 	private Shield shield;
 	private ArrayList<Item> itemsList= new ArrayList<Item>();
 	private ArrayList<Cloth> clothesList = new ArrayList<Cloth>();
+	private static int nbMonsters;
+	//INIT METHODS
+	static {
+		nbMonsters = 1;
+	}
 	
 	//CONSTRUCTOR
-	public Monster(int index,String name, int att, int def, int ability, int speed, int dodge, int life, int initiative,Race race){
+	public Monster(String name, int att, int def, int ability, int speed, int dodge, int life, int initiative,Race race){
 		super(name, att, def, ability, speed, dodge, life,  initiative, race);
-		this.index = index;
+		index = nbMonsters;
+		nbMonsters ++;
 	}
+	
 	//METHODS
 	public void printMonsterStats() {	
 		System.out.println(": --- " + name.toUpperCase() + " --- ");

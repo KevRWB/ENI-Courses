@@ -9,8 +9,8 @@ public class HeroesList {
 	private static ArrayList<Hero> heroesList = new ArrayList<Hero>();
 	// METHODS
 	static public ArrayList<Hero> getHeroesList(){
-		Hero zogzog = new Hero(2,"ZogZog", 8, 4, 3, 3, 3, 20, 1, null);
-		Hero clitorina = new Hero(3,"Clitorina" , 6, 2, 7, 7, 7, 16, 7, null);
+		Hero zogzog = new Hero("ZogZog", 8, 4, 3, 3, 3, 20, 1, null);
+		Hero clitorina = new Hero("Clitorina" , 6, 2, 7, 7, 7, 16, 7, null);
 		
 		//add weapons to heroes
 		zogzog.setWeaponOne(WeaponsList.getWeaponsList().get(0));
@@ -36,7 +36,6 @@ public class HeroesList {
 			hero.printHeroStats();;
 			hero.printHeroWeapons();
 			count++;
-		}
-		
+		}	
 	}
 }

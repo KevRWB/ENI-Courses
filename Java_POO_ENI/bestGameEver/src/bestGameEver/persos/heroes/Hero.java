@@ -18,11 +18,17 @@ public class Hero extends Perso{
 	private ArrayList<Cloth> clothesList = new ArrayList<Cloth>();
 	private int xp = 0;
 	private int level = 1;
+	private static int nbHeroes;
+	//INIT METHODS
+	static {
+		nbHeroes = 1;
+	}
 	
 	//CONSTRUCTOR
-	public Hero(int index,String name, int att, int def, int ability, int speed, int dodge, int life, int initiative,Race race) {
+	public Hero(String name, int att, int def, int ability, int speed, int dodge, int life, int initiative,Race race) {
 		super(name, att, def, ability, speed, dodge, life, initiative, race);
-		this.index = index;	
+		index = nbHeroes;
+		nbHeroes ++;
 	}
 	//  METHODS
 	

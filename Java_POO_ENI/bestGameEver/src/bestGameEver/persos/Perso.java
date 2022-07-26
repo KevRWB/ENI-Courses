@@ -25,6 +25,8 @@ public class Perso {
 		this.initiative = initiative;
 		this.race = race;
 	}
+	
+	//GETTERS SETTERS
 	public String getName() {
 		return name;
 	}
@@ -79,6 +81,5 @@ public class Perso {
 	public void setRace(Race race) {
 		this.race = race;
 	}	
-	
 	
 }
