@@ -7,7 +7,7 @@ public class Gyropode extends Gyro implements TailleMini, Prix{
 	private final static String TYPE = "Gyropode";
 	private static double prixLoc = 29.90;
 	private String tailleMini;
-	
+
 	//CONSTRUCTOR
 	public Gyropode(String marque, String modele, LocalDate dateAchat, 
 				int autonomie, String tailleMini) {
@@ -17,25 +17,29 @@ public class Gyropode extends Gyro implements TailleMini, Prix{
 	
 	//#### ---------METHODS
 	//PRINT
-	@Override
 	public String afficher() {
-		String affichage = toString() + (fillSpaces(toString(), prixLoc)) + toStringPrice();
+		String affichage = String.format("%-65s", toString()) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
 	//toString METHOD
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" - "+ TYPE + " ");
-		builder.append(super.toString());
+		builder.append(marque);
+		builder.append(" " + modele);
+		builder.append(" (" + yearsOld(dateAchat) + "an");
+		if(yearsOld(dateAchat) > 1) {
+			builder.append("s");
+		}
+		builder.append(")");
 		builder.append(" " + autonomie + " km d'autonomie ");
 		builder.append("[" + tailleMini + "m min" + "]");
 		return builder.toString();
 	}
 	public String toStringPrice() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%.2f €/heure", getPrixLoc()));
+		builder.append(String.format("%15s", String.format("%.2f €/heure", getPrixLoc())));
 		return builder.toString();
 	}
 	//GETTERS SETTERS
@@ -50,8 +54,8 @@ public class Gyropode extends Gyro implements TailleMini, Prix{
 	}	
 	@Override
 	public void setAutonomie() {
-	
 	}
+	
 	//STATIC METHOD
 	public void setPrixLoc(int tarif) {
 		prixLoc = tarif;

@@ -8,7 +8,6 @@ import bestGameEver.persos.monsters.*;
 
 public class BestGameEver {
 	
-	private static final int D6 = 6;
 	public static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -22,9 +21,9 @@ public class BestGameEver {
 		HeroesFunctions.printHero(hero);	
 		//Select random monster
 		Monster monster = (MonstersFunctions.selectRdMonster(MonstersList.getMonstersList()));
+		monster.printMonsterStats();
+		monster.printMonsterWeapons();
 	
-		//COMBAT
-		FightFunctions.fight(hero, monster, D6);
 		
 		//Close Scanner
 		scan.close();

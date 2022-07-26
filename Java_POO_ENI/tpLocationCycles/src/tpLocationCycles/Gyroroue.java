@@ -6,7 +6,7 @@ public class Gyroroue extends Gyro implements Prix{
 	
 	private final static String TYPE = "Gyroroue";
 	private static double prixLoc = 18.90;
-	
+
 	//CONSTRUCTOR
 	public Gyroroue(String marque, String modele, LocalDate dateAchat,int autonomie) {
 		super(marque, modele, dateAchat, autonomie);	
@@ -14,24 +14,28 @@ public class Gyroroue extends Gyro implements Prix{
 	
 	//#### ---------METHODS
 	//PRINT
-	@Override
 	public String afficher() {
-		String affichage = toString() + (fillSpaces(toString(), prixLoc)) + toStringPrice();
+		String affichage = String.format("%-65s", toString()) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
 	//toString METHOD
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" - "+ TYPE + " ");
-		builder.append(super.toString());
+		builder.append(marque);
+		builder.append(" " + modele);
+		builder.append(" (" + yearsOld(dateAchat) + "an");
+		if(yearsOld(dateAchat) > 1) {
+			builder.append("s");
+		}
+		builder.append(")");
 		builder.append(" " + autonomie + " km d'autonomie ");
 		return builder.toString();
 	}
 	public String toStringPrice() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%.2f €/heure", getPrixLoc()));
+		builder.append(String.format("%15s", String.format("%.2f €/heure", getPrixLoc())));
 		return builder.toString();
 	}
 	
@@ -41,9 +45,8 @@ public class Gyroroue extends Gyro implements Prix{
 	}	
 	@Override
 	public void setAutonomie() {
-		// TODO Auto-generated method stub
-		
 	}
+	
 
 	//STATIC METHOD
 	public void setPrixLoc(int tarif) {

@@ -5,8 +5,9 @@ import java.time.LocalDate;
 public class TestCycles {
 
 	public static void main(String[] args) {
-		
-		Velo lapierre = new Velo("Lapierre", "speed 400", LocalDate.of(2021, 01, 5), 27 );
+			
+		//Create instances
+		Velo lapierre = new Velo("Lapierre", "speed 400", LocalDate.of(2021, 01, 5), 27 );	
 		Velo btwin = new Velo("Btwin", "riverside 900", LocalDate.of(2022, 01, 5), 10 );
 		Gyropode segway = new Gyropode("Segway", "Ninebot",  LocalDate.of(2021, 01, 5), 40, "1m50");
 		Gyropode weebot = new Gyropode("Weebot", "Echo",  LocalDate.of(2020, 11, 5), 35, "1m60");
@@ -21,7 +22,7 @@ public class TestCycles {
 		weebot.afficher();
 		immotion.afficher();
 		ninebot.afficher();	
-	
+		
 	}
 	
 }

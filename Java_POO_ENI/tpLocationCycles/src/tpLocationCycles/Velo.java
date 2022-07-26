@@ -6,7 +6,7 @@ public class Velo extends Cycle implements VitessesVelo, Prix {
 	private final static String TYPE = "Velo";
 	private static double prixLoc = 4.90;
 	private int nbVitesses;
-	
+
 	//CONSTRUCTOR
 	public Velo(String marque, String modele, LocalDate dateAchat, 
 			int nbVitesses) {
@@ -22,24 +22,28 @@ public class Velo extends Cycle implements VitessesVelo, Prix {
 	}
 
 	//PRINT
-	@Override
 	public String afficher() {
-		String affichage = toString() + (fillSpaces(toString(), prixLoc)) + toStringPrice();
+		String affichage = String.format("%-65s", toString()) + toStringPrice();
 		System.out.println(affichage);
 		return affichage;
 	}
 	//toString METHOD
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" - "+ TYPE + " ");
-		builder.append(super.toString());
+		builder.append(marque);
+		builder.append(" " + modele);
+		builder.append(" (" + yearsOld(dateAchat) + "an");
+		if(yearsOld(dateAchat) > 1) {
+			builder.append("s");
+		}
+		builder.append(")");
 		builder.append(" " + nbVitesses + " vitesses");
 		return builder.toString();
 	}
 	public String toStringPrice() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("%.2f €/heure", getPrixLoc()));
+		builder.append(String.format("%15s", String.format("%.2f €/heure", getPrixLoc())));
 		return builder.toString();
 	}
 	

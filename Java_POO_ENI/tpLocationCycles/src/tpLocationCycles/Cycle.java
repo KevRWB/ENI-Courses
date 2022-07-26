@@ -17,44 +17,8 @@ public abstract class Cycle {
 	}
 	
 	//#### ---------METHODS
-	//AFFICHER
-	public String afficher() {
-		String affichage = toString();
-		System.out.println(affichage);
-		return affichage;
-	}
-	//toString METHOD
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(marque);
-		builder.append(" " + modele);
-		builder.append(" (" + yearsOld(dateAchat) + "an");
-		if(yearsOld(dateAchat) > 1) {
-			builder.append("s");
-		}
-		builder.append(")");
-		return builder.toString();
-	}
-	//FONCTION REMPLISSAGE ESPACES
-	public String fillSpaces(String str, double price) {
-		int size = 65;
-		int priceToFill = 0;
-		if(price >=10) {
-			priceToFill = 1;
-		}else if(price >= 100) {
-			priceToFill = 2;
-		}
-		
-		int sizeToFill = size - str.length() - priceToFill;
-		StringBuilder txt = new StringBuilder(); 
-		for (int i = 0; i < sizeToFill; i++) {
-			txt.append(" ");
-		}
-		return txt.toString();
-	}
-	
-	//ANCIENETE DU VEHICULE
+
+	//ANCIENNETE DU VEHICULE
 	public int yearsOld(LocalDate dateAchat) {
 		   Period diff = Period.between(dateAchat, LocalDate.now());
 		   int yearsOld = diff.getYears();
