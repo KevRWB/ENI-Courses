@@ -23,6 +23,18 @@ public class TestCycles {
 		immotion.afficher();
 		ninebot.afficher();	
 		
+		try {
+			lapierre.setNbVitesses(3);
+			segway.setTailleMini("erreur");
+		} catch (CycleException e) {
+			if(e.getUnCycle() instanceof Velo) {
+				System.out.println("Pb velo");
+			}else System.out.println("Pb Gyropode");
+			e.printStackTrace();
+		}
+		
+		System.out.println("On continue");
+		
 	}
 	
 }

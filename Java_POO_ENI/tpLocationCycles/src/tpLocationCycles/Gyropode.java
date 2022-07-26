@@ -2,7 +2,7 @@ package tpLocationCycles;
 
 import java.time.LocalDate;
 
-public class Gyropode extends Gyro implements TailleMini, Prix{
+public class Gyropode extends Gyro implements  Prix{
 	
 	private final static String TYPE = "Gyropode";
 	private static double prixLoc = 29.90;
@@ -10,9 +10,9 @@ public class Gyropode extends Gyro implements TailleMini, Prix{
 
 	//CONSTRUCTOR
 	public Gyropode(String marque, String modele, LocalDate dateAchat, 
-				int autonomie, String tailleMini) {
+				int autonomie, String tailleMini){
 		super(marque, modele, dateAchat, autonomie);
-		setTailleMini(tailleMini);
+		this.tailleMini = tailleMini;
 	}
 	
 	//#### ---------METHODS
@@ -46,8 +46,11 @@ public class Gyropode extends Gyro implements TailleMini, Prix{
 	public String getTailleMini() {
 		return tailleMini;
 	}
-	public void setTailleMini(String tailleMini) {
-		this.tailleMini = tailleMini;
+	public void setTailleMini(String tailleMini) throws CycleException {
+		if(tailleMini  == "erreur") {
+			throw new CycleException("Un Gyropode ne peut aps avoir une taille < 100", this);
+		}else this.tailleMini = tailleMini;
+		
 	}
 	public static String getType() {
 		return TYPE;

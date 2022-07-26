@@ -2,7 +2,7 @@ package tpLocationCycles;
 
 import java.time.LocalDate;
 
-public class Velo extends Cycle implements VitessesVelo, Prix {
+public class Velo extends Cycle implements  Prix {
 	private final static String TYPE = "Velo";
 	private static double prixLoc = 4.90;
 	private int nbVitesses;
@@ -11,16 +11,10 @@ public class Velo extends Cycle implements VitessesVelo, Prix {
 	public Velo(String marque, String modele, LocalDate dateAchat, 
 			int nbVitesses) {
 		super(marque, modele, dateAchat);
-		setNbVitesses(nbVitesses);
+		this.nbVitesses = nbVitesses;
 	}
 	
 	//#### ---------METHODS
-	//Fonction changement de vitesses
-	@Override
-	public void chgtVitesses() {
-		
-	}
-
 	//PRINT
 	public String afficher() {
 		String affichage = String.format("%-65s", toString()) + toStringPrice();
@@ -51,8 +45,11 @@ public class Velo extends Cycle implements VitessesVelo, Prix {
 	public int getNbVitesses() {
 		return nbVitesses;
 	}
-	public void setNbVitesses(int nbVitesses) {
-		this.nbVitesses = nbVitesses;
+	public void setNbVitesses(int nbVitesses) throws CycleException{
+		if(nbVitesses < 2) {
+			throw new CycleException("Le nombre de vitesse est superieur à 2", this);
+		}else this.nbVitesses = nbVitesses;	
+	
 	}
 	public static String getType() {
 		return TYPE;
@@ -65,5 +62,7 @@ public class Velo extends Cycle implements VitessesVelo, Prix {
 	public double getPrixLoc() {
 		return prixLoc;
 	}
+
+
 }
 
