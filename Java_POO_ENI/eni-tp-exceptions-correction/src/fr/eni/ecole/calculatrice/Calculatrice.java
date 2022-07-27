@@ -18,7 +18,7 @@ public class Calculatrice {
 			System.out.println("Opérateur ? (+ - * / % ou q pour quitter)");
 			operateur = sc.next();
 			
-			try {
+			try { // try de chacune des opérations
 				switch(operateur) {
 				case "+" :
 					nbDeux = saisirEntier();
@@ -28,25 +28,37 @@ public class Calculatrice {
 				break;
 				case "-" :
 					nbDeux = saisirEntier();
-					resultat = Operation.additionner(nbUn, nbDeux);
+					resultat = Operation.soustraction(nbUn, nbDeux);
 					System.out.println(resultat);
 					nbUn = resultat;
 				break;
 				case "*" :
 					nbDeux = saisirEntier();
-					resultat = Operation.additionner(nbUn, nbDeux);
+					resultat = Operation.multiplier(nbUn, nbDeux);
 					System.out.println(resultat);
 					nbUn = resultat;
 				break;
 				case "/" :
 					nbDeux = saisirEntier();
-					resultat = Operation.additionner(nbUn, nbDeux);
+					resultat = Operation.division(nbUn, nbDeux);
+					System.out.println(resultat);
+					nbUn = resultat;
+				break;
+				case "%" :
+					nbDeux = saisirEntier();
+					resultat = Operation.modulo(nbUn, nbDeux);
 					System.out.println(resultat);
 					nbUn = resultat;
 				break;
 				}
+				//catch Exceptions : Depassement de capacité ou Division par zero (ArithmeticException)
 			} catch (DepassementCapaciteException  | ArithmeticException e) {
-				System.err.println(e.getMessage());
+				if(e instanceof ArithmeticException && operateur.equals("/")) {
+					System.err.println("Pas de division par zero bordel à cul !");
+				}else if(e instanceof ArithmeticException && operateur.equals("%")) {
+					System.err.println("Pas de modulo par zero bordel à cul kon t'a dit !");
+				}else System.err.println(e.getMessage());
+				
 			}
 		//Condition de sortie -> Saisie = "q" pour quitter	
 		}while(!operateur.equalsIgnoreCase("q"));
@@ -60,15 +72,21 @@ public class Calculatrice {
 		int nbre = 0;
 		while(!saisieOk) {
 			System.out.println("Saisir un nombre entier :");
+			//récupère un String
 			String saisie = sc.next()	;	
 			try {
+				//Try de convertir en entier
 				nbre = Integer.parseInt(saisie);
+				//si conversion ok -> saisie ok
 				saisieOk = true;
 			} catch (NumberFormatException e) {
 				try {
+					//Tye de convertir en long 
 					Long nb = Long.parseLong(saisie);
+					// Si conversion impossible -> Saisie ok mais dépasse les limtites
 					System.out.println("Valeur dépasse limites");
 				}catch(NumberFormatException e2) {
+					//Saisie pas un nombre entier
 					System.out.println("Saisie incorreste. Réessayez...");
 				}
 			}
