@@ -79,7 +79,7 @@ public class PlateauDeReversi {
 		//---------Si sur bord
 		//Si sur ligne haute
 		if(x == 0) { 
-			if(pions[x-1][y-1] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion) return 0;
+			if(pions[x-1][y] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion) return 0;
 		}
 		//Si sur ligne basse
 		if(x == TAILLE - 1) { 
