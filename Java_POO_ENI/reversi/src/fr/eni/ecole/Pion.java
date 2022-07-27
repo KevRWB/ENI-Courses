@@ -15,7 +15,7 @@ public enum Pion {
 	public char getSymbole() {
 		switch(this) {
 		case BLANC : 
-			return '0';		
+			return '○';		
 		case NOIR : 
 			return '●';
 		default : return '.';
