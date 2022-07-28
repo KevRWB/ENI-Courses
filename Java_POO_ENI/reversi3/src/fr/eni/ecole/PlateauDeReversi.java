@@ -86,7 +86,7 @@ public class PlateauDeReversi {
 			i+=dx;
 			j+=dy;
 		}
-		//Si mon pion derrière est = à mon pion -> Retourn nbAutre. Sinon, on ne compte pas, on retourn 0.
+		//Si mon pion derrière est = à mon pion -> Retourn nbAutre. Sinon, on ne compte pas, on retourne 0.
 		if(i < 0 || i > TAILLE || j < 0 || j > TAILLE || this.pions[i][j] != p) {
 			return 0;
 		}else return nbAutre;	
@@ -94,35 +94,35 @@ public class PlateauDeReversi {
 
 	//Fonction test si coup possible
 	private boolean peutJouer(Pion p) {
-		int nbPions = 0;
 		for(int i = 0; i < TAILLE; i++) {
 			for (int j = 0; j < TAILLE; j++) {
-				nbPions += tester(p, i, j);
+				if(this.tester(p, i, j) != 0) return true;			
 			}
-		}	
-		if(nbPions == 0) return false;
-		else return true;
+		}
+		return false;
 	}
 
 	//Fonction poser
 	public void poser(Pion p, int x, int y) {
-		Pion pOpp = p.autrePion();
-		//test si coup possible
-		int test = this.tester(p, x, y);
-		if( test == 0) System.out.println("Coup impossible)");
-		else {
-			//Place le pion à l'endroit indiqué
-			this.pions[x][y] = p;
-			//ajoute le pion joué au nombre de pion de la couleur jouée
-			p.setNbPions(p.getnbPions()+ 1);
-			
-			//retourne pions opposés
-			
-			//ajoute les pions retourné au nombre de pion de la couleur jouée
-			p.setNbPions(p.getnbPions() + test);
-			//soustrait les pions de la couleur opposée
-			pOpp.setNbPions(pOpp.getnbPions() - test);
-			
+		//Maj nombre de pions
+		int nbPoints = this.tester(p, x, y);
+		p.setNbPions(nbPoints + 1);
+		p.autrePion().setNbPions(nbPoints);
+		//Placer le pion aux coordonnées indiquées
+		this.pions[x][y] = p;
+		
+		//Modifie le nombre de pions transformer
+		int nbPions;
+		for (int dy = -1; dy <= 1; dy++) {
+			nbPions = 0;
+			for (int dx = -1; dy <=1; dx++) {
+				if(dx!=0 || dy != 0) {
+					nbPions += testerDirection(p,x,y,dx,dy);
+					for(int k=1; k <= nbPions; k++) {
+						this.pions[x+dx*k][y+dy*k] = p;
+					}
+				}
+			}			
 		}
 	}
 }

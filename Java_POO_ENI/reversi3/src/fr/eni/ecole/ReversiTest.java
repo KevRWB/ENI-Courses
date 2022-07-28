@@ -7,9 +7,9 @@ public class ReversiTest {
 		
 		plateau.afficher();
 		
-		plateau.poser(Pion.NOIR, 5, 4);
-				
-		plateau.afficher();
+		Pion courant = Pion.NOIR;
+		System.out.println("Au tour de " + courant.getSymbole() + "...");
+		
 		
 	}
 	
