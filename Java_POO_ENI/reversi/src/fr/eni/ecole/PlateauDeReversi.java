@@ -60,55 +60,7 @@ public class PlateauDeReversi {
 		if(pions[x][y] != Pion.LIBRE ) {
 			return 0;
 		}
-		
-		//------SI autres pions autour	
-		
-		//---------Si dans un coin
-		if(x == 0 && y == 0) { // Coin haut / gauche
-			if(pions[x+1][y] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion ) return 0;
-		}
-		if(x == 0 && y == TAILLE - 1) { // Coin bas / gauche
-			if(pions[x][y-1] != autrePion && pions[x+1][y-1] != autrePion && pions[x+1][y] != autrePion ) return 0;
-		}
-		if(y == 0 && x == TAILLE - 1) { // Coin haut / droit
-			if(pions[x-1][y] != autrePion && pions[x-1][y+1] != autrePion && pions[x][y+1] != autrePion ) return 0;
-		}
-		if(y == TAILLE - 1 && x == TAILLE - 1) { // Coin bas / droit
-			if(pions[x-1][y-1] != autrePion && pions[x][y-1] != autrePion && pions[x-1][y] != autrePion ) return 0;
-		}
-		//---------Si sur bord
-		//Si sur ligne haute
-		if(x == 0) { 
-			if(pions[x-1][y] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion) return 0;
-		}
-		//Si sur ligne basse
-		if(x == TAILLE - 1) { 
-			if(pions[x+1][y] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion) return 0;
-		}
-		//Si sur colonne gauche
-		if(y == 0) { 
-			if(pions[x+1][y] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion) return 0;
-		}
-		//Si sur colonne droite
-		if(y == TAILLE - 1) { 
-			if(pions[x+1][y] != autrePion && pions[x+1][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion && pions[x][y+1] != autrePion ) return 0;
-		}
-	
-
-		//Else
-		if(pions[x-1][y-1] != autrePion && pions[x-1][y] != autrePion && pions[x-1][y+1] != autrePion && pions[x][y-1] != autrePion &&
-				pions[x][y+1] != autrePion && pions[x+1][y-1] != autrePion && pions[x+1][y] != autrePion && pions[x+1][y+1] != autrePion)
-			return  0;
-
-			//Si '.' sur ligne
-				
-				//Si '.' sur colonne
-		
-		  			//Si '.' sur diagonale
-		
-		//SINON nb pion reste 0
-		
-		
+		//Return
 		return nbPionsChange;
 	}
 	
@@ -118,6 +70,114 @@ public class PlateauDeReversi {
 		
 		return peutJouer;
 	}
+	
+	//---Fonction retourner so possible
+	public int testNbPionRetournable(Pion pion, int x, int y) {
+		x -= 1;
+		y -=1; 
+		int i = 0;
+		int index = 0;
+		boolean flipOk = false;
+		int nbPionsRetournes = 0;
+		//####### -----------------test ligne gauche
+		while(i < x - 1) {
+			if(pions[y][i] == Pion.LIBRE) flipOk = false;
+			else if (pions[y][i] == pion) {
+				index = i;
+				flipOk = true;
+			}
+			i++;
+		}
+		/////test si pion même couleur juste à côté
+		if(flipOk) {
+			if(index == x - 1) flipOk = false;
+			//compte nombre de pion à retourner
+			else {
+				nbPionsRetournes += x - index - 1; 
+			}
+		}
+		System.out.println("FlipOK : " + flipOk + " nbPions" + nbPionsRetournes);
+		//####### -----------------test ligne droite
+		//init compteur à droite du plateau
+		i = TAILLE - 1;
+		index = TAILLE - 1;
+		flipOk = false;
+		while(i > x + 1) {
+			if(pions[y][i] == Pion.LIBRE) flipOk = false;
+			else if (pions[y][i] == pion) {
+				index = i;
+				flipOk = true;
+			}
+			i--;
+		}
+		/////test si pion même couleur juste à côté
+		if(flipOk) {
+			if(index == x + 1) flipOk = false;
+			//compte nombre de pion à retourner
+			else {
+				nbPionsRetournes += index - x - 1; 
+			}
+		}
+		System.out.println("FlipOK : " + flipOk + " nbPions" + nbPionsRetournes);
+		
+		//####### -----------------test colonne bas
+		//init compteur à droite du plateau
+		i = TAILLE - 1;
+		index = TAILLE - 1;
+		flipOk = false;
+		while(i > y + 1) {
+			if(pions[i][x] == Pion.LIBRE) flipOk = false;
+			else if (pions[i][x] == pion) {
+				index = i;
+				flipOk = true;
+			}
+			i--;
+		}
+		/////test si pion même couleur juste à côté
+		if(flipOk) {
+			if(index == y + 1) flipOk = false;
+			//compte nombre de pion à retourner
+			else {
+				nbPionsRetournes += index - y - 1; 
+			}
+		}
+		System.out.println("FlipOK : " + flipOk + " nbPions" + nbPionsRetournes);
+		
+		//####### -----------------test ligne gauche
+				while(i < y - 1) {
+					if(pions[i][x] == Pion.LIBRE) flipOk = false;
+					else if (pions[i][x] == pion) {
+						index = i;
+						flipOk = true;
+					}
+					i++;
+				}
+				/////test si pion même couleur juste à côté
+				if(flipOk) {
+					if(index == y - 1) flipOk = false;
+					//compte nombre de pion à retourner
+					else {
+						nbPionsRetournes += y - index - 1; 
+					}
+				}
+				System.out.println("FlipOK : " + flipOk + " nbPions" + nbPionsRetournes);
+		
+		
+		//Retourne le nombre de pions retournables	
+		return nbPionsRetournes;
+	}
+
+	
+	
+	//---Fonction retourne tableau plateau de jeu
+	public static Pion[][] getPions() {
+		return pions;
+	}
+
+	
+	
 }
+
+
 
 

@@ -7,10 +7,8 @@ public class ReversiTest {
 		
 		plateau.afficher();
 		
-		int test = plateau.testNbPionRetournable(Pion.NOIR, 4, 3);
-		System.out.println(plateau.getPions()[3][3]);
+		plateau.tester(Pion.BLANC, 2, 3);
 		
-		System.out.println(test);
 	}
 	
 }
