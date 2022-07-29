@@ -1,4 +1,4 @@
-package fr.eni.ecole.baseDuLangage;
+package fr.eni.ecole.maximot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class JeuDemot {
+public class Maximot {
 
 
 	// #### -- MAIN PROGRAM -- #####

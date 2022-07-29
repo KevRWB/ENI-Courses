@@ -23,6 +23,8 @@ public class PlateauDeReversi {
 		Pion.NOIR.setNbPions(2);
 		Pion.LIBRE.setNbPions(TAILLE*TAILLE - 4);
 		
+		
+		
 	}
 		
 	public void afficher() {

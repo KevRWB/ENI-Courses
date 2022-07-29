@@ -10,7 +10,6 @@ public class ReversiTest {
 		Pion courant = Pion.NOIR;
 		System.out.println("Au tour de " + courant.getSymbole() + "...");
 		
-		
 	}
 	
 }

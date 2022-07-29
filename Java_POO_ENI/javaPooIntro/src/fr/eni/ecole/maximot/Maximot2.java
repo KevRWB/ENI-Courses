@@ -1,4 +1,4 @@
-package fr.eni.ecole.baseDuLangage;
+package fr.eni.ecole.maximot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,11 +6,22 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class JeuDemot {
+public class Maximot2 {
 
 
 	// #### -- MAIN PROGRAM -- #####
 	public static void main(String[] args) {
+		//test fill dico and print
+		Dictionnaire dico = new Dictionnaire("./dictionnaire.txt");
+		
+		try {
+			dico.fillList(dico.getDictionnaire());
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		
+		dico.printDico(dico.getDictionnaire());
+		
 		
 		//---INTRODUCTION
 		System.out.println("Bienvenus dans le Maximot");
