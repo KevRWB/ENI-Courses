@@ -1,4 +1,4 @@
-package fr.koor.exceptions;
+package k07exceptions;
 
 public class Rational {
 	private int numerator;

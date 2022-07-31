@@ -1,4 +1,4 @@
-package fr.koor.exceptions;
+package k07exceptions;
 
 public class RationalException extends IllegalArgumentException{
 	private static final long serialVersionUID = 1L;

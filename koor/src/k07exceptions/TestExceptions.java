@@ -1,4 +1,4 @@
-package fr.koor.exceptions;
+package k07exceptions;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
