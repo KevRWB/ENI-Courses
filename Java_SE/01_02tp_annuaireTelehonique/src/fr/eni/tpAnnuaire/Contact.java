@@ -3,11 +3,15 @@ package fr.eni.tpAnnuaire;
 public class Contact {
 	private String nom;
 	private String numeroTel;
+	
+	//CONSTRUCTOR
 	public Contact(String nom, String numeroTel) {
 		super();
 		this.nom = nom;
 		this.numeroTel = numeroTel;
 	}
+	
+	//GETTERS SETTERS
 	public String getNom() {
 		return nom;
 	}
