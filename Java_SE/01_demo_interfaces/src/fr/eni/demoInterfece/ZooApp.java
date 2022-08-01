@@ -1,5 +1,8 @@
 package fr.eni.demoInterfece;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ZooApp {
 
 	public static void main(String[] args) {
@@ -7,7 +10,7 @@ public class ZooApp {
 		Chat alfred = new Chat("Alfred");
 		alfred.communiquer();
 		
-		ChauveSouris bruce = new ChauveSouris("Batamn");
+		ChauveSouris bruce = new ChauveSouris("Batman");
 		bruce.communiquer();
 		bruce.voler();
 		
@@ -17,6 +20,9 @@ public class ZooApp {
 		Nageant smith = e;
 		smith.nager();
 		
+		List<Volant> animauxVolants = new ArrayList<>();
+		animauxVolants.add(bruce);
+		animauxVolants.add(e);	
 		
 	}
 
