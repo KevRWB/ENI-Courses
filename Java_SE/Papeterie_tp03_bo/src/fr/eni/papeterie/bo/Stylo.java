@@ -5,7 +5,6 @@ public class Stylo extends Article {
 
 	public Stylo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Stylo(int idArticle, String reference, String marque, String designation, float prixUnitaire, int qteStock, String couleur) {
@@ -35,10 +34,5 @@ public class Stylo extends Article {
 		builder.append("]");
 		return builder.toString();
 	}
-
-	
-	
-	
-	
 	
 }

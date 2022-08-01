@@ -6,7 +6,6 @@ public class Ramette extends Article {
 
 	public Ramette() {
 		super();
-
 	}
 
 	public Ramette(int idArticle, String reference, String marque, String designation, float prixUnitaire,

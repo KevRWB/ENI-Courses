@@ -3,25 +3,17 @@ package fr.eni.papeterie.bo;
 public abstract class Article {
 	private int idArticle;
 	private String reference;
-	String marque;
+	private String marque;
 	private String designation;
 	private float prixUnitaire;
 	private int qteStock;
+	
 	//Constructors
-	
 	public Article() {
-		super();
+		
 	}
 	
-	public String getMarque() {
-		return marque;
-	}
-
-	public void setMarque(String marque) {
-		this.marque = marque;
-	}
-
-	public Article(String reference, String marque, String designation, float prixUnitaire, int qteStock) {
+	public Article(String marque, String reference,  String designation, float prixUnitaire, int qteStock) {
 		super();
 		this.reference = reference;
 		this.marque = marque;
@@ -30,7 +22,7 @@ public abstract class Article {
 		this.qteStock = qteStock;
 	}
 
-	public Article(int idArticle, String reference, String marque, String designation, float prixUnitaire,
+	public Article(int idArticle, String marque,String reference,  String designation, float prixUnitaire,
 			int qteStock) {
 		super();
 		this.idArticle = idArticle;
@@ -41,7 +33,7 @@ public abstract class Article {
 		this.qteStock = qteStock;
 	}
 
-	//getteres setters
+	//getters setters
 	public int getIdArticle() {
 		return idArticle;
 	}
@@ -53,6 +45,12 @@ public abstract class Article {
 	}
 	public void setReference(String reference) {
 		this.reference = reference;
+	}
+	public String getMarque() {
+		return marque;
+	}
+	public void setMarque(String marque) {
+		this.marque = marque;
 	}
 	public String getDesignation() {
 		return designation;
@@ -78,10 +76,11 @@ public abstract class Article {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Article [idArticle=");
 		builder.append(idArticle);
-		builder.append(", reference=");
-		builder.append(reference);
 		builder.append(", marque=");
 		builder.append(marque);
+		builder.append(", reference=");
+		builder.append(reference);
+		
 		builder.append(", designation=");
 		builder.append(designation);
 		builder.append(", prixUnitaire=");

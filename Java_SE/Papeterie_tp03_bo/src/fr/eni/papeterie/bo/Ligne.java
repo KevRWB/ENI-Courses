@@ -3,12 +3,10 @@ package fr.eni.papeterie.bo;
 public class Ligne {
 	private int qte;
 	private Article article;
-	private int countLignes = 0;
 	
 	public Ligne(Article article, int qte) {
 		this.qte = qte;
 		this.article = article;
-		countLignes++;
 	}
 	public int getQte() {
 		return qte;
@@ -24,7 +22,7 @@ public class Ligne {
 	}
 	
 	public float getPrix() {
-		return this.article.getPrixUnitaire();
+		return getArticle().getPrixUnitaire();
 	}
 	@Override
 	public String toString() {
@@ -35,16 +33,6 @@ public class Ligne {
 		builder.append(article);
 		builder.append(String.format("%n"));
 		return builder.toString();
-	}
-	public int getCountLignes() {
-		return countLignes;
-	}
-	public void setCountLignes(int countLignes) {
-		this.countLignes = countLignes;
-	}
-	
-	
-	
-	
+	}	
 	
 }
