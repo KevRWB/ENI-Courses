@@ -49,8 +49,10 @@ public class Panier {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("Panier :%n"));
+		builder.append("Panier :");
+		builder.append(System.lineSeparator());
 		for(int i = 0; i < lignes.size(); i++) {
+			builder.append(".\t");
 			builder.append(String.format("Ligne : " + i + " " + lignes.get(i) ));
 		}
 		builder.append(String.format("%n Valeur du panier : %.2f ", montant));
