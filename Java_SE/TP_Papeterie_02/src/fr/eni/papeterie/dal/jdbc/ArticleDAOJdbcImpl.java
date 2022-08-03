@@ -23,57 +23,57 @@ import fr.eni.papeterie.dal.DALException;
  */
 public class ArticleDAOJdbcImpl {
 
-	static String url = "jdbc:sqlserver://localhost:1433;databasename=PAPETERIE_DB";
-	static String user = "sa";
-	static String pwd = "Pa$$w0rd";
-	
-	
-	//MEthod insert
-	public void insert(Article article) {
-		final String INSERT_STYLO = "INSERT INTO Articles (reference, marque,  designation, prixUnitaire, qteStock, couleur, type) VALUES(?,?,?,?,?,?,?)";
-		final String INSERT_RAMETTE = "INSERT INTO Articles (marque, reference, designation, prixUnitaire, qteStock, grammage, type) VALUES(?,?,?,?,?,?,?)";
-
+	private final static String url = "jdbc:sqlserver://localhost:1433;databasename=PAPETERIE_DB";
+	private final static String user = "sa";
+	private final static String pwd = "Pa$$w0rd";
+		
+	//INSERT
+	public void insert(Article article) throws DALException{
+		//String des requetes
+		final String INSERT_STYLO = "INSERT INTO Articles (reference, marque,  designation, prixUnitaire, qteStock, couleur, type) VALUES(?,?,?,?,?,?,'Stylo')";
+		final String INSERT_RAMETTE = "INSERT INTO Articles (marque, reference, designation, prixUnitaire, qteStock, grammage, type) VALUES(?,?,?,?,?,?,'Ramette')";
 		// 1. connexion
 		try (Connection cnx = DriverManager.getConnection(url, user, pwd)) {
-			// 2. requ�te
-			// pas obligatoire : Statement.RETURN_GENERATED_KEYS : permet de r�cup�rer les
-			// cl�s primaires g�n�r�es
+			// 2. requete
+			// pas obligatoire : Statement.RETURN_GENERATED_KEYS : permet de recuperer les
+			// cles primaires generees
 			PreparedStatement pStmt = null;
+			//prepareStatement en fonction du type d'objet à inserer
 			if (article instanceof Stylo) {
 				pStmt = cnx.prepareStatement(INSERT_STYLO, Statement.RETURN_GENERATED_KEYS);
 			} else {
 				pStmt = cnx.prepareStatement(INSERT_RAMETTE, Statement.RETURN_GENERATED_KEYS);
 			}
+			//associe "?" de la requete à valeurs
 			pStmt.setNString(1, article.getReference());
 			pStmt.setNString(2, article.getMarque());
 			pStmt.setNString(3, article.getDesignation());
 			pStmt.setFloat(4, article.getPrixUnitaire());
 			pStmt.setInt(5, article.getQteStock());
-
+			//modifie la valeur en fonction de l'instance de Article
 			if (article instanceof Stylo) {
 				pStmt.setNString(6, ((Stylo) article).getCouleur());
-				pStmt.setNString(7, "Stylo");
 			} else {
 				pStmt.setInt(6, ((Ramette) article).getGrammage());
-				pStmt.setString(7, "Ramette");
 			}
-			// 3. r�sultat
-			int nbLignesInserees = pStmt.executeUpdate();
-			System.out.println("Nb de lignes ins�r�es : " + nbLignesInserees);
+			// 3. resultat
 			
+			//execution
+			pStmt.executeUpdate();
+			//recupere cles primaires
 			ResultSet rs = pStmt.getGeneratedKeys();
+			//insere cles primaires dans idArticle de l'objet article
 			while(rs.next()) {
 				int idArticle = rs.getInt(1);
 				article.setIdArticle(idArticle);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-	//MEthod select by id
-	public Article selectById(int idArticle) {
+	
+	//SELECT BY ID
+	public Article selectById(int idArticle) throws DALException{
 		Article article = null;
 		final String SELECT = "SELECT * FROM Articles WHERE idArticle = ?";
 		
@@ -107,8 +107,8 @@ public class ArticleDAOJdbcImpl {
 		return article;	
 		}
 	
-	//MEthod select by id
-		public List<Article> selectAll() {
+	//SELECT BY ID
+	public List<Article> selectAll() throws DALException{
 			List<Article> list = new ArrayList<>();	
 			Article article = null;
 			final String SELECT = "SELECT * FROM Articles";
@@ -121,6 +121,7 @@ public class ArticleDAOJdbcImpl {
 				ResultSet rs = Stmt.executeQuery(SELECT);
 				
 				while(rs.next()) {
+					int idArticle = rs.getInt("idArticle");
 					String reference = rs.getString("reference");
 					String marque = rs.getString("marque");
 					String designation = rs.getString("designation");
@@ -130,21 +131,64 @@ public class ArticleDAOJdbcImpl {
 					int grammage = rs.getInt("grammage");
 					String type = rs.getString("type");
 					if(type.trim().equalsIgnoreCase("Stylo")) {
-						article = new Stylo(reference, marque, designation, prixUnitaire, qteStock, couleur);
+						article = new Stylo(idArticle, reference, marque, designation, prixUnitaire, qteStock, couleur);
 					}else {
-						article =  new Ramette(reference, marque, designation, prixUnitaire, qteStock, grammage);
+						article =  new Ramette(idArticle, reference, marque, designation, prixUnitaire, qteStock, grammage);
 					}
-					
-					list.add(article);
-					
-					
+					list.add(article);		
 				}		
 			} catch (SQLException e) {
-				e.printStackTrace();
-				
+				e.printStackTrace();		
 		}
 			return list;
 	}
+	
+	//DELETE
+	public void delete(int idArticle) throws DALException{
+		final String SELECT = "DELETE  FROM Articles WHERE idArticle = ?";
+		// 1. connexion
+		try (Connection cnx = DriverManager.getConnection(url, user, pwd)) {	
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT);
+			pStmt.setInt(1, idArticle);
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+				e.printStackTrace();		
+		}
+	}
+
+	//UPDATE
+	public void update(Article article)throws DALException {
+		final String UPDATE_STYLO = "UPDATE Articles SET marque=?,reference=?,  designation=?, prixUnitaire=?, qteStock=?, couleur=? WHERE idArticle = ?";
+		final String UPDATE_RAMETTE = "UPDATE Articles SET  marque=?, reference=?,, designation=?, prixUnitaire=?, qteStock=?, grammage=? WHERE idArticle = ?";	
+		// 1. connexion
+		try (Connection cnx = DriverManager.getConnection(url, user, pwd)) {
+			PreparedStatement pStmt = null;
+			if (article instanceof Stylo) {
+				pStmt = cnx.prepareStatement(UPDATE_STYLO);
+			} else {
+				pStmt = cnx.prepareStatement(UPDATE_RAMETTE);
+			}
+			pStmt.setNString(1, article.getReference());
+			pStmt.setNString(2, article.getMarque());					
+			pStmt.setNString(3, article.getDesignation());
+			pStmt.setFloat(4, article.getPrixUnitaire());
+			pStmt.setInt(5, article.getQteStock());
+
+			if (article instanceof Stylo) {
+				pStmt.setNString(6, ((Stylo) article).getCouleur());
+			} else {
+				pStmt.setInt(6, ((Ramette) article).getGrammage());
+			}
+			pStmt.setInt(7, article.getIdArticle());
+			
+			pStmt.executeUpdate();
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
+
 
 	
