@@ -25,7 +25,7 @@ public class Speciale {
 	}
 	
 	public Resultat[] getClassement() {
-		
+		return null;
 	}
 
 

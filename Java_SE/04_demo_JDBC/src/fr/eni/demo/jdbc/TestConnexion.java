@@ -18,7 +18,7 @@ public class TestConnexion {
 		//Si erreur SSL
 		//jdk -> conf -> security -> java-security -> chercher TLSv1 -> Supprimer les occurences
 		
-		String url = "jdbc:sqlserver://localhost/1433;databasename=PAPETERIE_DB";
+		String url = "jdbc:sqlserver://localhost:1433;databasename=PAPETERIE_DB";
 		String user = "sa";
 		String password = "Pa$$w0rd";
 		Connection cnx = DriverManager.getConnection(url, user, password);
