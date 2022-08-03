@@ -18,7 +18,8 @@ public class Resultat {
 	//Get - Set
 	public Date getTemps() {
 		return temps;
-	}	
+	}
+	
 	public Equipage getEquipage() {
 		return equipage;
 	}

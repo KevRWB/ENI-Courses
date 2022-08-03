@@ -23,13 +23,14 @@ public class AppliTestDAL {
 
 		System.out.println("Ajout des articles... ");
 		//TODO...
-		try {
+//		try {
 			articleDAO.insert(a1);
 			System.out.println("Article ajouté  : " + a1.toString() );
 			articleDAO.insert(a2);
 			System.out.println("Article ajouté  : " + a2.toString() );
 			articleDAO.insert(a3);
 			System.out.println("Article ajouté  : " + a3.toString() );
+
 
 			//Sélection de l'article par id
 			Article a = articleDAO.selectById(a2.getIdArticle());
@@ -40,26 +41,27 @@ public class AppliTestDAL {
 			System.out.println("\nSélection de tous les articles  : "  );
 			afficherArticles(articles);
 
-			//Modification d'un article
-			System.out.println("\nModification d'un article  : " );
-			System.out.println("Article avant modification : "  + a1.toString());
-			((Stylo) a1).setCouleur("noir");
-			((Stylo) a1).setDesignation("Bic bille noir");
-			((Stylo) a1).setReference("BBNoir");
-			articleDAO.update(a1);
-			System.out.println("Article après modification  : " + a1.toString() );
-					
-			//Suppression d'un article
-			System.out.println("\nSuppression de l'article  : " + a1.toString());
-			articleDAO.delete(a1.getIdArticle());
-			articles = articleDAO.selectAll();
-			System.out.println("Liste des articles après suppression : "  );
-			afficherArticles(articles);
-			System.out.println("---------------------------------------------------------------");
+		//Modification d'un article
+//			System.out.println("\nModification d'un article  : " );
+//			System.out.println("Article avant modification : "  + a1.toString());
+//			((Stylo) a1).setCouleur("noir");
+//			((Stylo) a1).setDesignation("Bic bille noir");
+//			((Stylo) a1).setReference("BBNoir");
+//			articleDAO.update(a1);
+//			System.out.println("Article après modification  : " + a1.toString() );
+			
+			
+//			//Suppression d'un article
+//			System.out.println("\nSuppression de l'article  : " + a1.toString());
+//			articleDAO.delete(a1.getIdArticle());
+//			articles = articleDAO.selectAll();
+//			System.out.println("Liste des articles après suppression : "  );
+//			afficherArticles(articles);
+//			System.out.println("---------------------------------------------------------------");
 	
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private static void afficherArticles(List<Article> articles){
