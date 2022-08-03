@@ -4,6 +4,6 @@ import java.util.Arrays;
 
 public class ClassementUtil {
 	public static Resultat[] classerParTemps(Resultat[] resultats) {
-		Arrays.sort(resultats.);
+		Arrays.sort(resultats);
 	}
 }
