@@ -41,7 +41,7 @@ public class AppliTestDAL {
 			System.out.println("\nSélection de tous les articles  : "  );
 			afficherArticles(articles);
 
-//			//Modification d'un article
+		//Modification d'un article
 //			System.out.println("\nModification d'un article  : " );
 //			System.out.println("Article avant modification : "  + a1.toString());
 //			((Stylo) a1).setCouleur("noir");
@@ -49,8 +49,8 @@ public class AppliTestDAL {
 //			((Stylo) a1).setReference("BBNoir");
 //			articleDAO.update(a1);
 //			System.out.println("Article après modification  : " + a1.toString() );
-//			
-//			
+			
+			
 //			//Suppression d'un article
 //			System.out.println("\nSuppression de l'article  : " + a1.toString());
 //			articleDAO.delete(a1.getIdArticle());
