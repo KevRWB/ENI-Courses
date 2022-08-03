@@ -6,10 +6,10 @@ public class Speciale {
 	private String nom;
 	private Date jour_heure;
 	private double distance;
-	private TypeEpreuve type;
+	private Type_Epreuve type;
 	private int resultatIndex = 0;
 	//cosntructor
-	public Speciale(String nom, Date jour_heure, double distance, TypeEpreuve type) {
+	public Speciale(String nom, Date jour_heure, double distance, Type_Epreuve type) {
 		super();
 		this.nom = nom;
 		this.jour_heure = jour_heure;
@@ -25,7 +25,7 @@ public class Speciale {
 	}
 	
 	public Resultat[] getClassement() {
-		
+		return null;
 	}
 
 
@@ -40,8 +40,6 @@ public class Speciale {
 		builder.append(distance);
 		builder.append(", type=");
 		builder.append(type);
-		builder.append(", resultatIndex=");
-		builder.append(resultatIndex);
 		builder.append("]");
 		return builder.toString();
 	}
