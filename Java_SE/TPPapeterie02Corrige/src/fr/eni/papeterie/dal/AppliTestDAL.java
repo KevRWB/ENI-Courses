@@ -31,6 +31,7 @@ public class AppliTestDAL {
 			articleDAO.insert(a3);
 			System.out.println("Article ajouté  : " + a3.toString() );
 
+
 			//Sélection de l'article par id
 			Article a = articleDAO.selectById(a2.getIdArticle());
 			System.out.println("\nSélection de l'article par id  : " + a.toString() );
@@ -48,7 +49,8 @@ public class AppliTestDAL {
 			((Stylo) a1).setReference("BBNoir");
 			articleDAO.update(a1);
 			System.out.println("Article après modification  : " + a1.toString() );
-					
+			
+			
 			//Suppression d'un article
 			System.out.println("\nSuppression de l'article  : " + a1.toString());
 			articleDAO.delete(a1.getIdArticle());
@@ -56,12 +58,15 @@ public class AppliTestDAL {
 			System.out.println("Liste des articles après suppression : "  );
 			afficherArticles(articles);
 			System.out.println("---------------------------------------------------------------");
-	
+
+			
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
+
 	}
 
+	
 	private static void afficherArticles(List<Article> articles){
 		StringBuffer sb = new StringBuffer();
 		for(Article art: articles){
