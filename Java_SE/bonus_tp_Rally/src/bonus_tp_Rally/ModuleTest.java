@@ -1,8 +1,10 @@
-
+/**
+ * 
+ */
+package bonus_tp_Rally;
 
 import java.util.GregorianCalendar;
 import java.util.Scanner;
-
 
 /**
  * @author bmartin
@@ -13,12 +15,11 @@ public class ModuleTest {
 	/**
 	 * @param args
 	 */
-	/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/*
          * définition d'un Rallye
-         
+         */
         Rallye rallyeCorse = new Rallye("Corse FR", new GregorianCalendar(2012, 05, 10).getTime());
         /*
          * associer les spéciales
@@ -108,6 +109,5 @@ public class ModuleTest {
 		sc.nextLine();
 	
 	}
-	
-}
 
+}
