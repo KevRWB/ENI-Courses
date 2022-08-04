@@ -29,19 +29,17 @@ public class CatalogueManager {
 	 * FIN PATTERN SINGLETON
 	 */
 	
-	ArticleDAO articleDAO = DAOFactory.getArticleDAO();
+	private ArticleDAO articleDAO = DAOFactory.getArticleDAO();
 	
 	
 	//METHODS
 	public List<Article> getCatalogue()throws BLLException{
-		List<Article> list = null;
 		try {
-			list =  articleDAO.selectAll();
+			return articleDAO.selectAll();
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException("Erreur lors du selectAll : " + e.getMessage());
 		}
-		return list;
 	}
 	
 	public void addArticle(Article article) throws BLLException{
@@ -75,14 +73,12 @@ public class CatalogueManager {
 	}
 		
 	public Article getArticle(int index) throws BLLException {
-		Article article = null;
 		try {
-			article =  articleDAO.selectById(index);
+			return articleDAO.selectById(index);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException("Erreur lors du selectAll : " + e.getMessage());
 		}
-		return article;
 	}
 	
 	public void validerArticle(Article article) throws BLLException {
