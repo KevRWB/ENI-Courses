@@ -8,6 +8,7 @@ public class Speciale {
 	private double distance;
 	private Type_Epreuve type;
 	private int resultatIndex = 0;
+	private Resultat[] resultats = new Resultat[50];
 	//cosntructor
 	public Speciale(String nom, Date jour_heure, double distance, Type_Epreuve type) {
 		super();
@@ -24,8 +25,13 @@ public class Speciale {
 		return nom;
 	}
 	
+	public void ajouterResultat(Resultat resultat) {
+		resultats[resultatIndex] = resultat;
+		resultatIndex++;
+	}
+	
 	public Resultat[] getClassement() {
-		return null;
+		return ClassementUtil.classerParTemps(resultats);
 	}
 
 
