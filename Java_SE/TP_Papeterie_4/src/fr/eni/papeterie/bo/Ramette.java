@@ -29,7 +29,7 @@ public class Ramette extends Article {
 		builder.append(super.toString());
 		builder.append(" Ramette [grammage=");
 		builder.append(grammage);		
-		builder.append("]");
+		builder.append("]\n");
 		return builder.toString();
 	}
 

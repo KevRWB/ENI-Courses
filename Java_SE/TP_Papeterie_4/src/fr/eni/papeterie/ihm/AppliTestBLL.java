@@ -1,8 +1,10 @@
-package fr.eni.papeterie.bll;
+package fr.eni.papeterie.ihm;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.papeterie.bll.BLLException;
+import fr.eni.papeterie.bll.CatalogueManager;
 import fr.eni.papeterie.bo.Article;
 import fr.eni.papeterie.bo.Ramette;
 import fr.eni.papeterie.bo.Stylo;
@@ -20,12 +22,7 @@ public class AppliTestBLL {
 		articles.add(new Ramette("ProDesign", "ForLaser", "A4 Special laser", 5.5f, 55, 100));
 
 		CatalogueManager mger = null;
-		try {
-			mger = new CatalogueManager();
-		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		mger = CatalogueManager.getInstance();
 
 		// Ajout d'un article au catalogue
 		try {

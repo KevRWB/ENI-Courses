@@ -28,7 +28,7 @@ public class Stylo extends Article {
 		builder.append(super.toString());
 		builder.append(" Stylo [couleur=");
 		builder.append(couleur);		
-		builder.append("]");
+		builder.append("]\n");
 		return builder.toString();
 	}
 	
