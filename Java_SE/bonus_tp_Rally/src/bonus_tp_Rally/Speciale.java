@@ -1,52 +1,55 @@
 package bonus_tp_Rally;
 
-import java.util.Arrays;
 import java.util.Date;
 
 public class Speciale {
-	private Date jourHeure;
-	private double distance;
 	private String nom;
-	private static int resultatIndex = 0;
-	private TypeEpreuve typeEpreuve;
+	private Date jour_heure;
+	private double distance;
+	private Type_Epreuve type;
+	private int resultatIndex = 0;
 	private Resultat[] resultats = new Resultat[50];
-	
-	//Constructor
-	public Speciale(String nom, Date aLieuLe, double distance, TypeEpreuve type) {
+	//cosntructor
+	public Speciale(String nom, Date jour_heure, double distance, Type_Epreuve type) {
+		super();
 		this.nom = nom;
-		this.jourHeure = aLieuLe;
+		this.jour_heure = jour_heure;
 		this.distance = distance;
+		this.type = type;
 		
 	}
 	
-	//Ajouter resultat
+	
+	//---methods
+	public String getNom() {
+		return nom;
+	}
+	
 	public void ajouterResultat(Resultat resultat) {
 		resultats[resultatIndex] = resultat;
 		resultatIndex++;
 	}
-	//get Classement
-	public Resultat[] getClassement(Resultat[] resultats) {
-		Arrays.sort(resultats);
-		return resultats;
+	
+	public Resultat[] getClassement() {
+		return ClassementUtil.classerParTemps(resultats);
 	}
 
-	//infos Spéciale
-	public String infosSpeciale() {
+
+	//toString
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Speciale [jourHeure=");
-		builder.append(jourHeure);
+		builder.append("Speciale [nom=");
+		builder.append(nom);
+		builder.append(", jour_heure=");
+		builder.append(jour_heure);
 		builder.append(", distance=");
 		builder.append(distance);
-		builder.append(", nom=");
-		builder.append(nom);
-		builder.append(", typeEpreuve=");
-		builder.append(typeEpreuve);
-		builder.append(", resultats=");
-		builder.append(Arrays.toString(resultats));
+		builder.append(", type=");
+		builder.append(type);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-	//
+	
 	
 }

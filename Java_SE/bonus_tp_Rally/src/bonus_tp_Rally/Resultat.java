@@ -8,9 +8,8 @@ public class Resultat {
 	private Speciale speciale;
 	
 	//Constructor
-	public Resultat(Date temps, Equipage equipage, Speciale speciale) {
-		super();
-		this.temps = temps;
+	public Resultat(Equipage date, Speciale speciale, Date date1) {
+		this.temps = date1;
 		this.equipage = equipage;
 		this.speciale = speciale;
 	}
@@ -18,7 +17,8 @@ public class Resultat {
 	//Get - Set
 	public Date getTemps() {
 		return temps;
-	}	
+	}
+	
 	public Equipage getEquipage() {
 		return equipage;
 	}
@@ -28,7 +28,7 @@ public class Resultat {
 
 	
 	//toString
-	public String infosResultats() {
+	public String infosResultat() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Resultat [temps=");
 		builder.append(temps);
@@ -38,5 +38,4 @@ public class Resultat {
 		return builder.toString();
 	}
 
-	
 }

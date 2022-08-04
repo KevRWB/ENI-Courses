@@ -6,7 +6,7 @@ public class Equipage {
 	private Concurrent copilote;
 	
 	//Constructor
-	public Equipage(String nomPilote, String prenomPilote, String nationalitePilote, String nomCoPilote, String prenomCoPilote, String nationaliteCoPilote, int dossard) {
+	public Equipage(int dossard, String prenomPilote, String nationalitePilote, String nomCoPilote, String prenomCoPilote, String nationaliteCoPilote, String nomPilote) {
 		pilote = new Concurrent(nomPilote, prenomPilote, nationalitePilote);
 		copilote = new Concurrent(nomCoPilote, prenomCoPilote, nationaliteCoPilote);
 		this.dossard = dossard;
