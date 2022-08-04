@@ -16,26 +16,30 @@ import java.util.List;
 import fr.eni.papeterie.bo.Article;
 import fr.eni.papeterie.bo.Ramette;
 import fr.eni.papeterie.bo.Stylo;
-import fr.eni.papeterie.dal.DALException;
 import fr.eni.papeterie.dal.ArticleDAO;
+import fr.eni.papeterie.dal.DALException;
 
 /**
  * @author Eni Ecole
  * 
  */
 public class ArticleDAOJdbcImpl implements ArticleDAO {
-
-	static String url = "jdbc:sqlserver://localhost:1433;databasename=PAPETERIE_DB";
-	static String user = "sa";
-	static String pwd = "Pa$$w0rd";
+	
+	private final static String INSERT_STYLO = 
+			"INSERT INTO Articles(reference, marque, designation, prixUnitaire, qteStock, couleur, type) VALUES(?,?,?,?,?,?,?,'Stylo')";
+	private final static String INSERT_RAMETTE = 
+			"INSERT INTO Articles(reference, marque, designation, prixUnitaire, qteStock, grammage, type) VALUES(?,?,?,?,?,?,?,'Ramette')";
 	
 	private final static String INSERT = "INSERT INTO Articles(reference, marque, designation, prixUnitaire, qteStock, grammage, couleur, type) VALUES(?,?,?,?,?,?,?,?)";
 	
 	private final static String SELECT_BY_ID = "SELECT * FROM Articles WHERE idArticle=?";
-	private final static String SELECT_BY_MARQUE = "SELECT * FROM Articles WHERE marque=?";
-	private final static String SELECT_BY_MOT_CLE = "SELECT * FROM Articles WHERE reference=?";
 	
 	private final static String SELECT_ALL = "SELECT * FROM Articles";
+	
+	private final static String SELECT_BY_MARQUE = "SELECT * FROM Articles WHERE marque=?";
+	
+	private final static String SELECT_BY_MOTCLE = "SELECT * FROM Articles WHERE designation LIKE ?";
+	
 	
 	private final static String UPDATE = "UPDATE Articles SET couleur=?, designation=?, reference=? WHERE idArticle=?";
 	
@@ -43,7 +47,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public void insert(Article article) throws DALException {
 		//1. connexion
 		try(Connection cnx = JdbcTools.getConnection()) {
-			//2. requï¿½te
+			//2. requête
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, article.getReference());
 			pStmt.setString(2, article.getMarque());
@@ -64,10 +68,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			
 			pStmt.executeUpdate();
 			
-			//3. clï¿½ primaire
+			//3. clé primaire
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if(rs.next()) {
-				int idArticle = rs.getInt(1); //premiï¿½re colonne de l'enregistrement
+				int idArticle = rs.getInt(1); //première colonne de l'enregistrement
 				article.setIdArticle(idArticle);
 			}
 			
@@ -77,10 +81,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 	}
 
+	@Override
 	public Article selectById(int idArticle) throws DALException {
 		Article article = null;
 		
-		try(Connection cnx = DriverManager.getConnection(url, user, pwd)) {
+		try(Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
 			pStmt.setInt(1, idArticle);
 			
@@ -99,7 +104,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	/**
 	 * Converti une ligne d'enregistrement en objet (Article)
 	 * @param rs Une ligne d'enregistrement
-	 * @return L'Article crï¿½ï¿½ ï¿½ partir des donnï¿½es de l'enregistrement
+	 * @return L'Article créé à partir des données de l'enregistrement
 	 * @throws SQLException
 	 */
 	private Article map(ResultSet rs) throws SQLException {
@@ -111,7 +116,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		String designation = rs.getString("designation");
 		float prixUnitaire = rs.getFloat("prixUnitaire");
 		int qteStock = rs.getInt("qteStock");
-		//trim : enlï¿½ve les espaces ï¿½ la fin (ï¿½ cause du type nchar dans la BDD)
+		//trim : enlève les espaces à la fin (à cause du type nchar dans la BDD)
 		String type = rs.getString("type").trim();
 		
 		//Ramette.class.getSimpleName() : renvoie "Ramette"
@@ -121,13 +126,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		} else {
 			String couleur = rs.getString("couleur");
 			article = new Stylo(idArticle, reference, marque, designation, prixUnitaire, qteStock, couleur);
-		}	
+		}
+		
 		return article;
 	}
 	
 	@Override
 	public void update(Article article) throws DALException {
-		try(Connection cnx = DriverManager.getConnection(url, user, pwd)) {
+		try(Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
 			
 			if(article instanceof Stylo) {
@@ -151,7 +157,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public void delete(int idArticle) throws DALException {
 		final String DELETE = "DELETE FROM Articles WHERE idArticle=?";
 		
-		try(Connection cnx = DriverManager.getConnection(url, user, pwd)) {
+		try(Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(DELETE);
 			pStmt.setInt(1, idArticle);
 			
@@ -166,34 +172,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public List<Article> selectAll() throws DALException {
 		List<Article> articles = new ArrayList<Article>();
 		
-		try(Connection cnx = DriverManager.getConnection(url, user, pwd)) {
+		try(Connection cnx = JdbcTools.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
 				Article a = map(rs); //transforme une ligne d'enregistrement en objet
-				articles.add(a); //ajoute l'objet ï¿½ la liste
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return articles;
-	}
-
-	
-	public List<Article> selectByMarque(String marque) throws DALException {
-		List <Article> articles = new ArrayList<>();
-		
-		try(Connection cnx = DriverManager.getConnection(url, user, pwd)) {
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_MARQUE);
-			pStmt.setString(1, marque);
-			
-			ResultSet rs = pStmt.executeQuery();
-			while(rs.next()) {
-				Article a = map(rs); //transforme une ligne d'enregistrement en objet
-				articles.add(a); //ajoute l'objet ï¿½ la liste
+				articles.add(a); //ajoute l'objet à la liste
 			}
 			
 		} catch (SQLException e) {
@@ -204,17 +189,38 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Article> selectByMotCle(String motCle) throws DALException {
-	List <Article> articles = new ArrayList<>();
+	public List<Article> selectByMarque(String marque) throws DALException {
+		List<Article> articles = new ArrayList<Article>();
 		
-		try(Connection cnx = DriverManager.getConnection(url, user, pwd)) {
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_MOT_CLE);
-			pStmt.setString(1, motCle);
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_MARQUE);
+			pStmt.setString(1, marque);
 			
 			ResultSet rs = pStmt.executeQuery();
 			while(rs.next()) {
 				Article a = map(rs); //transforme une ligne d'enregistrement en objet
-				articles.add(a); //ajoute l'objet ï¿½ la liste
+				articles.add(a); //ajoute l'objet à la liste
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return articles;
+	}
+
+	@Override
+	public List<Article> selectByMotCle(String motcle) throws DALException {
+		List<Article> articles = new ArrayList<Article>();
+		
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_MOTCLE);
+			pStmt.setString(1, "%"+motcle+"%");
+			
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				Article a = map(rs); //transforme une ligne d'enregistrement en objet
+				articles.add(a); //ajoute l'objet à la liste
 			}
 			
 		} catch (SQLException e) {

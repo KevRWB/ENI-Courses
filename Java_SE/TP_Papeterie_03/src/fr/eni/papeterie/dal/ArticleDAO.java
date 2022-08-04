@@ -18,6 +18,6 @@ public interface ArticleDAO {
 	
 	List<Article> selectByMarque(String marque) throws DALException;
 	
-	List<Article> selectByMotCle(String motCle) throws DALException;
+	List<Article> selectByMotCle(String motcle) throws DALException;
 
 }

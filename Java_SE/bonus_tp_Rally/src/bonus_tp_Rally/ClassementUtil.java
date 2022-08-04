@@ -1,10 +1,8 @@
 package bonus_tp_Rally;
 
-
 public class ClassementUtil {
 	
 	public static Resultat[] classerParTemps(Resultat[] resultats) {
-		
 	}
 	
 	public static Classement[] classerParTemps(Classement[] classeement) {
