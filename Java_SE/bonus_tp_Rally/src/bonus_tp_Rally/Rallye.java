@@ -1,6 +1,5 @@
 package bonus_tp_Rally;
 
-import java.util.Arrays;
 import java.util.Date;
 
 public class Rallye {
@@ -16,7 +15,6 @@ public class Rallye {
 		this.pays = pays;
 	}
 	
-
 	//METHODS
 	public void ajouterSpeciale(Speciale speciale) {
 		speciales[specialeIndex] = speciale;
@@ -29,20 +27,20 @@ public class Rallye {
 		builder.append(date);
 		builder.append(", pays=");
 		builder.append(pays + "\n");
-		for (int i = 0; i < specialeIndex; i++) {
-			builder.append(speciales[i] + "\n");
-		}
+		if( inclureSpeciale) {
+			for (int i = 0; i < specialeIndex; i++) {
+				builder.append(speciales[i] + "\n");
+			}
+		}	
 		builder.append("]\n");
-		return builder.toString();
-		
-		
+		return builder.toString();	
 	}
 	
 	public Speciale getSpeciale(String nom) {
 		Speciale special = null;
 		
 		for (Speciale speciale : speciales) {
-			if(speciale.getNom().equalsIgnoreCase(nom)){
+			if(speciale.getNom().equals(nom)){
 				special = speciale;
 			}
 		}

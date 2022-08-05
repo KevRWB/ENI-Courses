@@ -38,8 +38,6 @@ public class Equipe {
 		builder.append(nationalite);
 		builder.append(", constructeur=");
 		builder.append(constructeur);
-		builder.append(", equipageIndex=");
-		builder.append(equipageIndex);
 		builder.append("]");
 		return builder.toString();
 	}

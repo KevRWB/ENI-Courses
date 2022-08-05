@@ -7,15 +7,18 @@ public class Classement {
 	private Equipage equipage;
 	
 	//Constructor
-	public Classement(Date cumulTemps, Equipage equipage) {
+	public Classement(Equipage equipage, Date cumulTemps) {
 		this.cumulTemps = cumulTemps;
 		this.equipage = equipage;
 	}
-
+	//methods
 	public Date getCumulTemps() {
 		return cumulTemps;
 	}
-
+	
+	//
+	
+	//toString
 	public String infosClassement() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Classement [cumulTemps=");

@@ -9,17 +9,15 @@ public class Speciale {
 	private Type_Epreuve type;
 	private int resultatIndex = 0;
 	private Resultat[] resultats = new Resultat[50];
-	//cosntructor
+	//CONSTRUCTOR
 	public Speciale(String nom, Date jour_heure, double distance, Type_Epreuve type) {
 		super();
 		this.nom = nom;
 		this.jour_heure = jour_heure;
 		this.distance = distance;
-		this.type = type;
-		
+		this.type = type;	
 	}
-	
-	
+		
 	//---methods
 	public String getNom() {
 		return nom;
@@ -33,7 +31,6 @@ public class Speciale {
 	public Resultat[] getClassement() {
 		return ClassementUtil.classerParTemps(resultats);
 	}
-
 
 	//toString
 	public String toString() {

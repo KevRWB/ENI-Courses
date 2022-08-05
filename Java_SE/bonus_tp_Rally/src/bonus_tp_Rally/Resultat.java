@@ -8,10 +8,11 @@ public class Resultat {
 	private Speciale speciale;
 	
 	//Constructor
-	public Resultat(Equipage date, Speciale speciale, Date date1) {
-		this.temps = date1;
+	public Resultat( Equipage equipage, Speciale speciale, Date date) {
+		this.temps = date;
 		this.equipage = equipage;
 		this.speciale = speciale;
+		this.speciale.ajouterResultat(this);
 	}
 	
 	//Get - Set
