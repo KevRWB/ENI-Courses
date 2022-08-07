@@ -11,6 +11,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
@@ -40,16 +42,17 @@ public class EcranPapeterie extends JFrame {
 	private JRadioButton radioRamette;
 	private JRadioButton radioStylo;
 	
-	private JLabel	txtGrammage; 			
+	private JLabel	lblGrammage; 			
 	private ButtonGroup chkGroup;
 	private JCheckBox chkGrammage80;
 	private JCheckBox chkGrammage100;
 	
-	private JLabel	txtCouleur;
+	private JLabel	lblCouleur;
 	private JComboBox colorCombo;
 	
 	private JPanel panelBoutons;
 	private JButton btnPrevious;
+	private Icon iconPrevious = new ImageIcon("C:/Users/Team%20Reno/OneDrive%20-%20ENI%20Ecole%20Informatique/Desktop/ENI-_Courses/Java_SE/TP_Papeterie_5/Ressources/Back24.gif");
 	private JButton btnNouvelArticle;
 	private JButton btnSave;
 	private JButton btnDelete;
@@ -95,8 +98,18 @@ public class EcranPapeterie extends JFrame {
 			placeComponentInPanel(getRadioStylo(), panel, 5, 1);
 			placeComponentInPanel(getRadioRamette(), panel, 6, 1);
 			
-			//ligne 7 Grammage
+			//ligne 7 - 8 Grammage
 			placeComponentInPanel(getLblGrammage(), panel, 7, 0);
+			getChkGroup();
+			placeComponentInPanel(getChk80(), panel, 7, 1);
+			placeComponentInPanel(getChk100(), panel, 8, 1);
+			
+			//ligne 9 Couleur
+			placeComponentInPanel(getLblColor(), panel, 9, 0);
+			placeComponentInPanel(getColorCombo(), panel, 9, 1);
+			
+			//ligne 10 boutons
+			placeComponentInPanel(getPanelBoutons(), panel, 10, 1, 3);
 			
 						
 //			//Ligne 5
@@ -211,33 +224,70 @@ public class EcranPapeterie extends JFrame {
 	
 	//---Section Grammage-------
 	private JLabel getLblGrammage() {
-		if(txtGrammage == null) {
-			txtGrammage = new JLabel("Grammage");
+		if(lblGrammage == null) {
+			lblGrammage = new JLabel("Grammage");
 		}
-		return txtGrammage;
+		return lblGrammage;
 	}
-	private ButtonGroup getChk80() {
+	private ButtonGroup getChkGroup() {
+		if(chkGroup == null) {
+			chkGroup = new ButtonGroup();
+			chkGroup.add(chkGrammage100);		
+		}
+		return chkGroup;
+	}
+	private JCheckBox getChk80() {
 		if(chkGrammage80 == null) {
 			chkGrammage80 = new JCheckBox("80 grammes");
+			chkGroup.add(chkGrammage80);
 		}
 		return chkGrammage80;
 	}
-	private JRadioButton getChk100() {
+	private JCheckBox getChk100() {
 		if(chkGrammage100 == null) {
 			chkGrammage100 = new JCheckBox("100 grammes");
-			chkGrammage100.add(chkGrammage100);		
+			chkGroup.add(chkGrammage100);
 		}
-		return radioStylo;
+		return chkGrammage80;
 	}
-
-	
+		
 	//----Section couleur
 	private JLabel getLblColor() {
-		if(txtCouleur == null) {
-			txtCouleur = new JLabel("Couleur");
+		if(lblCouleur == null) {
+			lblCouleur = new JLabel("Couleur");
 		}
-		return txtCouleur;
+		return lblCouleur;
 	}
+	
+	@SuppressWarnings({ "unused", "rawtypes" })
+	private JComboBox getColorCombo() {
+		if(colorCombo == null) {
+			String colors[] = {"Bleu", "Noir", "Vert", "Rouge"};
+			colorCombo = new JComboBox<Object>(colors);
+			
+		}
+		return colorCombo;
+	}
+	
+	//----Section boutons
+	private JPanel getPanelBoutons() {
+		if(panel == null) {
+			panel = new JPanel(new GridBagLayout());	
+		}
+		placeComponentInPanel(getBtnPrevious(), panelBoutons, 0, 0);
+		
+		return panelBoutons;
+	}
+	
+	//---Boutons
+	private JButton getBtnPrevious() {
+		if(btnPrevious == null) {
+			btnPrevious = new JButton(iconPrevious);
+		}
+		return btnPrevious;
+	}
+	
+	
 
 	
 	
