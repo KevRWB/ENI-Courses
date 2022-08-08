@@ -2,6 +2,7 @@ package fr.eni.papeterie.ihm.vue;
 
 import java.awt.Button;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -52,7 +53,11 @@ public class EcranPapeterie extends JFrame {
 	
 	private JPanel panelBoutons;
 	private JButton btnPrevious;
-	private Icon iconPrevious = new ImageIcon("C:/Users/Team%20Reno/OneDrive%20-%20ENI%20Ecole%20Informatique/Desktop/ENI-_Courses/Java_SE/TP_Papeterie_5/Ressources/Back24.gif");
+	private Icon iconPrevious = new ImageIcon("./Back24.gif");
+	private Icon iconNouvelArticle = new ImageIcon("New24.gif");
+	private Icon iconSave = new ImageIcon("Save24.gif");
+	private Icon iconDelete = new ImageIcon("Delete24.gif");
+	private Icon iconNext = new ImageIcon("Forward24.gif");
 	private JButton btnNouvelArticle;
 	private JButton btnSave;
 	private JButton btnDelete;
@@ -109,7 +114,7 @@ public class EcranPapeterie extends JFrame {
 			placeComponentInPanel(getColorCombo(), panel, 9, 1);
 			
 			//ligne 10 boutons
-			placeComponentInPanel(getPanelBoutons(), panel, 10, 1, 3);
+			placeComponentInPanel(getPanelBoutons(), panel, 10, 1, 0);
 			
 						
 //			//Ligne 5
@@ -271,10 +276,14 @@ public class EcranPapeterie extends JFrame {
 	
 	//----Section boutons
 	private JPanel getPanelBoutons() {
-		if(panel == null) {
-			panel = new JPanel(new GridBagLayout());	
+		if(panelBoutons == null) {
+			panelBoutons = new JPanel(new GridBagLayout());	
 		}
 		placeComponentInPanel(getBtnPrevious(), panelBoutons, 0, 0);
+		placeComponentInPanel(getBtnNouvelArticle(), panelBoutons, 0, 1);
+		placeComponentInPanel(getBtnSave(), panelBoutons, 0, 2);
+		placeComponentInPanel(getBtnDelete(), panelBoutons, 0, 3);
+		placeComponentInPanel(getBtnNext(), panelBoutons, 0, 4);
 		
 		return panelBoutons;
 	}
@@ -283,8 +292,38 @@ public class EcranPapeterie extends JFrame {
 	private JButton getBtnPrevious() {
 		if(btnPrevious == null) {
 			btnPrevious = new JButton(iconPrevious);
+			btnPrevious.setPreferredSize(new Dimension(80,70));
 		}
 		return btnPrevious;
+	}
+	
+	private JButton getBtnNouvelArticle() {
+		if(btnNouvelArticle == null) {
+			btnNouvelArticle = new JButton("Nouvel article");
+			btnNouvelArticle.setPreferredSize(new Dimension(80,70));
+		}
+		return btnNouvelArticle;
+	}
+	private JButton getBtnSave() {
+		if(btnSave == null) {
+			btnSave = new JButton("Save");
+			btnSave.setPreferredSize(new Dimension(80,70));
+		}
+		return btnNouvelArticle;
+	}
+	private JButton getBtnDelete() {
+		if(btnDelete == null) {
+			btnDelete = new JButton("Delete");
+			btnDelete.setPreferredSize(new Dimension(80,70));
+		}
+		return btnDelete;
+	}
+	private JButton getBtnNext() {
+		if(btnNext == null) {
+			btnNext = new JButton("Next");
+			btnNext.setPreferredSize(new Dimension(80,70));
+		}
+		return btnNext;
 	}
 	
 	
