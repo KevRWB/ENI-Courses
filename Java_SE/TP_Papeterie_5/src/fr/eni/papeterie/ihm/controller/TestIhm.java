@@ -66,6 +66,15 @@ public class TestIhm {
 				ecranPapeterie.getBtnNouvelArticle().addActionListener(e -> {
 					addArticle(catalogue, ecranPapeterie);
 				});	
+				//Save Article Button
+				ecranPapeterie.getBtnSave().addActionListener(e -> {
+					try {
+						saveArticle(catalogue, ecranPapeterie);
+					} catch (BLLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				});	
 			}
 		});
 	}
