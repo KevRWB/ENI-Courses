@@ -9,7 +9,7 @@ import fr.eni.papeterie.bo.Article;
 import fr.eni.papeterie.bo.Ramette;
 import fr.eni.papeterie.bo.Stylo;
 
-public class AppliTestBLL {
+public class TestIhm {
 
 	public static void main(String[] args) {
 		// Instanciation du jeu d'essai

@@ -49,15 +49,10 @@ public class EcranPapeterie extends JFrame {
 	private JCheckBox chkGrammage100;
 	
 	private JLabel	lblCouleur;
-	private JComboBox colorCombo;
+	private JComboBox<Object> colorCombo;
 	
 	private JPanel panelBoutons;
 	private JButton btnPrevious;
-	private Icon iconPrevious = new ImageIcon("./Back24.gif");
-	private Icon iconNouvelArticle = new ImageIcon("New24.gif");
-	private Icon iconSave = new ImageIcon("Save24.gif");
-	private Icon iconDelete = new ImageIcon("Delete24.gif");
-	private Icon iconNext = new ImageIcon("Forward24.gif");
 	private JButton btnNouvelArticle;
 	private JButton btnSave;
 	private JButton btnDelete;
@@ -98,27 +93,25 @@ public class EcranPapeterie extends JFrame {
 			placeComponentInPanel(getTxtPrix(), panel, 4, 1);
 			
 			//ligne 5 - 6 Type
-			placeComponentInPanel(getLblType(), panel, 5, 0);
+			placeComponentInPanelGridHeight(getLblType(), panel, 5, 0, 2);
 			getRadioGroup();
 			placeComponentInPanel(getRadioStylo(), panel, 5, 1);
 			placeComponentInPanel(getRadioRamette(), panel, 6, 1);
-			
+				
 			//ligne 7 - 8 Grammage
-			placeComponentInPanel(getLblGrammage(), panel, 7, 0);
-			getChkGroup();
+			placeComponentInPanelGridHeight(getLblGrammage(), panel, 7, 0, 2);
+			getChkGroup();		
 			placeComponentInPanel(getChk80(), panel, 7, 1);
 			placeComponentInPanel(getChk100(), panel, 8, 1);
-			
+			//condition affichage
+					
 			//ligne 9 Couleur
 			placeComponentInPanel(getLblColor(), panel, 9, 0);
 			placeComponentInPanel(getColorCombo(), panel, 9, 1);
-			
+			//Conditions affichage	
 			//ligne 10 boutons
-			placeComponentInPanel(getPanelBoutons(), panel, 10, 1, 0);
+			placeComponentInPanel(getPanelBoutons(), panel, 10, 0, 2);
 			
-						
-//			//Ligne 5
-//			placeComponentInPanel(getBtnOk(), panel, 3, 0, 2);
 		}
 		return panel;
 	}
@@ -137,145 +130,154 @@ public class EcranPapeterie extends JFrame {
 		gbc.insets = new Insets(5, 5, 5, 5);
 		panel.add(cmp, gbc);
 	}
+	private void placeComponentInPanelGridHeight(Component cmp, JPanel panel, 
+			int ligne, int colonne, int gridHeight) {
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = ligne;
+		gbc.gridx = colonne;
+		gbc.gridheight = gridHeight;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		panel.add(cmp, gbc);
+	}
 	
 
-	private JLabel getLblReference() {
+	public JLabel getLblReference() {
 		if(lblReference == null) {
 			lblReference = new JLabel("Reference");
 		}
 		return lblReference;
 	}
-	private JLabel getLblDesignation() {
+
+	public JLabel getLblDesignation() {
 		if(lblDesignation == null) {
 			lblDesignation = new JLabel("Designation");
 		}
 		return lblDesignation;
 	}
-	private JLabel getLblMarque() {
+	public JLabel getLblMarque() {
 		if(lblMarque == null) {
 			lblMarque = new JLabel("Marque");
 		}
 		return lblMarque;
 	}
-	private JLabel GetLblQteStock() {
+	public JLabel GetLblQteStock() {
 		if(lblQteStock == null) {
 			lblQteStock = new JLabel("Stock");
 		}
 		return lblQteStock;
 	}
-	private JLabel getLblPrix() {
+	public JLabel getLblPrix() {
 		if(lblPrix == null) {
 			lblPrix = new JLabel("Prix");
 		}
 		return lblPrix;
 	}
-	private JTextField getTxtReference() {
+	public JTextField getTxtReference() {
 		if(txtReference == null) {
 			txtReference = new JTextField(30);
 		}
 		return txtReference;
 	}
-	private JTextField getTxtDesignation() {
+	public JTextField getTxtDesignation() {
 		if(txtDesignation == null) {
 			txtDesignation = new JTextField(30);
 		}
 		return txtDesignation;
 	}
-	private JTextField getTxtMarque() {
+	public JTextField getTxtMarque() {
 		if(txtMarque == null) {
 			txtMarque = new JTextField(30);
 		}
 		return txtMarque;
 	}
-	private JTextField getTxtQteStock() {
+	public JTextField getTxtQteStock() {
 		if(txtQteStock == null) {
 			txtQteStock = new JTextField(30);
 		}
 		return txtQteStock;
 	}
-	private JTextField getTxtPrix() {
+	public JTextField getTxtPrix() {
 		if(txtPrix == null) {
 			txtPrix = new JTextField(30);
 		}
 		return txtPrix;
 	}
 	//--Section TYPE--------------
-	private JLabel getLblType() {
+	public JLabel getLblType() {
 		if(txtType == null) {
 			txtType = new JLabel("Type");
 		}
 		return txtType;
 	}
-	private ButtonGroup getRadioGroup() {
+	public ButtonGroup getRadioGroup() {
 		if(radioGroup == null) {
 			radioGroup = new ButtonGroup();
 		}
 		return radioGroup;
 	}
-	private JRadioButton getRadioStylo() {
+	public JRadioButton getRadioStylo() {
 		if(radioStylo == null) {
 			radioStylo = new JRadioButton("Stylo");
-			radioGroup.add(radioStylo);		
+			radioGroup.add(radioStylo);	
 		}
 		return radioStylo;
 	}
-	private JRadioButton getRadioRamette() {
+	public JRadioButton getRadioRamette() {
 		if(radioRamette == null) {
 			radioRamette = new JRadioButton("Ramette");
 			radioGroup.add(radioRamette);
+			
 		}
 		return radioRamette;
 	}
 	
+	//grammage
 	//---Section Grammage-------
-	private JLabel getLblGrammage() {
+	public JLabel getLblGrammage() {
 		if(lblGrammage == null) {
 			lblGrammage = new JLabel("Grammage");
 		}
 		return lblGrammage;
 	}
-	private ButtonGroup getChkGroup() {
+	public ButtonGroup getChkGroup() {
 		if(chkGroup == null) {
-			chkGroup = new ButtonGroup();
-			chkGroup.add(chkGrammage100);		
+			chkGroup = new ButtonGroup();	
 		}
 		return chkGroup;
 	}
-	private JCheckBox getChk80() {
+	public JCheckBox getChk80() {
 		if(chkGrammage80 == null) {
 			chkGrammage80 = new JCheckBox("80 grammes");
 			chkGroup.add(chkGrammage80);
 		}
 		return chkGrammage80;
 	}
-	private JCheckBox getChk100() {
+	public JCheckBox getChk100() {
 		if(chkGrammage100 == null) {
 			chkGrammage100 = new JCheckBox("100 grammes");
 			chkGroup.add(chkGrammage100);
 		}
-		return chkGrammage80;
+		return chkGrammage100;
 	}
 		
 	//----Section couleur
-	private JLabel getLblColor() {
+	public JLabel getLblColor() {
 		if(lblCouleur == null) {
 			lblCouleur = new JLabel("Couleur");
 		}
 		return lblCouleur;
-	}
-	
+	}	
 	@SuppressWarnings({ "unused", "rawtypes" })
-	private JComboBox getColorCombo() {
+	public JComboBox getColorCombo() {
 		if(colorCombo == null) {
 			String colors[] = {"Bleu", "Noir", "Vert", "Rouge"};
 			colorCombo = new JComboBox<Object>(colors);
-			
 		}
 		return colorCombo;
 	}
 	
 	//----Section boutons
-	private JPanel getPanelBoutons() {
+	public JPanel getPanelBoutons() {
 		if(panelBoutons == null) {
 			panelBoutons = new JPanel(new GridBagLayout());	
 		}
@@ -286,86 +288,58 @@ public class EcranPapeterie extends JFrame {
 		placeComponentInPanel(getBtnNext(), panelBoutons, 0, 4);
 		
 		return panelBoutons;
-	}
-	
+	}	
 	//---Boutons
-	private JButton getBtnPrevious() {
+	public JButton getBtnPrevious() {
 		if(btnPrevious == null) {
-			btnPrevious = new JButton(iconPrevious);
+			btnPrevious = new JButton(new ImageIcon("img/Back24.gif"));
 			btnPrevious.setPreferredSize(new Dimension(80,70));
+			btnPrevious.addActionListener(e -> {
+				System.out.println("Article précédent");
+				txtReference.setText("Coucou");
+			});
 		}
 		return btnPrevious;
-	}
-	
-	private JButton getBtnNouvelArticle() {
+	}	public JButton getBtnNouvelArticle() {
 		if(btnNouvelArticle == null) {
-			btnNouvelArticle = new JButton("Nouvel article");
+			btnNouvelArticle = new JButton(new ImageIcon("img/New24.gif"));
 			btnNouvelArticle.setPreferredSize(new Dimension(80,70));
+			btnNouvelArticle.addActionListener(e -> {
+				System.out.println("New");
+			});
 		}
 		return btnNouvelArticle;
 	}
-	private JButton getBtnSave() {
+	public JButton getBtnSave() {
 		if(btnSave == null) {
-			btnSave = new JButton("Save");
+			btnSave = new JButton(new ImageIcon("img/Save24.gif"));
 			btnSave.setPreferredSize(new Dimension(80,70));
+			btnSave.addActionListener(e -> {
+				System.out.println("Save");
+			});
 		}
-		return btnNouvelArticle;
+		return btnSave;
 	}
-	private JButton getBtnDelete() {
+	public JButton getBtnDelete() {
 		if(btnDelete == null) {
-			btnDelete = new JButton("Delete");
+			btnDelete = new JButton(new ImageIcon("img/Delete24.gif"));
 			btnDelete.setPreferredSize(new Dimension(80,70));
+			btnDelete.addActionListener(e -> {
+				System.out.println("Delete");
+			});
 		}
 		return btnDelete;
 	}
-	private JButton getBtnNext() {
+	public JButton getBtnNext() {
 		if(btnNext == null) {
-			btnNext = new JButton("Next");
+			btnNext = new JButton(new ImageIcon("img/Forward24.gif"));
 			btnNext.setPreferredSize(new Dimension(80,70));
+			btnNext.addActionListener(e -> {
+				System.out.println("Article suivant");
+			});
 		}
 		return btnNext;
 	}
-	
-	
+	//enable type
 
-	
-	
-	//---Section Boutons
-//	private JButton getBtnOk() {
-//		if(btnOk == null) {
-//			btnOk = new JButton("OK");
-//			//1. ajout d'un listener (classe externe)
-//			//btnOk.addActionListener(new BoutonOkListenerExterne());
-//			
-//			//2. ajout d'un listener (classe interne)
-//			//btnOk.addActionListener(new BoutonOkListenerInterne());
-//			
-//			//3. ajout d'un listener (classe anonyme)
-//			btnOk.addActionListener(new ActionListener() {
-//				
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					System.out.println("Clic ok classe anonyme");
-//				}
-//			});
-//			
-//			//4. ajout d'un listener (lambda : à partir de Java 8)
-//			btnOk.addActionListener(e -> {
-//				System.out.println("Clic ok lambda");
-//			});
-//			
-//		}
-//		return btnOk;
-//	}
-	
-	private class BoutonOkListenerInterne implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Clic ok classe interne");			
-		}
-		
-	}
-	
-	
 }
