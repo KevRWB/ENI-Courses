@@ -1,28 +1,28 @@
 package fr.eni.papeterie.ihm.vue;
 
-import java.awt.Button;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import fr.eni.papeterie.bo.Article;
 
 public class EcranPapeterie extends JFrame {
 
@@ -57,8 +57,6 @@ public class EcranPapeterie extends JFrame {
 	private JButton btnSave;
 	private JButton btnDelete;
 	private JButton btnNext;
-	
-	
 	
 	public EcranPapeterie() {
 		setSize(500, 600);
@@ -97,20 +95,28 @@ public class EcranPapeterie extends JFrame {
 			getRadioGroup();
 			placeComponentInPanel(getRadioStylo(), panel, 5, 1);
 			placeComponentInPanel(getRadioRamette(), panel, 6, 1);
-				
+			getRadioStylo().setSelected(true);
+			getRadioStylo().setEnabled(false);
+			getRadioRamette().setEnabled(false);
 			//ligne 7 - 8 Grammage
 			placeComponentInPanelGridHeight(getLblGrammage(), panel, 7, 0, 2);
-			getChkGroup();		
+			getChkGroup();	
 			placeComponentInPanel(getChk80(), panel, 7, 1);
 			placeComponentInPanel(getChk100(), panel, 8, 1);
+			getChk80().setEnabled(false);
+			getChk100().setEnabled(false);
 			//condition affichage
 					
 			//ligne 9 Couleur
 			placeComponentInPanel(getLblColor(), panel, 9, 0);
 			placeComponentInPanel(getColorCombo(), panel, 9, 1);
+			getColorCombo().setEnabled(false);
 			//Conditions affichage	
 			//ligne 10 boutons
 			placeComponentInPanel(getPanelBoutons(), panel, 10, 0, 2);
+			
+			//print first article
+
 			
 		}
 		return panel;
@@ -294,13 +300,11 @@ public class EcranPapeterie extends JFrame {
 		if(btnPrevious == null) {
 			btnPrevious = new JButton(new ImageIcon("img/Back24.gif"));
 			btnPrevious.setPreferredSize(new Dimension(80,70));
-			btnPrevious.addActionListener(e -> {
-				System.out.println("Article précédent");
-				txtReference.setText("Coucou");
-			});
 		}
 		return btnPrevious;
-	}	public JButton getBtnNouvelArticle() {
+	}	
+
+	public JButton getBtnNouvelArticle() {
 		if(btnNouvelArticle == null) {
 			btnNouvelArticle = new JButton(new ImageIcon("img/New24.gif"));
 			btnNouvelArticle.setPreferredSize(new Dimension(80,70));
@@ -324,9 +328,6 @@ public class EcranPapeterie extends JFrame {
 		if(btnDelete == null) {
 			btnDelete = new JButton(new ImageIcon("img/Delete24.gif"));
 			btnDelete.setPreferredSize(new Dimension(80,70));
-			btnDelete.addActionListener(e -> {
-				System.out.println("Delete");
-			});
 		}
 		return btnDelete;
 	}
@@ -334,12 +335,8 @@ public class EcranPapeterie extends JFrame {
 		if(btnNext == null) {
 			btnNext = new JButton(new ImageIcon("img/Forward24.gif"));
 			btnNext.setPreferredSize(new Dimension(80,70));
-			btnNext.addActionListener(e -> {
-				System.out.println("Article suivant");
-			});
 		}
 		return btnNext;
 	}
-	//enable type
-
+	
 }
