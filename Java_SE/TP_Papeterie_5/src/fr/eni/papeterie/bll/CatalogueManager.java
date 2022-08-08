@@ -86,10 +86,10 @@ public class CatalogueManager {
 			throw new BLLException("La marque est obligatoire et sa taille < 200");
 		}
 		if(article.getReference() == null ||article.getReference().isBlank() || article.getReference().length() > 10) {
-			throw new BLLException("La reference est obligatoire et sa taille < 200");
+			throw new BLLException("La reference est obligatoire et sa taille < 10");
 		}
 		if(article.getDesignation() == null ||article.getDesignation().isBlank() || article.getDesignation().length() > 250) {
-			throw new BLLException("La designation est obligatoire et sa taille < 200");
+			throw new BLLException("La designation est obligatoire et sa taille < 250");
 		}
 		if(article.getQteStock() <= 0) {
 			throw new BLLException("La quantite doit etre > 0");

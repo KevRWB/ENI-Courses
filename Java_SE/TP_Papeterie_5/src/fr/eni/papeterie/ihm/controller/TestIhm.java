@@ -27,6 +27,13 @@ public class TestIhm {
 				//init instances
 				EcranPapeterie ecranPapeterie = new EcranPapeterie();
 				CatalogueManager catalogue = CatalogueManager.getInstance();
+				//init print
+				try {
+					currentArticle = catalogue.getCatalogue().get(0);
+					printArticle(currentArticle, ecranPapeterie);
+				} catch (BLLException e2) {
+					e2.printStackTrace();
+				}
 				//Listeners Radio Type
 				ecranPapeterie.getRadioRamette().addActionListener(e -> {
 					enableFields(ecranPapeterie);
@@ -38,7 +45,7 @@ public class TestIhm {
 				//Delete Button
 				ecranPapeterie.getBtnDelete().addActionListener(e -> {
 					try {
-						deleteArticle(catalogue, indexList);
+						deleteArticle(catalogue, ecranPapeterie);
 					} catch (BLLException e1) {
 						e1.printStackTrace();
 					}
@@ -46,8 +53,9 @@ public class TestIhm {
 				
 				//Previous Button
 				ecranPapeterie.getBtnPrevious().addActionListener(e -> {
+					
 					try {
-						previousArticle(catalogue);
+						previousArticle(catalogue, ecranPapeterie);
 						printArticle(currentArticle, ecranPapeterie);
 					} catch (BLLException e1) {
 						e1.printStackTrace();
@@ -56,7 +64,7 @@ public class TestIhm {
 				//Next Button
 				ecranPapeterie.getBtnNext().addActionListener(e -> {
 					try {
-						nextArticle(catalogue);
+						nextArticle(catalogue, ecranPapeterie);
 						printArticle(currentArticle, ecranPapeterie);
 					} catch (BLLException e1) {
 						e1.printStackTrace();
@@ -66,6 +74,7 @@ public class TestIhm {
 				ecranPapeterie.getBtnNouvelArticle().addActionListener(e -> {
 					addArticle(catalogue, ecranPapeterie);
 				});	
+				
 				//Save Article Button
 				ecranPapeterie.getBtnSave().addActionListener(e -> {
 					try {
@@ -101,7 +110,10 @@ public class TestIhm {
 		}	
 		catalogue.addArticle(articleAdd);
 	}
-	public static void nextArticle(CatalogueManager catalogue) throws BLLException {
+	public static void nextArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
+		//disabled fields
+		disableFields(ecranPapeterie);
+		//set next article
 		List<Article> articleList = new ArrayList<Article>();
 		articleList = catalogue.getCatalogue();
 		if(indexList == articleList.size() - 1) {	
@@ -114,7 +126,10 @@ public class TestIhm {
 			
 		}	
 	}
-	public static void previousArticle(CatalogueManager catalogue) throws BLLException {
+	public static void previousArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
+		//disabled fields
+		disableFields(ecranPapeterie);
+		//set previous article
 		List<Article> articleList = new ArrayList<Article>();
 		articleList = catalogue.getCatalogue();
 		if(indexList == 0) {	
@@ -128,8 +143,21 @@ public class TestIhm {
 		}	
 	}
 	
-	public static void deleteArticle(CatalogueManager catalogue, int index) throws BLLException {
-				catalogue.removeArticle(catalogue.getArticle(index));
+	public static void deleteArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
+				catalogue.removeArticle(catalogue.getArticle(indexList));
+				indexList --;
+				List<Article> list = catalogue.getCatalogue();
+				if(indexList == 0) {
+					nextArticle(catalogue, ecranPapeterie);
+					printArticle(currentArticle, ecranPapeterie);
+				} else if(indexList == list.size()-1) {
+					nextArticle(catalogue, ecranPapeterie);
+					printArticle(currentArticle, ecranPapeterie);
+				}else {
+					nextArticle(catalogue, ecranPapeterie);
+					printArticle(currentArticle, ecranPapeterie);
+				}
+				
 	}
 	
 	public static void printArticle(Article article, EcranPapeterie ecran) throws BLLException {
@@ -162,9 +190,18 @@ public class TestIhm {
 			ecran.getColorCombo().setEnabled(true);
 		}else {
 			ecran.getChk80().setEnabled(true);
+			ecran.getChk80().setSelected(true);;
 			ecran.getChk100().setEnabled(true);
 			ecran.getColorCombo().setEnabled(false);
+			
 		}
+	}
+	public static void disableFields(EcranPapeterie ecran) {
+		ecran.getRadioRamette().setEnabled(false);
+		ecran.getRadioStylo().setEnabled(false);
+		ecran.getChk80().setEnabled(false);
+		ecran.getChk100().setEnabled(false);
+		ecran.getColorCombo().setEnabled(false);
 	}
 	
 }
