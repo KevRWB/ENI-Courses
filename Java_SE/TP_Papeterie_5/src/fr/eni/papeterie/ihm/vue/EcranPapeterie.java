@@ -22,7 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import fr.eni.papeterie.bll.BLLException;
+import fr.eni.papeterie.bll.CatalogueManager;
 import fr.eni.papeterie.bo.Article;
+import fr.eni.papeterie.bo.Ramette;
+import fr.eni.papeterie.bo.Stylo;
+import fr.eni.papeterie.ihm.controller.IhmController;
 
 public class EcranPapeterie extends JFrame {
 
@@ -66,7 +71,7 @@ public class EcranPapeterie extends JFrame {
 		
 		setContentPane(getPanel()); //remplace le panel d'origine par le panel que l'on cr�e
 	}
-
+	//create panel 
 	private JPanel getPanel() {
 		if(panel == null) {
 			panel = new JPanel(new GridBagLayout());	
@@ -116,17 +121,17 @@ public class EcranPapeterie extends JFrame {
 			placeComponentInPanel(getPanelBoutons(), panel, 10, 0, 2);
 			
 			//print first article
-
+			initFirstArticle();
 			
 		}
 		return panel;
 	}
 	
+	//Methods place components
 	private void placeComponentInPanel(Component cmp, JPanel panel, 
 										int ligne, int colonne) {
 		placeComponentInPanel(cmp, panel, ligne, colonne, 1);
 	}
-	
 	private void placeComponentInPanel(Component cmp, JPanel panel, 
 			int ligne, int colonne, int gridWidth) {
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -146,14 +151,13 @@ public class EcranPapeterie extends JFrame {
 		panel.add(cmp, gbc);
 	}
 	
-
+	//Getters / setters
 	public JLabel getLblReference() {
 		if(lblReference == null) {
 			lblReference = new JLabel("Reference");
 		}
 		return lblReference;
 	}
-
 	public JLabel getLblDesignation() {
 		if(lblDesignation == null) {
 			lblDesignation = new JLabel("Designation");
@@ -226,17 +230,21 @@ public class EcranPapeterie extends JFrame {
 			radioStylo = new JRadioButton("Stylo");
 			radioGroup.add(radioStylo);	
 		}
+		radioStylo.addActionListener(e -> {
+			enableFields();
+		});	
 		return radioStylo;
 	}
 	public JRadioButton getRadioRamette() {
 		if(radioRamette == null) {
 			radioRamette = new JRadioButton("Ramette");
 			radioGroup.add(radioRamette);
-			
 		}
+		radioRamette.addActionListener(e -> {
+			enableFields();
+		});	
 		return radioRamette;
-	}
-	
+	}	
 	//grammage
 	//---Section Grammage-------
 	public JLabel getLblGrammage() {
@@ -264,8 +272,7 @@ public class EcranPapeterie extends JFrame {
 			chkGroup.add(chkGrammage100);
 		}
 		return chkGrammage100;
-	}
-		
+	}	
 	//----Section couleur
 	public JLabel getLblColor() {
 		if(lblCouleur == null) {
@@ -280,8 +287,7 @@ public class EcranPapeterie extends JFrame {
 			colorCombo = new JComboBox<Object>(colors);
 		}
 		return colorCombo;
-	}
-	
+	}	
 	//----Section boutons
 	public JPanel getPanelBoutons() {
 		if(panelBoutons == null) {
@@ -301,6 +307,15 @@ public class EcranPapeterie extends JFrame {
 			btnPrevious = new JButton(new ImageIcon("img/Back24.gif"));
 			btnPrevious.setPreferredSize(new Dimension(80,70));
 		}
+		btnPrevious.addActionListener(e -> {
+			
+			try {
+				previousArticle();
+				printArticle();
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+		});	
 		return btnPrevious;
 	}	
 
@@ -312,6 +327,9 @@ public class EcranPapeterie extends JFrame {
 				System.out.println("New");
 			});
 		}
+		btnNouvelArticle.addActionListener(e -> {
+			addArticle();
+		});	
 		return btnNouvelArticle;
 	}
 	public JButton getBtnSave() {
@@ -322,6 +340,13 @@ public class EcranPapeterie extends JFrame {
 				System.out.println("Save");
 			});
 		}
+		btnSave.addActionListener(e -> {
+			try {
+				saveArticle();
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+		});	
 		return btnSave;
 	}
 	public JButton getBtnDelete() {
@@ -329,6 +354,13 @@ public class EcranPapeterie extends JFrame {
 			btnDelete = new JButton(new ImageIcon("img/Delete24.gif"));
 			btnDelete.setPreferredSize(new Dimension(80,70));
 		}
+		btnDelete.addActionListener(e -> {
+			try {
+				deleteArticle();
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+		});	
 		return btnDelete;
 	}
 	public JButton getBtnNext() {
@@ -336,7 +368,157 @@ public class EcranPapeterie extends JFrame {
 			btnNext = new JButton(new ImageIcon("img/Forward24.gif"));
 			btnNext.setPreferredSize(new Dimension(80,70));
 		}
+		btnNext.addActionListener(e -> {
+			try {
+				nextArticle();
+				printArticle();
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
+		});	
 		return btnNext;
+	}
+	
+	
+	//---METHODS
+	public void printArticle() throws BLLException {
+		if(IhmController.getList().size()== 0) {
+			resetFields();
+		}else {
+			if(IhmController.getCurrentArticle() instanceof Stylo) {
+				getRadioStylo().setSelected(true);
+			}else getRadioRamette().setSelected(true);
+			
+			getTxtDesignation().setText(IhmController.getCurrentArticle().getDesignation());
+			getTxtReference().setText(IhmController.getCurrentArticle().getReference());
+			getTxtMarque().setText(IhmController.getCurrentArticle().getMarque());
+			getTxtQteStock().setText(String.valueOf(IhmController.getCurrentArticle().getQteStock()));
+			getTxtPrix().setText(String.valueOf(IhmController.getCurrentArticle().getPrixUnitaire()));
+		}
+	}
+	public void nextArticle() throws BLLException {
+		//disabled fields
+		disableFields();
+		//set next article
+		if(IhmController.getList().size() == 0) {
+			resetFields();
+		}else {
+			if(IhmController.getIndexList() == IhmController.getList().size() - 1) {	
+				IhmController.setCurrentArticle( IhmController.getList().get(0));
+				IhmController.setIndexList(0);
+			}else {
+				IhmController.setIndexList(IhmController.getIndexList() + 1 );
+				IhmController.setCurrentArticle(IhmController.getList().get(IhmController.getIndexList()));
+			}	
+		}	
+	}
+	public void previousArticle() throws BLLException {
+		//disabled fields
+			disableFields();
+			//set next article
+			if(IhmController.getList().size() == 0) {
+				resetFields();
+			}else {
+				if(IhmController.getIndexList() == 0) {	
+					IhmController.setCurrentArticle( IhmController.getList().get(IhmController.getList().size() - 1));
+					IhmController.setIndexList(IhmController.getList().size() - 1);
+				}else {
+					IhmController.setIndexList(IhmController.getIndexList() - 1 );
+					IhmController.setCurrentArticle(IhmController.getList().get(IhmController.getIndexList()));
+				}	
+			}	
+	}	
+	public void deleteArticle() throws BLLException {
+		if(IhmController.getList().size() == 0) {
+			resetFields();
+		}else {
+			IhmController.getCatalogue().removeArticle(IhmController.getCurrentArticle());
+			IhmController.setIndexList(IhmController.getIndexList() - 1);
+			IhmController.setList( IhmController.getCatalogue().getCatalogue());
+			
+			if(IhmController.getIndexList() == 0) {
+				nextArticle();
+				printArticle();
+			} else if(IhmController.getIndexList() == IhmController.getList().size()-1) {
+				nextArticle();
+				printArticle();
+			}else {
+				nextArticle();
+				printArticle();
+			}
+		}
+	}
+	public void addArticle() {
+		resetFields();
+		getRadioStylo().setEnabled(true);
+		getRadioStylo().setSelected(true);
+		getRadioRamette().setEnabled(true);
+		getColorCombo().setEnabled(true);
+	}
+	public void saveArticle() throws BLLException {
+		List<Article> list = IhmController.getList();
+		CatalogueManager catalogue = IhmController.getCatalogue();
+		int indexList = IhmController.getIndexList();
+		Article currentArticle = IhmController.getCurrentArticle();
+		//Recupere donnees champs de texte
+		Article articleAdd = null;
+		String reference = getTxtReference().getText();
+		String designation = getTxtDesignation().getText();
+		String marque = getTxtMarque().getText();
+		int qteStock = Integer.valueOf(getTxtQteStock().getText());
+		float prix = Float.valueOf(getTxtPrix().getText());
+		if(getRadioStylo().isSelected()) {
+			String color = (String) getColorCombo().getSelectedItem();
+			articleAdd = new Stylo(reference, designation, marque, prix, qteStock, color);
+		}else {
+			int grammage;
+			if(getChk80().isSelected()) {
+				grammage = 80;
+			}else grammage = 100;
+			articleAdd = new Ramette(reference, designation, marque, prix, qteStock, grammage);
+		}
+		catalogue.addArticle(articleAdd);
+		list = catalogue.getCatalogue();
+		
+	}
+	
+	public void initFirstArticle() {
+		if(IhmController.getList().size() == 0) {
+			resetFields();
+		}else {
+			try {
+				IhmController.setCurrentArticle(IhmController.getList().get(0));
+				printArticle();
+			} catch (BLLException e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	public void enableFields() {
+		if(getRadioStylo().isSelected()) {
+			getChk80().setEnabled(false);
+			getChk100().setEnabled(false);
+			getColorCombo().setEnabled(true);
+		}else {
+			getChk80().setEnabled(true);
+			getChk80().setSelected(true);;
+			getChk100().setEnabled(true);
+			getColorCombo().setEnabled(false);		
+		}
+	}
+	public void resetFields() {
+		getTxtDesignation().setText("");
+		getTxtReference().setText("");
+		getTxtMarque().setText("");
+		getTxtQteStock().setText("");
+		getTxtPrix().setText("");
+	}	
+	public void disableFields() {
+		getRadioRamette().setEnabled(false);
+		getRadioStylo().setEnabled(false);
+		getChk80().setEnabled(false);
+		getChk100().setEnabled(false);
+		getColorCombo().setEnabled(false);
 	}
 	
 }
