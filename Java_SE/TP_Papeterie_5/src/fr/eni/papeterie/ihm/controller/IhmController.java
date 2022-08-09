@@ -12,29 +12,43 @@ import fr.eni.papeterie.bo.Ramette;
 import fr.eni.papeterie.bo.Stylo;
 import fr.eni.papeterie.ihm.vue.EcranPapeterie;
 
-public class TestIhm {
+public class IhmController {
 	
 	private static int indexList = 0;
 	private static Article currentArticle;
+	private static List<Article> list = new ArrayList<>();
+	private static EcranPapeterie ecranPapeterie;
+	private static CatalogueManager catalogue;
 	
-	public static void main(String[] args) {
-		
-		
+	public static void main(String[] args) {	
 		//Afficher IHM
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				
 				//init instances
 				EcranPapeterie ecranPapeterie = new EcranPapeterie();
 				CatalogueManager catalogue = CatalogueManager.getInstance();
-				//init print
+				//init liste articles
 				try {
-					currentArticle = catalogue.getCatalogue().get(0);
-					printArticle(currentArticle, ecranPapeterie);
-				} catch (BLLException e2) {
-					e2.printStackTrace();
+					list = catalogue.getCatalogue();
+				} catch (BLLException e3) {
+					e3.printStackTrace();
 				}
-				//Listeners Radio Type
+				
+				//init print
+				if(list.size() == 0) {
+					resetFields(ecranPapeterie);
+				}else {
+					try {
+						currentArticle = catalogue.getCatalogue().get(0);
+						printArticle(currentArticle, ecranPapeterie, catalogue);
+					} catch (BLLException e2) {
+						e2.printStackTrace();
+					}
+				}
+			
+				//Listeners Radio Type -> enable fields on click
 				ecranPapeterie.getRadioRamette().addActionListener(e -> {
 					enableFields(ecranPapeterie);
 				});	
@@ -55,8 +69,8 @@ public class TestIhm {
 				ecranPapeterie.getBtnPrevious().addActionListener(e -> {
 					
 					try {
-						previousArticle(catalogue, ecranPapeterie);
-						printArticle(currentArticle, ecranPapeterie);
+						previousArticle(ecranPapeterie);
+						printArticle(currentArticle, ecranPapeterie, catalogue);
 					} catch (BLLException e1) {
 						e1.printStackTrace();
 					}
@@ -64,8 +78,8 @@ public class TestIhm {
 				//Next Button
 				ecranPapeterie.getBtnNext().addActionListener(e -> {
 					try {
-						nextArticle(catalogue, ecranPapeterie);
-						printArticle(currentArticle, ecranPapeterie);
+						nextArticle(ecranPapeterie);
+						printArticle(currentArticle, ecranPapeterie, catalogue);
 					} catch (BLLException e1) {
 						e1.printStackTrace();
 					}
@@ -78,7 +92,7 @@ public class TestIhm {
 				//Save Article Button
 				ecranPapeterie.getBtnSave().addActionListener(e -> {
 					try {
-						saveArticle(catalogue, ecranPapeterie);
+						saveArticle();
 					} catch (BLLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -90,83 +104,94 @@ public class TestIhm {
 	
 	//METHODS
 	//
-	public static void saveArticle(CatalogueManager catalogue, EcranPapeterie ecran) throws BLLException {
+	public static void saveArticle() throws BLLException {
 		Article articleAdd = null;
-		String reference = ecran.getTxtReference().getText();
-		String designation = ecran.getTxtDesignation().getText();
-		String marque = ecran.getTxtMarque().getText();
-		int qteStock = Integer.valueOf(ecran.getTxtQteStock().getText());
-		float prix = Float.valueOf(ecran.getTxtPrix().getText());
+		String reference = ecranPapeterie.getTxtReference().getText();
+		String designation = ecranPapeterie.getTxtDesignation().getText();
+		String marque = ecranPapeterie.getTxtMarque().getText();
+		int qteStock = Integer.valueOf(ecranPapeterie.getTxtQteStock().getText());
+		float prix = Float.valueOf(ecranPapeterie.getTxtPrix().getText());
 		
-		if(ecran.getRadioStylo().isSelected()) {
-			String color = (String) ecran.getColorCombo().getSelectedItem();
+		if(ecranPapeterie.getRadioStylo().isSelected()) {
+			String color = (String) ecranPapeterie.getColorCombo().getSelectedItem();
 			articleAdd = new Stylo(reference, designation, marque, prix, qteStock, color);
 		}else {
 			int grammage;
-			if(ecran.getChk80().isSelected()) {
+			if(ecranPapeterie.getChk80().isSelected()) {
 				grammage = 80;
 			}else grammage = 100;
 			articleAdd = new Ramette(reference, designation, marque, prix, qteStock, grammage);
 		}	
 		catalogue.addArticle(articleAdd);
+		list = catalogue.getCatalogue();
 	}
-	public static void nextArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
+	public static void nextArticle(EcranPapeterie ecranPapeterie) throws BLLException {
 		//disabled fields
 		disableFields(ecranPapeterie);
 		//set next article
-		List<Article> articleList = new ArrayList<Article>();
-		articleList = catalogue.getCatalogue();
-		if(indexList == articleList.size() - 1) {	
-			currentArticle =  articleList.get(0);
-			indexList = 0;
-			System.out.println(indexList);
+		if(list.size() == 0) {
+			resetFields(ecranPapeterie);
 		}else {
-			indexList  += 1;
-			currentArticle = articleList.get(indexList);
-			
+			if(indexList == list.size() - 1) {	
+				currentArticle =  list.get(0);
+				indexList = 0;
+				System.out.println(indexList);
+			}else {
+				indexList  += 1;
+				currentArticle = list.get(indexList);
+			}	
 		}	
 	}
-	public static void previousArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
+	public static void previousArticle(EcranPapeterie ecranPapeterie) throws BLLException {
 		//disabled fields
 		disableFields(ecranPapeterie);
 		//set previous article
-		List<Article> articleList = new ArrayList<Article>();
-		articleList = catalogue.getCatalogue();
-		if(indexList == 0) {	
-			currentArticle =  articleList.get(articleList.size()-1);
-			indexList = (articleList.size() - 1);
-			System.out.println(indexList);
+		if(list.size() == 0) {
+			resetFields(ecranPapeterie);
 		}else {
-			indexList  -= 1;
-			currentArticle = articleList.get(indexList);
-			
+			if(indexList == 0) {	
+				currentArticle =  list.get(list.size()-1);
+				indexList = (list.size() - 1);
+				System.out.println(indexList);
+			}else {
+				indexList  -= 1;
+				currentArticle = list.get(indexList);	
+			}	
 		}	
 	}
 	
 	public static void deleteArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
-
-			catalogue.removeArticle(catalogue.getArticle(indexList));
+		if(list.size() == 0) {
+			resetFields(ecranPapeterie);
+		}else {
+			catalogue.removeArticle(currentArticle);
 			indexList --;
-			List<Article> list = catalogue.getCatalogue();
+			list = catalogue.getCatalogue();
+			
 			if(indexList == 0) {
-				nextArticle(catalogue, ecranPapeterie);
-				printArticle(currentArticle, ecranPapeterie);
+				nextArticle(ecranPapeterie);
+				printArticle(currentArticle, ecranPapeterie, catalogue);
 			} else if(indexList == list.size()-1) {
-				nextArticle(catalogue, ecranPapeterie);
-				printArticle(currentArticle, ecranPapeterie);
+				nextArticle(ecranPapeterie);
+				printArticle(currentArticle, ecranPapeterie, catalogue);
 			}else {
-				nextArticle(catalogue, ecranPapeterie);
-				printArticle(currentArticle, ecranPapeterie);
+				nextArticle(ecranPapeterie);
+				printArticle(currentArticle, ecranPapeterie, catalogue);
 			}
-				
+		}
 	}
 	
-	public static void printArticle(Article article, EcranPapeterie ecran) throws BLLException {
-		ecran.getTxtDesignation().setText(article.getDesignation());
-		ecran.getTxtReference().setText(article.getReference());
-		ecran.getTxtMarque().setText(article.getMarque());
-		ecran.getTxtQteStock().setText(String.valueOf(article.getQteStock()));
-		ecran.getTxtPrix().setText(String.valueOf(article.getPrixUnitaire()));
+	public static void printArticle(Article article, EcranPapeterie ecran, CatalogueManager catalogue) throws BLLException {
+		List<Article> list = catalogue.getCatalogue();
+		if(list.size()== 0) {
+			resetFields(ecran);
+		}else {
+			ecran.getTxtDesignation().setText(article.getDesignation());
+			ecran.getTxtReference().setText(article.getReference());
+			ecran.getTxtMarque().setText(article.getMarque());
+			ecran.getTxtQteStock().setText(String.valueOf(article.getQteStock()));
+			ecran.getTxtPrix().setText(String.valueOf(article.getPrixUnitaire()));
+		}
 	}
 	public static void resetFields(EcranPapeterie ecran) {
 		ecran.getTxtDesignation().setText("");
