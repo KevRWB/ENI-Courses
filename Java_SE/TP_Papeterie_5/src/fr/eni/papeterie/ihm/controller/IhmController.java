@@ -19,6 +19,7 @@ public class IhmController {
 	private static List<Article> list = new ArrayList<>();
 	private static EcranPapeterie ecranPapeterie;
 	private static CatalogueManager catalogue;
+	private static boolean inEdition = false;
 	
 	public static void main(String[] args) {	
 		//Afficher IHM
@@ -27,8 +28,8 @@ public class IhmController {
 			public void run() {
 				
 				//init instances
-				EcranPapeterie ecranPapeterie = new EcranPapeterie();
-				CatalogueManager catalogue = CatalogueManager.getInstance();
+				ecranPapeterie = new EcranPapeterie();
+				catalogue = CatalogueManager.getInstance();
 				//init liste articles
 				try {
 					list = catalogue.getCatalogue();
@@ -38,11 +39,11 @@ public class IhmController {
 				
 				//init print
 				if(list.size() == 0) {
-					resetFields(ecranPapeterie);
+					resetFields();
 				}else {
 					try {
 						currentArticle = catalogue.getCatalogue().get(0);
-						printArticle(currentArticle, ecranPapeterie, catalogue);
+						printArticle();
 					} catch (BLLException e2) {
 						e2.printStackTrace();
 					}
@@ -50,16 +51,16 @@ public class IhmController {
 			
 				//Listeners Radio Type -> enable fields on click
 				ecranPapeterie.getRadioRamette().addActionListener(e -> {
-					enableFields(ecranPapeterie);
+					enableFields();
 				});	
 				ecranPapeterie.getRadioStylo().addActionListener(e -> {
-					enableFields(ecranPapeterie);
+					enableFields();
 				});	
 				
 				//Delete Button
 				ecranPapeterie.getBtnDelete().addActionListener(e -> {
 					try {
-						deleteArticle(catalogue, ecranPapeterie);
+						deleteArticle();
 					} catch (BLLException e1) {
 						e1.printStackTrace();
 					}
@@ -69,8 +70,8 @@ public class IhmController {
 				ecranPapeterie.getBtnPrevious().addActionListener(e -> {
 					
 					try {
-						previousArticle(ecranPapeterie);
-						printArticle(currentArticle, ecranPapeterie, catalogue);
+						previousArticle();
+						printArticle();
 					} catch (BLLException e1) {
 						e1.printStackTrace();
 					}
@@ -78,15 +79,15 @@ public class IhmController {
 				//Next Button
 				ecranPapeterie.getBtnNext().addActionListener(e -> {
 					try {
-						nextArticle(ecranPapeterie);
-						printArticle(currentArticle, ecranPapeterie, catalogue);
+						nextArticle();
+						printArticle();
 					} catch (BLLException e1) {
 						e1.printStackTrace();
 					}
 				});	
 				//Add Article Button
 				ecranPapeterie.getBtnNouvelArticle().addActionListener(e -> {
-					addArticle(catalogue, ecranPapeterie);
+					addArticle();
 				});	
 				
 				//Save Article Button
@@ -94,7 +95,6 @@ public class IhmController {
 					try {
 						saveArticle();
 					} catch (BLLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				});	
@@ -104,14 +104,22 @@ public class IhmController {
 	
 	//METHODS
 	//
+	public static void addArticle() {
+		inEdition = true;
+		resetFields();
+		ecranPapeterie.getRadioStylo().setEnabled(true);
+		ecranPapeterie.getRadioStylo().setSelected(true);
+		ecranPapeterie.getRadioRamette().setEnabled(true);
+		ecranPapeterie.getColorCombo().setEnabled(true);
+	}
 	public static void saveArticle() throws BLLException {
+		//Recupere donnees champs de texte
 		Article articleAdd = null;
 		String reference = ecranPapeterie.getTxtReference().getText();
 		String designation = ecranPapeterie.getTxtDesignation().getText();
 		String marque = ecranPapeterie.getTxtMarque().getText();
 		int qteStock = Integer.valueOf(ecranPapeterie.getTxtQteStock().getText());
 		float prix = Float.valueOf(ecranPapeterie.getTxtPrix().getText());
-		
 		if(ecranPapeterie.getRadioStylo().isSelected()) {
 			String color = (String) ecranPapeterie.getColorCombo().getSelectedItem();
 			articleAdd = new Stylo(reference, designation, marque, prix, qteStock, color);
@@ -121,16 +129,23 @@ public class IhmController {
 				grammage = 80;
 			}else grammage = 100;
 			articleAdd = new Ramette(reference, designation, marque, prix, qteStock, grammage);
-		}	
-		catalogue.addArticle(articleAdd);
+		}		
+		//Si creation d'un nouvel article
+		if(inEdition) {		
+			catalogue.addArticle(articleAdd);
+		//Si update d'un article
+		} else {	
+			catalogue.updateArticle(currentArticle);
+		}		
 		list = catalogue.getCatalogue();
 	}
-	public static void nextArticle(EcranPapeterie ecranPapeterie) throws BLLException {
+	public static void nextArticle() throws BLLException {
+		inEdition = false;
 		//disabled fields
-		disableFields(ecranPapeterie);
+		disableFields();
 		//set next article
 		if(list.size() == 0) {
-			resetFields(ecranPapeterie);
+			resetFields();
 		}else {
 			if(indexList == list.size() - 1) {	
 				currentArticle =  list.get(0);
@@ -142,12 +157,13 @@ public class IhmController {
 			}	
 		}	
 	}
-	public static void previousArticle(EcranPapeterie ecranPapeterie) throws BLLException {
+	public static void previousArticle() throws BLLException {
+		inEdition = false;
 		//disabled fields
-		disableFields(ecranPapeterie);
+		disableFields();
 		//set previous article
 		if(list.size() == 0) {
-			resetFields(ecranPapeterie);
+			resetFields();
 		}else {
 			if(indexList == 0) {	
 				currentArticle =  list.get(list.size()-1);
@@ -158,76 +174,69 @@ public class IhmController {
 				currentArticle = list.get(indexList);	
 			}	
 		}	
-	}
-	
-	public static void deleteArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
+	}	
+	public static void deleteArticle() throws BLLException {
+		inEdition = false;
 		if(list.size() == 0) {
-			resetFields(ecranPapeterie);
+			resetFields();
 		}else {
 			catalogue.removeArticle(currentArticle);
 			indexList --;
 			list = catalogue.getCatalogue();
 			
 			if(indexList == 0) {
-				nextArticle(ecranPapeterie);
-				printArticle(currentArticle, ecranPapeterie, catalogue);
+				nextArticle();
+				printArticle();
 			} else if(indexList == list.size()-1) {
-				nextArticle(ecranPapeterie);
-				printArticle(currentArticle, ecranPapeterie, catalogue);
+				nextArticle();
+				printArticle();
 			}else {
-				nextArticle(ecranPapeterie);
-				printArticle(currentArticle, ecranPapeterie, catalogue);
+				nextArticle();
+				printArticle();
 			}
 		}
 	}
 	
-	public static void printArticle(Article article, EcranPapeterie ecran, CatalogueManager catalogue) throws BLLException {
+	public static void printArticle() throws BLLException {
 		List<Article> list = catalogue.getCatalogue();
 		if(list.size()== 0) {
-			resetFields(ecran);
+			resetFields();
 		}else {
-			ecran.getTxtDesignation().setText(article.getDesignation());
-			ecran.getTxtReference().setText(article.getReference());
-			ecran.getTxtMarque().setText(article.getMarque());
-			ecran.getTxtQteStock().setText(String.valueOf(article.getQteStock()));
-			ecran.getTxtPrix().setText(String.valueOf(article.getPrixUnitaire()));
+			if(currentArticle instanceof Stylo) {
+				ecranPapeterie.getRadioStylo().setSelected(true);
+			}else ecranPapeterie.getRadioRamette().setSelected(true);
+			ecranPapeterie.getTxtDesignation().setText(currentArticle.getDesignation());
+			ecranPapeterie.getTxtReference().setText(currentArticle.getReference());
+			ecranPapeterie.getTxtMarque().setText(currentArticle.getMarque());
+			ecranPapeterie.getTxtQteStock().setText(String.valueOf(currentArticle.getQteStock()));
+			ecranPapeterie.getTxtPrix().setText(String.valueOf(currentArticle.getPrixUnitaire()));
 		}
 	}
-	public static void resetFields(EcranPapeterie ecran) {
-		ecran.getTxtDesignation().setText("");
-		ecran.getTxtReference().setText("");
-		ecran.getTxtMarque().setText("");
-		ecran.getTxtQteStock().setText("");
-		ecran.getTxtPrix().setText("");
-	}
-	
-	public static void addArticle(CatalogueManager catalogue, EcranPapeterie ecran) {
-		resetFields(ecran);
-		ecran.getRadioStylo().setEnabled(true);
-		ecran.getRadioStylo().setSelected(true);
-		ecran.getRadioRamette().setEnabled(true);
-		ecran.getColorCombo().setEnabled(true);
-	}
-	
-	public static void enableFields(EcranPapeterie ecran) {
-		if(ecran.getRadioStylo().isSelected()) {
-			ecran.getChk80().setEnabled(false);
-			ecran.getChk100().setEnabled(false);
-			ecran.getColorCombo().setEnabled(true);
+	public static void resetFields() {
+		ecranPapeterie.getTxtDesignation().setText("");
+		ecranPapeterie.getTxtReference().setText("");
+		ecranPapeterie.getTxtMarque().setText("");
+		ecranPapeterie.getTxtQteStock().setText("");
+		ecranPapeterie.getTxtPrix().setText("");
+	}	
+	public static void enableFields() {
+		if(ecranPapeterie.getRadioStylo().isSelected()) {
+			ecranPapeterie.getChk80().setEnabled(false);
+			ecranPapeterie.getChk100().setEnabled(false);
+			ecranPapeterie.getColorCombo().setEnabled(true);
 		}else {
-			ecran.getChk80().setEnabled(true);
-			ecran.getChk80().setSelected(true);;
-			ecran.getChk100().setEnabled(true);
-			ecran.getColorCombo().setEnabled(false);
-			
+			ecranPapeterie.getChk80().setEnabled(true);
+			ecranPapeterie.getChk80().setSelected(true);;
+			ecranPapeterie.getChk100().setEnabled(true);
+			ecranPapeterie.getColorCombo().setEnabled(false);		
 		}
 	}
-	public static void disableFields(EcranPapeterie ecran) {
-		ecran.getRadioRamette().setEnabled(false);
-		ecran.getRadioStylo().setEnabled(false);
-		ecran.getChk80().setEnabled(false);
-		ecran.getChk100().setEnabled(false);
-		ecran.getColorCombo().setEnabled(false);
+	public static void disableFields() {
+		ecranPapeterie.getRadioRamette().setEnabled(false);
+		ecranPapeterie.getRadioStylo().setEnabled(false);
+		ecranPapeterie.getChk80().setEnabled(false);
+		ecranPapeterie.getChk100().setEnabled(false);
+		ecranPapeterie.getColorCombo().setEnabled(false);
 	}
 	
 }

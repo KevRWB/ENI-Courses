@@ -134,8 +134,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				pStmt.setString(1, ((Stylo) article).getCouleur());
 			} else {
 				pStmt.setNull(1, Types.VARCHAR);
-			}
-			
+			}	
 			pStmt.setString(2, article.getDesignation());
 			pStmt.setString(3, article.getReference());
 			pStmt.setInt(4, article.getIdArticle());
