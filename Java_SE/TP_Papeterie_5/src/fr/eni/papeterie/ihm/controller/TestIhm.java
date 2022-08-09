@@ -144,19 +144,20 @@ public class TestIhm {
 	}
 	
 	public static void deleteArticle(CatalogueManager catalogue, EcranPapeterie ecranPapeterie) throws BLLException {
-				catalogue.removeArticle(catalogue.getArticle(indexList));
-				indexList --;
-				List<Article> list = catalogue.getCatalogue();
-				if(indexList == 0) {
-					nextArticle(catalogue, ecranPapeterie);
-					printArticle(currentArticle, ecranPapeterie);
-				} else if(indexList == list.size()-1) {
-					nextArticle(catalogue, ecranPapeterie);
-					printArticle(currentArticle, ecranPapeterie);
-				}else {
-					nextArticle(catalogue, ecranPapeterie);
-					printArticle(currentArticle, ecranPapeterie);
-				}
+
+			catalogue.removeArticle(catalogue.getArticle(indexList));
+			indexList --;
+			List<Article> list = catalogue.getCatalogue();
+			if(indexList == 0) {
+				nextArticle(catalogue, ecranPapeterie);
+				printArticle(currentArticle, ecranPapeterie);
+			} else if(indexList == list.size()-1) {
+				nextArticle(catalogue, ecranPapeterie);
+				printArticle(currentArticle, ecranPapeterie);
+			}else {
+				nextArticle(catalogue, ecranPapeterie);
+				printArticle(currentArticle, ecranPapeterie);
+			}
 				
 	}
 	
