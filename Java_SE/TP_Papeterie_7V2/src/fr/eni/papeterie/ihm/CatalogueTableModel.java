@@ -12,6 +12,7 @@ import fr.eni.papeterie.bo.Stylo;
 
 public class CatalogueTableModel extends AbstractTableModel {
 
+	private static final long serialVersionUID = 1L;
 	private final static ImageIcon ICON_RAMETTE = new ImageIcon(CatalogueTableModel.class.getResource("images/ramette.gif"));
 	private final static ImageIcon ICON_STYLO = new ImageIcon(CatalogueTableModel.class.getResource("images/pencil.gif"));
 	
@@ -77,4 +78,12 @@ public class CatalogueTableModel extends AbstractTableModel {
 		return null;
 	}
 
-}
+	public List<Article> getData() {
+		return data;
+	}
+	
+	
+	
+
+}	
+

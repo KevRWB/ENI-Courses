@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -25,9 +24,10 @@ import fr.eni.papeterie.bll.BLLException;
 import fr.eni.papeterie.bo.Article;
 import fr.eni.papeterie.bo.Ramette;
 import fr.eni.papeterie.bo.Stylo;
+import fr.eni.papeterie.ihm.EcranCatalogueClick.ListenersClick;
 import fr.eni.papeterie.ihm.PanelBoutons.Listeners;
 
-public class EcranPapeterie extends JFrame implements Listeners{
+public class EcranPapeterie extends JFrame implements Listeners, ListenersClick {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -62,8 +62,9 @@ public class EcranPapeterie extends JFrame implements Listeners{
 	private JComboBox<String> cmbCouleur;
 
 	private Article articleEnTrainDEtreAffiche = null;
+	private Article ArticleAAfficher;
 
-	public EcranPapeterie(PanelBoutons panelBoutons) {
+	public EcranPapeterie() {
 		PanelBoutons.getInstance().ajouterObservateur(this);
 			
 		setTitle("TP papeterie");
@@ -481,5 +482,9 @@ public class EcranPapeterie extends JFrame implements Listeners{
 		
 	}
 
-
+	@Override
+	public void getArticleSelected() {
+			ArticleAAfficher = EcranCatalogueClick.getInstance().getCurrentArticle();
+			afficherArticle(ArticleAAfficher);	
+	}
 }

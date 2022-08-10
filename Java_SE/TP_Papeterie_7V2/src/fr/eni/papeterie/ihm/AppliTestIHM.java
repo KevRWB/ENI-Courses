@@ -9,7 +9,7 @@ public class AppliTestIHM {
 			
 			@Override
 			public void run() {
-				EcranPapeterie ecran = new EcranPapeterie(PanelBoutons.getInstance());
+				EcranPapeterie ecran = new EcranPapeterie();
 				EcranCatalogue ecranCatalogue = new EcranCatalogue();
 			}
 		});
