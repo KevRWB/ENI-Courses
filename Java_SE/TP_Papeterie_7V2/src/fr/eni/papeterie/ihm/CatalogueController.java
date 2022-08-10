@@ -91,6 +91,15 @@ public class CatalogueController {
 	public List<Article> getCatalogue() throws BLLException {
 		return CatalogueManager.getInstance().getCatalogue();
 	}
+
 	
+	//Getters Setters
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
 	
 }

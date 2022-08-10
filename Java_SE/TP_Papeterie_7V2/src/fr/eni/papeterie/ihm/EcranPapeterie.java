@@ -66,6 +66,7 @@ public class EcranPapeterie extends JFrame implements Listeners, ListenersClick 
 
 	public EcranPapeterie() {
 		PanelBoutons.getInstance().ajouterObservateur(this);
+		EcranCatalogueClick.getInstance().ajouterObservateur(this);
 			
 		setTitle("TP papeterie");
 		setVisible(true);
@@ -487,4 +488,5 @@ public class EcranPapeterie extends JFrame implements Listeners, ListenersClick 
 			ArticleAAfficher = EcranCatalogueClick.getInstance().getCurrentArticle();
 			afficherArticle(ArticleAAfficher);	
 	}
+
 }

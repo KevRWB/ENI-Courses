@@ -9,9 +9,8 @@ import fr.eni.papeterie.bo.Article;
 public class EcranCatalogueClick {
 	//----
 	private Article currentArticle;
-	
-	
-	//SINGLETON
+
+		//SINGLETON
 		private static EcranCatalogueClick instance;
 		
 		private EcranCatalogueClick() { }
@@ -26,8 +25,7 @@ public class EcranCatalogueClick {
 		
 		//Pattern observer
 		public interface ListenersClick{
-			void getArticleSelected();
-			
+			void getArticleSelected();		
 		}	
 		//Liste objets observabes
 		private List<ListenersClick> observateursList = new ArrayList<>();
@@ -47,7 +45,8 @@ public class EcranCatalogueClick {
 				listener.getArticleSelected();
 			}
 		}
-
+	
+		//Getters setters
 		public Article getCurrentArticle() {
 			return currentArticle;
 		}
@@ -55,7 +54,5 @@ public class EcranCatalogueClick {
 		public void setCurrentArticle(Article currentArticle) {
 			this.currentArticle = currentArticle;
 		}
-		
-		
-		
+	
 }

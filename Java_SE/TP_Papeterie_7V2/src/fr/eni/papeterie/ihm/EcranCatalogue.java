@@ -28,7 +28,6 @@ public class EcranCatalogue extends JFrame implements Listeners{
 	private int indexRow = 0;
 	private Article currentArticle;
 
-		
 	private EcranCatalogueClick ecranCatalogueClick = EcranCatalogueClick.getInstance();
 	
 	public EcranCatalogue() {
@@ -64,7 +63,7 @@ public class EcranCatalogue extends JFrame implements Listeners{
 				    	indexRow = tableCatalogue.getSelectedRow();
 				    	currentArticle = model.getValueAt(indexRow);
 				    	EcranCatalogueClick.getInstance().setCurrentArticle(currentArticle);
-				    	System.out.println(currentArticle);
+				    	EcranCatalogueClick.getInstance().prevenirClick();
 				    }
 				});
 				//-----------------
@@ -88,11 +87,8 @@ public class EcranCatalogue extends JFrame implements Listeners{
 
 	@Override
 	public void precedent() {
-		if(indexRow == 0) {
-		}else {
-			indexRow--;
-			tableCatalogue.setRowSelectionInterval(0, indexRow);
-		}	
+		int position = CatalogueController.getInstance().getPosition();
+		if(position != 0) tableCatalogue.setRowSelectionInterval(position, position);
 	}
 
 	@Override
