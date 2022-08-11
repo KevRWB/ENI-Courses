@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +23,7 @@ import fr.eni.blagues.ihm.controller.BlagueController;
 
 public class EcranNoteBlague extends JFrame{
 	private BlagueController blagueController = BlagueController.getInstance();
-	
+		
 	private JPanel panelGeneral;
 	private JPanel panelBas;
 	private JTextArea textArea;
@@ -35,7 +37,7 @@ public class EcranNoteBlague extends JFrame{
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(500, 450));
-		setLocation(400, 100);
+		setLocation(100, 100);
 		
 		add(getPanelGeneral(), BorderLayout.CENTER);
 
@@ -134,6 +136,21 @@ public class EcranNoteBlague extends JFrame{
 	public JButton getButtonOk() {
 		if (buttonOk == null) {	
 			buttonOk = new JButton("Ok");
+			buttonOk.addActionListener( new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					float note = panelSlider.getValue();
+					blagueController.getBlagueActive().setNote(note);
+					System.out.println(note);
+					System.out.println(blagueController.getBlagueActive().getIdBlague());
+					try {
+						blagueController.update(blagueController.getBlagueActive());
+					} catch (BLLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
 		}
 		return buttonOk;
 	}

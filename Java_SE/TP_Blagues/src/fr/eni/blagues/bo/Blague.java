@@ -8,10 +8,9 @@ public class Blague {
 	private int nbNotes;
 	
 	//Constructor
-	public Blague(String txtBlague, float note) {
+	public Blague(String txtBlague) {
 		super();
 		this.libelle = txtBlague;
-		this.note = note;
 	}
 	
 
@@ -29,6 +28,11 @@ public class Blague {
 	public int getIdBlague() {
 		return idBlague;
 	}
+	
+	public void setIdBlague(int idBlague) {
+		this.idBlague = idBlague;
+	}
+
 	public String getTxtBlague() {
 		return libelle;
 	}
@@ -38,7 +42,7 @@ public class Blague {
 	public float getNote() {
 		return note;
 	}
-	public void setNote(int note) {
+	public void setNote(float note) {
 		this.note = note;
 	}
 	public int getNbNotes() {

@@ -9,6 +9,7 @@ import fr.eni.blagues.bo.Blague;
 
 public class BlagueController {
 	BlagueManager blagueManager = BlagueManager.getInstance();
+	private Blague blagueActive;
 	
 	//SINGLETON
 	private static BlagueController instance;
@@ -34,8 +35,27 @@ public class BlagueController {
 	//Fin pattern Observer
 	
 	//METHODS
-	public Blague getBlagueTopUn() throws BLLException {
-		return blagueManager.selectTopUn();
+	public  Blague getBlagueTopUn() throws BLLException {
+		Blague blagueSelected = blagueManager.selectTopUn();
+		blagueActive = blagueSelected;
+		return blagueSelected;
+	}
+	
+	public void insert(Blague blague) throws BLLException {
+		blagueActive = blague;
+		blagueManager.insert(blague);
+	}
+	
+	public void update(Blague blague)  throws BLLException{
+		blagueManager.update(blague);
+	}
+	//Getters setters
+	public Blague getBlagueActive() {
+		return blagueActive;
+	}
+
+	public void setBlagueActive(Blague blagueActive) {
+		this.blagueActive = blagueActive;
 	}
 	
 	

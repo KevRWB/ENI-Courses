@@ -1,10 +1,11 @@
 package fr.eni.blagues.ihm.vue;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -13,8 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import fr.eni.blagues.bll.BLLException;
+import fr.eni.blagues.bo.Blague;
+import fr.eni.blagues.ihm.controller.BlagueController;
+
 public class EcranAddBlague extends JFrame{
-	
+	private BlagueController blagueController = BlagueController.getInstance();
 	
 	private JPanel panelGeneral;
 	private JLabel lblLibelle;
@@ -37,6 +42,18 @@ public class EcranAddBlague extends JFrame{
 		addComponentToPanel(2, 0, getButtonAdd(), panelGeneral );	
 	}
 
+	//METHODS
+	private void addBlague() {
+		String txtBlague = textField.getText();
+		Blague blague = new Blague(txtBlague, 0, 0);
+		try {
+			blagueController.insert(blague);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//Methods Placement Item
 	private void addComponentToPanel(int ligne, int col, int height, JComponent component, JPanel panel) {
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -82,6 +99,14 @@ public class EcranAddBlague extends JFrame{
 	public JButton getButtonAdd() {
 		if (buttonAdd == null) {	
 			buttonAdd = new JButton("  +  ");
+			buttonAdd.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					addBlague();
+					textField.setText("Blague envoyée");
+				}
+			});
 		}
 		return buttonAdd;
 	}
