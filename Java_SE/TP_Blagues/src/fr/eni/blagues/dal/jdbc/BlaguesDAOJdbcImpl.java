@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.blagues.bo.Blague;
@@ -16,7 +18,7 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 	
 	private final static String INSERT = "INSERT INTO Blagues(libelle) VALUES(?)";
 	
-	private final static String SELECT_ALL = "SELECT * FROM Blagues";
+	private final static String SELECT_ALL = "SELECT * FROM Blagues ORDER BY note DESC";
 	
 	private final static String SELECT_TOP_1 = "SELECT TOP 1 * FROM Blagues ORDER BY NEWID()";
 	
@@ -34,10 +36,10 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 		
 		int idBlague = rs.getInt("id");
 		String libelle = rs.getString("libelle");
-		float note = rs.getInt("note");
+		float note = rs.getFloat("note");
 		int nbNotes = rs.getInt("nombreNote");
 		
-		blague = new Blague(libelle, note, nbNotes);
+		blague = new Blague(idBlague, libelle, note, nbNotes);
 		
 		return blague;
 	}
@@ -65,7 +67,20 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 
 	@Override
 	public List<Blague> selectAll() throws fr.eni.blagues.dal.DALException {
-		return null;
+		List<Blague> blagues = new ArrayList<Blague>();
+		
+		try(Connection cnx = JdbcTools.getConnection()) {
+			Statement stmt = cnx.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(SELECT_ALL);
+			while(rs.next()) {
+				Blague a = map(rs); //transforme une ligne d'enregistrement en objet
+				blagues.add(a); //ajoute l'objet � la liste
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return blagues;
 	}
 
 	@Override

@@ -12,6 +12,11 @@ import fr.eni.papeterie.bo.Article;
 
 public class EcranCatalogue extends JFrame implements IPanelBoutonsObserver {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JScrollPane scrollPane;
 	
 	private JTable tableCatalogue;

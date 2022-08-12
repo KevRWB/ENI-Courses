@@ -20,6 +20,16 @@ public class Blague {
 		this.note = note;
 		this.nbNotes = nbNotes;
 	}
+	
+
+
+	public Blague(int idBlague, String libelle, float note, int nbNotes) {
+		super();
+		this.idBlague = idBlague;
+		this.libelle = libelle;
+		this.note = note;
+		this.nbNotes = nbNotes;
+	}
 
 
 	public Blague() {}
@@ -50,6 +60,23 @@ public class Blague {
 	}
 	public void setNbNotes(int nbNotes) {
 		this.nbNotes = nbNotes;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Blague [idBlague=");
+		builder.append(idBlague);
+		builder.append(", libelle=");
+		builder.append(libelle);
+		builder.append(", note=");
+		builder.append(note);
+		builder.append(", nbNotes=");
+		builder.append(nbNotes);
+		builder.append("]");
+		builder.append(System.lineSeparator());
+		return builder.toString();
 	}
 	
 
