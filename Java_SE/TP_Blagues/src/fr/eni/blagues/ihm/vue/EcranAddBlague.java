@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import fr.eni.blagues.bll.BLLException;
 import fr.eni.blagues.bo.Blague;
@@ -38,10 +37,8 @@ public class EcranAddBlague extends JFrame{
 		setLocation(50, 500);
 		
 		add(getPanelGeneral());	
-		// Ligne 1
 		addComponentToPanel(0, 0, getLblLibelle(), panelGeneral );
 		addComponentToPanel(1, 0, getTextArea(), panelGeneral );
-		// Ligne 2
 		addComponentToPanel(2, 0, getButtonAdd(), panelGeneral );	
 	}
 
@@ -52,7 +49,6 @@ public class EcranAddBlague extends JFrame{
 		try {
 			blagueController.insert(blague);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -81,6 +77,7 @@ public class EcranAddBlague extends JFrame{
 	public void setPanelGeneral(JPanel panelGeneral) {
 		this.panelGeneral = panelGeneral;
 	}
+	
 	public JLabel getLblLibelle() {
 		if (lblLibelle == null) {
 			lblLibelle = new JLabel("Libelle");
@@ -92,7 +89,8 @@ public class EcranAddBlague extends JFrame{
 	}
 	public JTextArea getTextArea() {
 		if (textArea == null) {
-			textArea = new JTextArea(50, 50);
+			textArea = new JTextArea();
+			textArea.setBounds(15,20,250,150);
 		}
 		return textArea;
 	}
