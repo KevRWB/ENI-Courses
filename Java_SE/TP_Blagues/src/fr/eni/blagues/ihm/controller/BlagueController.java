@@ -85,6 +85,7 @@ public class BlagueController {
 //		for(BlagueControllerListener listener : listeners) {
 //			listener.updateData();
 //		}
+		//Lambda depuis Java 8
 		listeners.forEach(l -> l.updateData());
 	}
 	
