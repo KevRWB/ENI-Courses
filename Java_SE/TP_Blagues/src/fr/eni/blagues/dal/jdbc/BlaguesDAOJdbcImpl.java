@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.blagues.bo.Blague;
@@ -16,11 +18,16 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 	
 	private final static String INSERT = "INSERT INTO Blagues(libelle) VALUES(?)";
 	
-	private final static String SELECT_ALL = "SELECT * FROM Blagues";
+	private final static String SELECT_ALL = "SELECT * FROM Blagues ORDER BY note DESC";
 	
 	private final static String SELECT_TOP_1 = "SELECT TOP 1 * FROM Blagues ORDER BY NEWID()";
 	
-	private final static String UPDATE = "SET note = (SELECT((note*nombreNote) + ?) / (nombreNote + 1) FROM Blagues WHERE id = ?), nombreNote = nombreNote + 1 WHERE id = ?";
+	private final static String UPDATE = "UPDATE Blagues\r\n"
+			+ "SET note = (SELECT ((note * nombreNote) + ?) / (nombreNote + 1)\r\n"
+			+ "			FROM Blagues\r\n"
+			+ "			WHERE id = ?),\r\n"
+			+ "	nombreNote = nombreNote + 1\r\n"
+			+ "WHERE id = ?;";
 
 	
 	//MAP METHOD
@@ -29,10 +36,10 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 		
 		int idBlague = rs.getInt("id");
 		String libelle = rs.getString("libelle");
-		float note = rs.getInt("note");
+		float note = rs.getFloat("note");
 		int nbNotes = rs.getInt("nombreNote");
 		
-		blague = new Blague(libelle, note, nbNotes);
+		blague = new Blague(idBlague, libelle, note, nbNotes);
 		
 		return blague;
 	}
@@ -60,7 +67,20 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 
 	@Override
 	public List<Blague> selectAll() throws fr.eni.blagues.dal.DALException {
-		return null;
+		List<Blague> blagues = new ArrayList<Blague>();
+		
+		try(Connection cnx = JdbcTools.getConnection()) {
+			Statement stmt = cnx.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(SELECT_ALL);
+			while(rs.next()) {
+				Blague a = map(rs); //transforme une ligne d'enregistrement en objet
+				blagues.add(a); //ajoute l'objet � la liste
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return blagues;
 	}
 
 	@Override
@@ -82,8 +102,20 @@ public class BlaguesDAOJdbcImpl implements BlaguesDAO {
 	}
 
 	@Override
-	public void update(Blague Blague) throws fr.eni.blagues.dal.DALException {
-		// TODO Auto-generated method stub
+	public void update(Blague blague) throws fr.eni.blagues.dal.DALException {
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
+			
+			pStmt.setFloat(1, blague.getNote());
+			pStmt.setInt(2, blague.getIdBlague());
+			pStmt.setInt(3, blague.getIdBlague());
+			
+			pStmt.executeUpdate();	
+			System.out.println(blague.getTxtBlague());
+			System.out.println("ID " + blague.getIdBlague());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

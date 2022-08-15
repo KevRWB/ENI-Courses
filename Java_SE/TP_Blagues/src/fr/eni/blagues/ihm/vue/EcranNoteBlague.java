@@ -5,8 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -18,6 +19,11 @@ import javax.swing.JTextArea;
 import fr.eni.blagues.bll.BLLException;
 import fr.eni.blagues.bo.Blague;
 import fr.eni.blagues.ihm.controller.BlagueController;
+import fr.eni.blagues.ihm.controller.BlagueController.BlagueControllerListener;
+
+public class EcranNoteBlague extends JFrame implements BlagueControllerListener{
+
+	private static final long serialVersionUID = 1L;
 
 public class EcranNoteBlague extends JFrame{
 	/**
@@ -26,21 +32,22 @@ public class EcranNoteBlague extends JFrame{
 	private static final long serialVersionUID = 
 
 	private BlagueController blagueController = BlagueController.getInstance();
-	
+		
 	private JPanel panelGeneral;
 	private JPanel panelBas;
 	private JTextArea textArea;
 	private JSlider panelSlider;
 	private JLabel lblNote;
 	private JButton buttonOk;
+	private JLabel lblSlider;
 	
 	
 	public EcranNoteBlague() {
 		setTitle("Palais de la boutade");
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setSize(new Dimension(500, 450));
-		setLocation(400, 100);
+		setLocation(50, 50);
 		
 		add(getPanelGeneral(), BorderLayout.CENTER);
 
@@ -54,26 +61,21 @@ public class EcranNoteBlague extends JFrame{
 		addComponentToPanel(1, 1, getLblNote(), panelBas);
 		addComponentToPanel(1, 2, getPanelSlider(), panelBas);
 		addComponentToPanel(1, 3, getButtonOk(), panelBas);
+		addComponentToPanel(2, 1, getLblSlider(), panelBas);
 		
 		//METHODS
 		AfficherBlague();
 		
-
+		//Listener
+		blagueController.addListener(this);
 	}
 
-	
 	//Methods
-	private Blague getBlagueTopUn() {
-		Blague blague = null;
-	
-		try {
-			return blagueController.getBlagueTopUn();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-		return blague;
+	@Override
+	public void printBlagueActive() {
+		textArea.setText(blagueController.getBlagueActive().getTxtBlague());
+		
 	}
-	
 	private void AfficherBlague() {
 		Blague blague = null;
 		try {
@@ -121,6 +123,9 @@ public class EcranNoteBlague extends JFrame{
 	public JSlider getPanelSlider() {
 		if (panelSlider == null) {
 			panelSlider = new JSlider(0, 5);
+			panelSlider.setPaintTicks(true);
+		    panelSlider.setPaintLabels(true); 
+		    panelSlider.setMajorTickSpacing(1); 
 		}
 		return panelSlider;
 	}
@@ -139,6 +144,20 @@ public class EcranNoteBlague extends JFrame{
 	public JButton getButtonOk() {
 		if (buttonOk == null) {	
 			buttonOk = new JButton("Ok");
+			buttonOk.addActionListener( new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					float note = panelSlider.getValue();
+					Blague blagueActive = blagueController.getBlagueActive();
+					blagueActive.setNote(note);
+					try {
+						blagueController.update(blagueActive);
+					} catch (BLLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
 		}
 		return buttonOk;
 	}
@@ -151,10 +170,24 @@ public class EcranNoteBlague extends JFrame{
 		}
 		return panelBas;
 	}
-
+	
 	public void setPanelBas(JPanel panelBas) {
 		this.panelBas = panelBas;
 	}
+	public JLabel getLblSlider() {
+		if (lblSlider == null) {
+			lblSlider = new JLabel();
+			
+		}
+		return lblSlider;
+	}
+	@Override
+	public void updateData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 	
 }

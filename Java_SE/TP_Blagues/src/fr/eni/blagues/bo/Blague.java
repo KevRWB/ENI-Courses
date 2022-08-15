@@ -8,15 +8,24 @@ public class Blague {
 	private int nbNotes;
 	
 	//Constructor
-	public Blague(String txtBlague, float note) {
+	public Blague(String txtBlague) {
 		super();
 		this.libelle = txtBlague;
-		this.note = note;
 	}
 	
 
 	public Blague(String libelle, float note, int nbNotes) {
 		super();
+		this.libelle = libelle;
+		this.note = note;
+		this.nbNotes = nbNotes;
+	}
+	
+
+
+	public Blague(int idBlague, String libelle, float note, int nbNotes) {
+		super();
+		this.idBlague = idBlague;
 		this.libelle = libelle;
 		this.note = note;
 		this.nbNotes = nbNotes;
@@ -29,6 +38,11 @@ public class Blague {
 	public int getIdBlague() {
 		return idBlague;
 	}
+	
+	public void setIdBlague(int idBlague) {
+		this.idBlague = idBlague;
+	}
+
 	public String getTxtBlague() {
 		return libelle;
 	}
@@ -38,7 +52,7 @@ public class Blague {
 	public float getNote() {
 		return note;
 	}
-	public void setNote(int note) {
+	public void setNote(float note) {
 		this.note = note;
 	}
 	public int getNbNotes() {
@@ -46,6 +60,23 @@ public class Blague {
 	}
 	public void setNbNotes(int nbNotes) {
 		this.nbNotes = nbNotes;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Blague [idBlague=");
+		builder.append(idBlague);
+		builder.append(", libelle=");
+		builder.append(libelle);
+		builder.append(", note=");
+		builder.append(note);
+		builder.append(", nbNotes=");
+		builder.append(nbNotes);
+		builder.append("]");
+		builder.append(System.lineSeparator());
+		return builder.toString();
 	}
 	
 

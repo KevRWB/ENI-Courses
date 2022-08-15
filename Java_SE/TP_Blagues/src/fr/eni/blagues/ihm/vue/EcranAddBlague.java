@@ -1,42 +1,58 @@
 package fr.eni.blagues.ihm.vue;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
+
+import fr.eni.blagues.bll.BLLException;
+import fr.eni.blagues.bo.Blague;
+import fr.eni.blagues.ihm.controller.BlagueController;
 
 public class EcranAddBlague extends JFrame{
-	
+
+	private static final long serialVersionUID = 1L;
+
+	private BlagueController blagueController = BlagueController.getInstance();
 	
 	private JPanel panelGeneral;
 	private JLabel lblLibelle;
-	private JTextField textField;	
+	private JTextArea textArea;	
 	private JButton buttonAdd;
 	
 	public EcranAddBlague() {
 		setTitle("Antichambre du rire");
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(new Dimension(500, 450));
-		setLocation(600, 200);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		setSize(new Dimension(450, 300));
+		setLocation(50, 500);
 		
-		add(getPanelGeneral());
-		
-		// Ligne 1
+		add(getPanelGeneral());	
 		addComponentToPanel(0, 0, getLblLibelle(), panelGeneral );
-		addComponentToPanel(1, 0, getTextField(), panelGeneral );
-		// Ligne 2
+		addComponentToPanel(1, 0, getTextArea(), panelGeneral );
 		addComponentToPanel(2, 0, getButtonAdd(), panelGeneral );	
 	}
 
+	//METHODS
+	private void addBlague() {
+		String txtBlague = textArea.getText();
+		Blague blague = new Blague(txtBlague, 0, 0);
+		try {
+			blagueController.insert(blague);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//Methods Placement Item
 	private void addComponentToPanel(int ligne, int col, int height, JComponent component, JPanel panel) {
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -61,6 +77,7 @@ public class EcranAddBlague extends JFrame{
 	public void setPanelGeneral(JPanel panelGeneral) {
 		this.panelGeneral = panelGeneral;
 	}
+	
 	public JLabel getLblLibelle() {
 		if (lblLibelle == null) {
 			lblLibelle = new JLabel("Libelle");
@@ -70,18 +87,28 @@ public class EcranAddBlague extends JFrame{
 	public void setLblLibelle(JLabel lblLibelle) {
 		this.lblLibelle = lblLibelle;
 	}
-	public JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField(100);
+	public JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea();
+			textArea.setBounds(15,20,250,150);
 		}
-		return textField;
+		return textArea;
 	}
-	public void setTextField(JTextField textField) {
-		this.textField = textField;
+	public void setTextArea(JTextArea textArea) {
+		this.textArea = textArea;
 	}
 	public JButton getButtonAdd() {
 		if (buttonAdd == null) {	
 			buttonAdd = new JButton("  +  ");
+			buttonAdd.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					addBlague();
+					textArea.setText("Blague envoyée");
+					blagueController.notifyUpdate();
+				}
+			});
 		}
 		return buttonAdd;
 	}
