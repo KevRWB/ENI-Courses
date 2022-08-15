@@ -20,6 +20,11 @@ import fr.eni.blagues.bo.Blague;
 import fr.eni.blagues.ihm.controller.BlagueController;
 
 public class EcranNoteBlague extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 
+
 	private BlagueController blagueController = BlagueController.getInstance();
 	
 	private JPanel panelGeneral;
