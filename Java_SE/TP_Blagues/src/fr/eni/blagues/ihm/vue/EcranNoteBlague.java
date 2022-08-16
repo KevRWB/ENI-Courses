@@ -25,12 +25,6 @@ public class EcranNoteBlague extends JFrame implements BlagueControllerListener{
 
 	private static final long serialVersionUID = 1L;
 
-public class EcranNoteBlague extends JFrame{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 
-
 	private BlagueController blagueController = BlagueController.getInstance();
 		
 	private JPanel panelGeneral;
@@ -191,3 +185,4 @@ public class EcranNoteBlague extends JFrame{
 	
 	
 }
+
