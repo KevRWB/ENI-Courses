@@ -44,6 +44,10 @@ public class Servlets extends HttpServlet {
 			out.print("<body>");
 			out.print("<h1>Veuillez vous identifier :</h1>");
 			out.print("<h2>"+ new Date() +"</h2>");
+			out.print("<form method='post' action='login'>"); //action pas obgligatoire. Par default a lui même
+			out.print("<input name='txtlogin' type='text' /><br/>");
+			out.print("<input name='txt' type='text' /><br/>");
+			out.print("</form>");
 			out.print("</body>");
 			
 			out.print("<!DOCTYPE html>");
