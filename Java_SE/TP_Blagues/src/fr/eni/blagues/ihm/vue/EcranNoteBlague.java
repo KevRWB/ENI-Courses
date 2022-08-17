@@ -185,3 +185,4 @@ public class EcranNoteBlague extends JFrame implements BlagueControllerListener{
 	
 	
 }
+
