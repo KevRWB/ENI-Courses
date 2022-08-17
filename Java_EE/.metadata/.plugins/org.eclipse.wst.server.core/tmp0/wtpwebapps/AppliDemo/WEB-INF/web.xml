@@ -2,18 +2,19 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>AppliDemo</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+  	<welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
-  <servlet>
-  	<servlet-name>PremiereServletConfigurationWebXML</servlet-name>
-  	<servlet-class>fr.eni.javaee.module2.PremiereServletConfigurationWebXML</servlet-class>
-  </servlet>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/modules/module2/demonstrations/erreur500.html</location>
+  </error-page>
   
-  <servlet-mapping>
-  	<servlet-name>PremiereServletConfigurationWebXML</servlet-name>
-  	<url-pattern>/modules/module2/PremiereServletConfigurationWebXML</url-pattern>
-  </servlet-mapping>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/modules/module2/demonstrations/erreur404.html</location>
+  </error-page>
+  		
 </web-app>
 
 
