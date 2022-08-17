@@ -231,3 +231,5 @@
 0:0:0:0:0:0:0:1 - - [17/Aug/2022:15:08:54 +0200] "GET /AppliDemo/modules/module2/demonstrations/demonstration7.html HTTP/1.1" 200 4466
 127.0.0.1 - - [17/Aug/2022:15:13:37 +0200] "GET / HTTP/1.1" 404 681
 0:0:0:0:0:0:0:1 - - [17/Aug/2022:15:13:45 +0200] "GET /AppliDemo/modules/module2/ServletIllegalStateException HTTP/1.1" 500 11
+127.0.0.1 - - [17/Aug/2022:15:16:55 +0200] "GET / HTTP/1.1" 404 681
+0:0:0:0:0:0:0:1 - - [17/Aug/2022:15:19:12 +0200] "GET /AppliDemo/modules/module2/tps/tp2.html HTTP/1.1" 200 3028

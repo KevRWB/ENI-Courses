@@ -5,6 +5,20 @@
   	<welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
+  <servlet>
+  	<servlet-name>ServletAvecParametreInitialisationWebXM</servlet-name>
+  	<servlet-class>/AppliDemo/src/main/java/fr/eni/javaee/module2/ServletAvecParametreInitialisationWebXM.java</servlet-class>
+  	<init-param>
+  		<param-name>nom_ecole</param-name>
+  		<param-value>ENI Ecole Rennes</param-value>
+  	</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ServletAvecParametreInitialisationWebXM</servlet-name>
+  	<url-pattern>/modules/module2/ServletAvecParametreInitialisationWebXM</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
   	<error-code>500</error-code>
   	<location>/modules/module2/demonstrations/erreur500.html</location>
