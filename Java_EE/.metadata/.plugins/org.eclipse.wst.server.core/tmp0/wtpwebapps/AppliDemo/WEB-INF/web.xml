@@ -4,16 +4,6 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  
-  <servlet>
-  	<servlet-name>PremiereServletConfigurationWebXML</servlet-name>
-  	<servlet-class>fr.eni.javaee.module2.PremiereServletConfigurationWebXML</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>PremiereServletConfigurationWebXML</servlet-name>
-  	<url-pattern>/modules/module2/PremiereServletConfigurationWebXML</url-pattern>
-  </servlet-mapping>
 </web-app>
 
 

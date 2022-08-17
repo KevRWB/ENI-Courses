@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-<<<<<<<< HEAD:Java_EE/.metadata/.plugins/org.eclipse.core.resources/.history/e6/401ef8784c1d001d1f0f9b6ad6ab1520
     <wb-module deploy-name="01-helloworld">
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <property name="context-root" value="01-helloworld"/>
         <property name="java-output-path" value="/01-helloworld/build/classes"/>
-========
-    <wb-module deploy-name="01_TestServeurHome">
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <property name="context-root" value="01_TestServeurHome"/>
-        <property name="java-output-path" value="/01_TestServeurHome/build/classes"/>
->>>>>>>> 3e649bc705f98017df8eff34d109dfa576c4c292:JAVA_EE_HOME/01_TestServeurHome/.settings/org.eclipse.wst.common.component
     </wb-module>
 </project-modules>
