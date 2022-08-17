@@ -1,0 +1,33 @@
+CREATE DATABASE BDD_Blagues;
+USE BDD_Blagues;
+GO
+
+CREATE TABLE Blagues (
+	id INT IDENTITY(1,1) CONSTRAINT pk_blagues PRIMARY KEY,
+	libelle VARCHAR(250) NOT NULL,
+	note FLOAT NOT NULL DEFAULT 0.0 
+	CONSTRAINT ck_blagues_note CHECK (note BETWEEN 0 AND 5),
+	nombreNote INT NOT NULL DEFAULT 0 
+	CONSTRAINT ck_blagues_nombreNote CHECK (nombreNote >= 0)
+);
+
+INSERT INTO Blagues(libelle) VALUES
+('Quelle est la différence entre ?'),
+('Toto entre dans une pharmacie et achète une brosse à dents. Le pharmacien lui dit alors :
+- Et avec ça ?
+- Bah avec ça, je me brosse les dents !');
+
+SELECT TOP 1 * 
+FROM Blagues
+ORDER BY NEWID();
+
+UPDATE Blagues
+SET note = (SELECT ((note * nombreNote) + 5) / (nombreNote + 1)
+			FROM Blagues
+			WHERE id = 1),
+	nombreNote = nombreNote + 1
+WHERE id = 1;
+
+SELECT * FROM Blagues
+
+UPDATE Blagues SET note = 0, nombreNote = 0 WHERE id = 1;

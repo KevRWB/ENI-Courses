@@ -1,0 +1,109 @@
+package fr.eni.tpblague.ihm;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import fr.eni.tpblague.bll.BllException;
+
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.GridBagConstraints;
+import javax.swing.JTextField;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+public class AjoutFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	
+	private JPanel panel;
+	private JLabel lblLibelle;
+	private JTextField txtLibelle;
+	private JButton btnAjouter;
+
+	public AjoutFrame() {
+		setTitle("Antichambre du rire");
+		setBounds(900, 100, 450, 300);
+		setContentPane(getPanel());
+		setVisible(true);
+	}
+	
+	private JPanel getPanel() {
+		if(panel == null) {
+			panel = new JPanel();
+			
+			GridBagLayout gbl_contentPane = new GridBagLayout();
+			gbl_contentPane.columnWidths = new int[]{0, 0, 0};
+			gbl_contentPane.rowHeights = new int[]{0, 0, 0};
+			gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+			gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+			panel.setLayout(gbl_contentPane);
+			
+			
+			ajouterComposant(getLblLibelle(), panel, 0, 0, 1, false);
+			ajouterComposant(getTxtLibelle(), panel, 0, 1, 1, true);
+			ajouterComposant(getBtnAjouter(), panel, 1, 0, 2, false);
+		}
+		return panel;
+	}
+	
+	/**
+	 * Ajoute un composant sur un panel.
+	 * @param component Le composant à ajouter.
+	 * @param panel Le panel sur lequel on ajoute le composant.
+	 * @param ligne La ligne sur laquelle on ajoute le composant.
+	 * @param colonne La colonne sur laquelle on ajoute le composant.
+	 * @param largeur La largeur (en nombre de colonnes) que doit prendre le composant.
+	 * @param fill Si true remplit la colonne, sinon ne prend que la place nécessaire.
+	 */
+	private void ajouterComposant(JComponent component, JPanel panel, int ligne, int colonne, int largeur, boolean fill) {
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.gridx = colonne;
+		gbc.gridy = ligne;
+		gbc.gridwidth = largeur;
+		if(fill) {
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+		}
+		panel.add(component, gbc);
+	}
+
+	private JLabel getLblLibelle() {
+		if (lblLibelle == null) {
+			lblLibelle = new JLabel("Libellé :");
+		}
+		return lblLibelle;
+	}
+	private JTextField getTxtLibelle() {
+		if (txtLibelle == null) {
+			txtLibelle = new JTextField();
+			txtLibelle.setColumns(10);
+		}
+		return txtLibelle;
+	}
+	private JButton getBtnAjouter() {
+		if (btnAjouter == null) {
+			btnAjouter = new JButton("+");
+			btnAjouter.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String libelle = getTxtLibelle().getText();
+					try {
+						Controller.getInstance().ajouterBlague(libelle);
+						dispose(); //ferme la fenêtre
+					} catch (BllException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(AjoutFrame.this, e1.getMessage());
+					}
+				}
+			});
+		}
+		return btnAjouter;
+	}
+}

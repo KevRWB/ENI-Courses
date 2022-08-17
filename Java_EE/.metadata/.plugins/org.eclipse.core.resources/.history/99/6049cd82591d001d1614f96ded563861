@@ -1,0 +1,85 @@
+package fr.eni.tpblague.ihm;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import fr.eni.tpblague.bll.BllException;
+
+public class MenuFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
+	private JPanel panel;
+	
+	private JButton btnAfficheUneBlague;
+	
+	private JButton btnAjouter;
+
+	public MenuFrame() {
+		super("Menu du jour");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(600, 250, 250, 300);
+		setVisible(true);		
+		setContentPane(getPanel());
+	}
+
+	private JPanel getPanel() {
+		if(panel == null) {
+			panel = new JPanel();
+			panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+			panel.setBackground(Color.red);
+			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+			panel.add(getBtnAfficheUneBlague());
+			panel.add(Box.createRigidArea(new Dimension(0, 10)));
+			panel.add(getBtnAjouter());
+		}
+		return panel;
+	}
+	
+	public JButton getBtnAfficheUneBlague() {
+		if(btnAfficheUneBlague== null) {
+			btnAfficheUneBlague = new JButton("Fais-moi rire");
+			btnAfficheUneBlague.setAlignmentX(CENTER_ALIGNMENT);
+			btnAfficheUneBlague.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						Controller.getInstance().faisMoiRire();
+					} catch (BllException ex) {
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(MenuFrame.this, "Impossible d'afficher la blague : " + ex.getMessage());
+					}
+				}
+			});
+		}
+		return btnAfficheUneBlague;
+	}
+
+	public JButton getBtnAjouter() {
+		if(btnAjouter == null) {
+			btnAjouter = new JButton("Ajouter");
+			btnAjouter.setAlignmentX(CENTER_ALIGNMENT);
+			btnAjouter.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Controller.getInstance().afficherFormulaireAjout();
+				}
+			});
+		}
+		return btnAjouter;
+	}
+
+	
+}

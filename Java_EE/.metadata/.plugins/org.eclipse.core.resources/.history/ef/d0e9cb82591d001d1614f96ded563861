@@ -1,0 +1,58 @@
+package fr.eni.tpblague.bo;
+
+public class Blague {
+
+	private int id;
+	
+	private String libelle;
+	
+	private float note;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getLibelle() {
+		return libelle;
+	}
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	
+	public float getNote() {
+		return note;
+	}
+	public void setNote(float note) {
+		this.note = note;
+	}
+	
+	public Blague() { }
+	
+	public Blague(String libelle) {
+		this.libelle = libelle;
+	}
+	
+	public Blague(int id, String libelle, float note) {
+		this(libelle);
+		this.id = id;
+		this.note = note;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Blague [id=");
+		builder.append(id);
+		builder.append(", libelle=");
+		builder.append(libelle);
+		builder.append(", note=");
+		builder.append(note);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+}

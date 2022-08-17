@@ -1,0 +1,128 @@
+package fr.eni.tpblague.ihm;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import fr.eni.tpblague.bll.BllException;
+import fr.eni.tpblague.bo.Blague;
+import fr.eni.tpblague.ihm.Controller.ControllerAdapter;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.JSlider;
+import javax.swing.border.TitledBorder;
+
+public class BlagueFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	
+	private JPanel panel;
+	private JTextArea txtLibelleBlague;
+	
+	private JPanel panelNote;
+	private JLabel lblNote;
+	private JSlider sliderNote;
+	private JButton btnAjouterNote;
+	
+	private Blague blagueAffichee;
+
+	public BlagueFrame() {
+		super("Palais de la boutade");
+		setLocationByPlatform(true);
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		
+		getContentPane().add(getPanel(), BorderLayout.CENTER);
+		getContentPane().add(getPanelNote(), BorderLayout.SOUTH);
+		
+		Controller.getInstance().registerListener(new ControllerAdapter() {
+
+			@Override
+			public void onFaisMoiRire(Blague blague) {
+				blagueAffichee = blague;
+				getTxtLibelleBlague().setText(blague.getLibelle());
+			}
+			
+		});
+	}
+	
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setLayout(new GridBagLayout());
+			
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.gridx = 0;
+			gbc.gridy = 0;
+			panel.add(getTxtLibelleBlague(), gbc);
+		}
+		return panel;
+	}
+	
+	private JTextArea getTxtLibelleBlague() {
+		if (txtLibelleBlague == null) {
+			txtLibelleBlague = new JTextArea(10, 35);
+			txtLibelleBlague.setLineWrap(true);
+		}
+		return txtLibelleBlague;
+	}
+	
+	public JPanel getPanelNote() {
+		if(panelNote == null) {
+			panelNote = new JPanel();
+			panelNote.setLayout(new BoxLayout(panelNote, BoxLayout.X_AXIS));
+			panelNote.add(getLblNote());
+			panelNote.add(getSliderNote());
+			panelNote.add(getBtnAjouterNote());
+		}
+		return panelNote;
+	}
+
+	public JLabel getLblNote() {
+		if(lblNote == null) {
+			lblNote = new JLabel("Note :");
+		}
+		return lblNote;
+	}
+
+	public JSlider getSliderNote() {
+		if(sliderNote == null) {
+			sliderNote = new JSlider(0, 5);
+		}
+		return sliderNote;
+	}
+
+	public JButton getBtnAjouterNote() {
+		if(btnAjouterNote == null) {
+			btnAjouterNote = new JButton("OK");
+			btnAjouterNote.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int note = getSliderNote().getValue();
+					if(blagueAffichee != null) {
+						try {
+							Controller.getInstance().setNoteToBlague(note, blagueAffichee);
+						} catch (BllException ex) {
+							ex.printStackTrace();
+							JOptionPane.showMessageDialog(BlagueFrame.this, ex.getMessage());
+						}
+					} else {
+						JOptionPane.showMessageDialog(BlagueFrame.this, "Vous devez d'abord afficher une blague pour pouvoir la noter.");
+					}
+				}
+			});
+		}
+		return btnAjouterNote;
+	}
+	
+}

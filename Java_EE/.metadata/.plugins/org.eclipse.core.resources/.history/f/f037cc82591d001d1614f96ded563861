@@ -1,0 +1,17 @@
+package fr.eni.tpblague.dao;
+
+import java.util.List;
+
+import fr.eni.tpblague.bo.Blague;
+
+public interface BlagueDao {
+
+	Blague getUneBlagueAuHasard() throws DaoException;
+
+	void ajoute(Blague nouvelleBlague) throws DaoException;
+
+	List<Blague> getTop3() throws DaoException;
+
+	void ajouterNote(int note, int id) throws DaoException;
+	
+}

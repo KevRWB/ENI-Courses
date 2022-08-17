@@ -1,0 +1,75 @@
+package fr.eni.tpblague.ihm;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
+
+import fr.eni.tpblague.bll.BlagueManager;
+import fr.eni.tpblague.bll.BllException;
+import fr.eni.tpblague.bo.Blague;
+
+public class BlagueTableModel extends AbstractTableModel {
+
+	private static final long serialVersionUID = 1L;
+
+	private String[] columnNames = {"ID", "Libellé", "note"};
+	
+	private List<Blague> data = new ArrayList<>();
+	
+	public BlagueTableModel() throws BllException {
+		updateData();
+	}
+	
+	@Override
+	public int getRowCount() {
+		return data.size();
+	}
+	
+	
+
+	@Override
+	public int getColumnCount() {
+		return columnNames.length;
+	}
+
+	@Override
+	public String getColumnName(int column) {
+		return columnNames[column];
+	}
+
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		
+		Object result = null;
+		
+		if(rowIndex < data.size()) {
+			switch(columnIndex) {
+			case 0:
+				result = data.get(rowIndex).getId();
+				break;
+			case 1:
+				result = data.get(rowIndex).getLibelle();
+				break;
+			case 2:
+				result = data.get(rowIndex).getNote();
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
+	public Blague getValueAt(int rowIndex) {
+		if(rowIndex >= 0 && rowIndex < getRowCount()) {
+			return data.get(rowIndex);
+		}
+		return null;
+	}
+	
+	public void updateData() throws BllException {
+		data = BlagueManager.getInstance().getTop3();
+		fireTableDataChanged();
+	}
+
+}

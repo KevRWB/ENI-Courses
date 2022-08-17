@@ -1,0 +1,143 @@
+package fr.eni.tpblague.ihm;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.SwingUtilities;
+
+import fr.eni.tpblague.bll.BlagueManager;
+import fr.eni.tpblague.bll.BllException;
+import fr.eni.tpblague.bo.Blague;
+
+public class Controller {
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				new MenuFrame();
+				new BlagueFrame();
+				new ClassementFrame();
+			}
+		});
+	}
+
+	/** SINGLETON **/
+	static class ControllerHolder {
+		private static Controller instance = new Controller();
+	}	
+	
+	public static Controller getInstance() {
+		return ControllerHolder.instance;
+	}
+	
+	private Controller() { }
+	/** FIN SINGLETON **/
+	
+	/** PATTERN OBSERVER **/
+	/*
+	 * On met l'interface en private afin d'empêcher d'autres classes de pouvoir l'implémenter.
+	 * Résultat : elles devront passer la classe abstraite ControllerAdapter (définie juste après).
+	 */
+	private interface ControllerListener {
+		/**
+		 * Méthode appelée lorsque l'on veut afficher une blague.
+		 */
+		void onFaisMoiRire(Blague blague);
+		
+		/**
+		 * Méthode appelée lorsque l'on a ajouté une blague avec succès dans la BDD.
+		 */
+		void onNouvelleBlague();
+		
+		void onUpdate();
+		
+		/**
+		 * Méthode appelée lorsque l'on a ajouté une blague avec succès dans la BDD.
+		 */
+		void onBlagueAjoutee();
+	}
+	
+	/*
+	 * Pour ne pas avoir à implémenter toutes les méthodes de l'interface,
+	 * on met en place une classe abstraite qui va les implémenter.
+	 * Comme cela, lorsque l'on mettra en place un listener, plutôt que d'implémenter l'interface, 
+	 * on va créer une instance anonyme de la classe abstraite.
+	 */
+	public static abstract class ControllerAdapter implements ControllerListener {
+		@Override
+		public void onFaisMoiRire(Blague blague) { }
+		@Override
+		public void onNouvelleBlague() { }
+		@Override
+		public void onUpdate() { }
+		@Override
+		public void onBlagueAjoutee() { }
+	}
+	
+	private List<ControllerAdapter> listeners = new ArrayList<>();
+	
+	public void registerListener(ControllerAdapter listener) {
+		listeners.add(listener);
+	}
+	/** FIN PATTERN OBSERVER ***/
+	
+	/**
+	 * Récupère une blague au hasard dans la BDD (en passant par la BLL) et l'envoie à tous les listeners.
+	 * @throws BllException
+	 */
+	public void faisMoiRire() throws BllException {
+		Blague uneBlague = BlagueManager.getInstance().getUneBlagueAuHasard();
+		for(ControllerListener cl : listeners) {
+			cl.onFaisMoiRire(uneBlague);
+		}
+//		listeners.forEach(l -> l.onFaisMoiRire(uneBlague)); //Java 8+ lambda
+	}
+
+	/**
+	 * Méthode appelée lorsque l'on sélectionne une blague dans le TOP 3 et que l'on souhaite l'afficher.
+	 * @param blague
+	 */
+	public void setBlague(Blague blague) {
+		for(ControllerListener cl : listeners) {
+			cl.onFaisMoiRire(blague);
+		}
+//		listeners.forEach(l -> l.onFaisMoiRire(blague)); //Java 8+ lambda
+	}
+
+	/**
+	 * Ajoute une note à une blague donnée.
+	 * @param note La note que l'on souhaite donner.
+	 * @param blague La blague à laquelle on souhaite ajouter la note.
+	 * @throws BllException
+	 */
+	public void setNoteToBlague(int note, Blague blague) throws BllException {
+		BlagueManager.getInstance().ajouterNote(note, blague.getId());
+		for(ControllerListener l : listeners) {
+			l.onUpdate();
+		}
+//		listeners.forEach(l -> l.onUpdate()); //Java 8+ lambda
+	}
+	
+	/**
+	 * Affiche la fenêtre permettant d'ajouter une blague.
+	 */
+	public void afficherFormulaireAjout() {
+		new AjoutFrame();
+	}
+
+	/**
+	 * Ajoute une blague dans la BDD (en passant par la BLL) puis préviens tous les listeners qu'il y a eu une mise à jour.
+	 * @param libelle Le libelle de la blague à ajouter.
+	 * @throws BllException
+	 */
+	public void ajouterBlague(String libelle) throws BllException {
+		BlagueManager.getInstance().insert(libelle);
+		
+		for(ControllerListener cl : listeners) {
+			cl.onUpdate();
+		}
+//		listeners.forEach(l -> l.onUpdate()); //Java 8+ lambda
+	}
+}

@@ -1,0 +1,98 @@
+package fr.eni.tpblague.bll;
+
+import java.util.List;
+
+import fr.eni.tpblague.bo.Blague;
+import fr.eni.tpblague.dao.DaoException;
+import fr.eni.tpblague.dao.DaoFactory;
+
+public class BlagueManager {
+
+	private static class BlagueManagerHolder {
+		private static BlagueManager instance = new BlagueManager();
+	}
+	
+	private BlagueManager() { }
+	
+	public static BlagueManager getInstance() {
+		return BlagueManagerHolder.instance;
+	}
+	
+	public Blague getUneBlagueAuHasard() throws BllException {
+		try {
+			return DaoFactory.getBlagueDao().getUneBlagueAuHasard();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BllException(e);
+		}
+	}
+	
+	public List<Blague> getTop3() throws BllException {
+		try {
+			return DaoFactory.getBlagueDao().getTop3();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BllException(e);
+		}
+	}
+	
+	public Blague insert(String libelle) throws BllException {
+		BllException ex = new BllException();
+		
+		validationLibelle(libelle, ex);
+		
+		if(ex.hasErreur()) {
+			throw ex;
+		}
+		
+		Blague nouvelleBlague = new Blague(libelle);
+		try {
+			DaoFactory.getBlagueDao().ajoute(nouvelleBlague);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			ex.ajouterErreur(e);
+			throw ex;
+		}
+		
+		return nouvelleBlague;
+	}
+
+	
+	public void ajouterNote(int note, int id) throws BllException {
+		BllException ex = new BllException();		
+		
+		validationId(id, ex);
+		validationNote(note, ex);
+		
+		if(ex.hasErreur()) {
+			throw ex;
+		}
+		
+		try {
+			DaoFactory.getBlagueDao().ajouterNote(note, id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BllException(e);
+		}
+	}
+	
+	private void validationId(int id, BllException ex) {
+		if(id < 1) {
+			ex.ajouterErreur(new ParameterException("L'ID doit être un entier positif >= 1."));
+		}
+	}
+
+	private void validationNote(int note, BllException ex) {
+		if(note < 0) {
+			ex.ajouterErreur(new ParameterException("La note doit être un entier positif (>=0)."));
+		}
+		
+	}
+
+	private void validationLibelle(String libelle, BllException ex) {
+		if(libelle == null || libelle.isBlank()) {
+			ex.ajouterErreur(new ParameterException("Le libellé est obligatoire."));
+		}
+	}
+
+}

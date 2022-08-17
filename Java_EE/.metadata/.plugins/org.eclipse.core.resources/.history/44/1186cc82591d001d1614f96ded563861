@@ -1,0 +1,118 @@
+package fr.eni.tpblague.dao.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.eni.tpblague.bo.Blague;
+import fr.eni.tpblague.dao.BlagueDao;
+import fr.eni.tpblague.dao.DaoException;
+
+public class BlagueDaoJdbcImpl implements BlagueDao {
+
+	private final static String SELECT_TOP3 = "SELECT TOP 3 * " +
+											  "FROM Blagues ORDER BY note DESC";
+	
+	private final static String SELECT_RANDOM_BLAGUE = "SELECT TOP 1 * " +
+													   "FROM Blagues " +
+													   "ORDER BY NEWID()";
+	
+	private final static String INSERT = "INSERT INTO Blagues(libelle) VALUES (?)";
+	
+	private final static String UPDATE_NOTE = "UPDATE Blagues " +
+											  "SET note = (SELECT ((note * nombreNote) + ?) / (nombreNote + 1) " +
+											  "			   FROM Blagues " +
+											  "			   WHERE id = ?), " +
+											  "	   nombreNote = nombreNote + 1 " +
+											  "WHERE id = ?";
+	
+	@Override
+	public Blague getUneBlagueAuHasard() throws DaoException {
+		Blague blague = null;
+		try(Connection cnx = JdbcTools.getConnection()) {
+			Statement stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_RANDOM_BLAGUE);
+			if(rs.next()) {
+				blague = map(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("DAL - Erreur lors de la récupération des données (" + e.getMessage() + ")");
+		} 
+		return blague;
+	}
+	
+	@Override
+	public List<Blague> getTop3() throws DaoException {
+		List<Blague> blagues = new ArrayList<Blague>();
+		try(Connection cnx = JdbcTools.getConnection()) {
+			Statement stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_TOP3);
+			while(rs.next()) {
+				blagues.add(map(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("DAL - Erreur lors de la récupération des données (" + e.getMessage() + ")");
+		}
+		
+		return blagues;
+	}
+	
+	@Override
+	public void ajoute(Blague nouvelleBlague) throws DaoException {
+		if(nouvelleBlague == null) {
+			throw new DaoException("DAL - Tentative d'insertion d'un objet null");
+		}
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+			pStmt.setString(1, nouvelleBlague.getLibelle());
+			pStmt.executeUpdate();
+			
+			/*
+			 * Récupère l'ensemble des clés primaires générés (ici 1 seule) et l'affecte
+			 * à l'objet passé en paramètre.
+			 */
+			ResultSet rs = pStmt.getGeneratedKeys();
+			if(rs.next()) {
+				int idGenere = rs.getInt(1);
+				nouvelleBlague.setId(idGenere);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("DAL - erreur lors de l'ajout d'une blague en BDD (" + e.getMessage() + ")");
+		}
+	}
+	
+	@Override
+	public void ajouterNote(int note, int id) throws DaoException {
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_NOTE);
+			pStmt.setInt(1, note);
+			pStmt.setInt(2, id);
+			pStmt.setInt(3, id);
+			pStmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new DaoException("DAL - erreur lors de l'ajout de la note (" + e.getMessage() + ")");
+		}
+	}
+	
+	/**
+	 * Cette fonction retourne l'objet créé en fonction d'une ligne d'enregistrement donnée (ResultSet).
+	 * @param rs La ligne d'enregistrement provenant de la BDD.
+	 * @return L'objet créé.
+	 * @throws SQLException
+	 */
+	private Blague map(ResultSet rs) throws SQLException {
+		int id = rs.getInt("id");
+		String libelle = rs.getString("libelle");
+		float note = rs.getFloat("note");
+		return new Blague(id, libelle, note);
+	}
+
+}

@@ -1,0 +1,72 @@
+package fr.eni.tpblague.ihm;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import fr.eni.tpblague.bll.BllException;
+import fr.eni.tpblague.bo.Blague;
+import fr.eni.tpblague.ihm.Controller.ControllerAdapter;
+
+public class ClassementFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	
+	private JScrollPane scrollPane;
+	private JTable table;
+	private BlagueTableModel model;
+	
+	public ClassementFrame() {
+		setTitle("TOP 3 de la blagounette");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(425, 650, 600, 250);
+		setVisible(true);
+		setContentPane(getScrollPane());
+		
+//		Controller.getInstance().registerListener(new ControllerAdapter() {
+//			@Override
+//			public void onUpdate() {
+//				try {
+//					model.updateData();
+//				} catch (BllException e) {
+//					e.printStackTrace();
+//					JOptionPane.showMessageDialog(ClassementFrame.this, e.getMessage());
+//				}
+//			}
+//		});
+	}
+
+	public JScrollPane getScrollPane() {
+		if(scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setViewportView(getTable());
+		}
+		return scrollPane;
+	}
+
+	public JTable getTable() {
+		if(table == null) {
+			try {
+				model = new BlagueTableModel();
+				table = new JTable(model);
+			} catch(BllException e) {
+				table = new JTable();
+			}
+			table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+				
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					if(e.getValueIsAdjusting()) {
+						int index = table.getSelectedRow();
+						Blague blagueSelectionnee = model.getValueAt(index);
+						Controller.getInstance().setBlague(blagueSelectionnee);
+					}
+				}
+			});
+		}
+		return table;
+	}
+}

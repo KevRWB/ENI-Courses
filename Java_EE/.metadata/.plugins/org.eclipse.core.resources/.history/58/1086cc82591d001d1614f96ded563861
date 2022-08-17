@@ -1,0 +1,10 @@
+package fr.eni.tpblague.dao;
+
+import fr.eni.tpblague.dao.jdbc.BlagueDaoJdbcImpl;
+
+public class DaoFactory {
+
+	public static BlagueDao getBlagueDao() {
+		return new BlagueDaoJdbcImpl();
+	}
+}
