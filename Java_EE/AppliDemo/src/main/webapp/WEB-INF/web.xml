@@ -6,8 +6,8 @@
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>ServletAvecParametreInitialisationWebXM</servlet-name>
-  	<servlet-class>/AppliDemo/src/main/java/fr/eni/javaee/module2/ServletAvecParametreInitialisationWebXM.java</servlet-class>
+  	<servlet-name>ServletAvecParametreInitialisationWebXML</servlet-name>
+  	<servlet-class>fr.eni.javaee.module2.ServletAvecParametreInitialisationWebXML</servlet-class>
   	<init-param>
   		<param-name>nom_ecole</param-name>
   		<param-value>ENI Ecole Rennes</param-value>
@@ -15,8 +15,8 @@
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>ServletAvecParametreInitialisationWebXM</servlet-name>
-  	<url-pattern>/modules/module2/ServletAvecParametreInitialisationWebXM</url-pattern>
+  	<servlet-name>ServletAvecParametreInitialisationWebXML</servlet-name>
+  	<url-pattern>/modules/module2/ServletAvecParametreInitialisationWebXML</url-pattern>
   </servlet-mapping>
   
   <error-page>
