@@ -24,6 +24,12 @@ public class Traitement extends HttpServlet {
 	private int victoiresUser = 0;
 	private int victoiresIa = 0;
 	private int nbParties = 1;
+	
+	private String imgWin = "img/win.jpg";
+	private String imgLose = "img/lose.jpg";
+	private String imgEven = "img/even.png";
+	
+	private String imgResult;
 
 	@Override
 	public void init() throws ServletException {	
@@ -53,16 +59,34 @@ public class Traitement extends HttpServlet {
 		//---Conditions de victoires
 		if(coupUser.equals(coupIa)) {
 			win = "Egalité !";
+			imgResult = imgEven;
 		}else if(coupUser.equals("pierre")) {
 			if(coupIa.equals("ciseaux")) {
 				win = "Gagné !";
-			}else win = "Perdu...";
+				imgResult = imgWin;
+			}else {
+				win = "Perdu...";
+				imgResult = imgLose;
+			}
 		}else if(coupUser.equals("ciseaux")) {
-			if(coupIa.equals("pierre")) win = "Perdu...";
-			else win = "Gagné !";
+			if(coupIa.equals("pierre")) {
+				win = "Perdu...";
+				imgResult = imgLose;
+			}
+			else {
+				win = "Gagné !";
+				imgResult = imgWin;
+			}
+			
 		}else {
-			if(coupIa.equals("ciseaux")) win = "Perdu...";
-			else win = "Gagné";
+			if(coupIa.equals("ciseaux")) {
+				win = "Perdu...";
+				imgResult = imgLose;
+			}
+			else {
+				win = "Gagné";
+				imgResult = imgWin;
+			}
 		}
 		
 		//---Incremente le nombre de coup de chaque joueur		
@@ -84,9 +108,7 @@ public class Traitement extends HttpServlet {
 			nbParties++;
 		}
 		
-	
-		//----Set attribute to request 
-		
+		//----Set attribute to request 	
 		request.setAttribute("valUser", coupUser);
 		request.setAttribute("valIa", coupIa);
 		request.setAttribute("result", win);
@@ -95,12 +117,19 @@ public class Traitement extends HttpServlet {
 		request.setAttribute("victoiresUser", victoiresUser);
 		request.setAttribute("victoiresIa", victoiresIa);
 		request.setAttribute("nbParties", nbParties);
+		request.setAttribute("urlImgResult", imgResult);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/reponse.jsp");
 		rd.forward(request, response);
 		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//----Set attribute to request 	
+		request.setAttribute("coupGagnantIa", coupGagnantIa);
+		request.setAttribute("coupGagnantUser", coupGagnantUser);
+		request.setAttribute("victoiresUser", victoiresUser);
+		request.setAttribute("victoiresIa", victoiresIa);
+		request.setAttribute("nbParties", nbParties);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/jouer.jsp");
 		rd.forward(request, response);
 	}
