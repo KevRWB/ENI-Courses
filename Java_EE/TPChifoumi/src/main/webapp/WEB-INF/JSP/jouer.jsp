@@ -41,15 +41,15 @@
 		 <div>
 		    <input type="radio" id="pierre"
 		     name="chifumi" value="pierre" checked="checked">
-		    <label for="pierre">Pierre</label>
+		    <label id="pierre" for="pierre"></label>
 		
 		    <input type="radio" id="feuille"
 		     name="chifumi" value="feuille">
-		    <label for="feuille">Feuille</label>
+		    <label id="feuille" for="feuille"></label>
 		
 		    <input type="radio" id="ciseaux"
 		     name="chifumi" value="ciseaux">
-		    <label for="ciseaux">Ciseaux</label>
+		    <label id="ciseaux" for="ciseaux"></label>
 		  </div>
 		  <br>
 		  <input type="submit" value="Jouer !">
