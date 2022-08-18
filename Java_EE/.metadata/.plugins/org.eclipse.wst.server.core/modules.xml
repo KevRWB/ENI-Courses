@@ -2,5 +2,7 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:AppliDemo" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:TrouverTirageAuSort" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:TPChifoumi" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:TPTirageAuSortSuite" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:01AppliDemo" serverId="Tomcat v8.5 Server at localhost"/>
 </modules>
