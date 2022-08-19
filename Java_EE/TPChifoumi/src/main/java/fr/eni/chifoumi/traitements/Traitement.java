@@ -77,7 +77,6 @@ public class Traitement extends HttpServlet {
 				win = "Gagné !";
 				imgResult = imgWin;
 			}
-			
 		}else {
 			if(coupIa.equals("ciseaux")) {
 				win = "Perdu...";
