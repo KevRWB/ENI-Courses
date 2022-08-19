@@ -1,15 +1,10 @@
 INDEX VERSION 1.4+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1763201272.index
 1294184157.index
 2021371835.index
-3913687824.index
+2771335112.index
 2375009367.index
 3499794956.index
-2606470712.index
-2019848577.index
-2606470712.index
-567163749.index
-1541838600.index
 3624816792.index
 64568888.index
 672006976.index
+2293330091.index
