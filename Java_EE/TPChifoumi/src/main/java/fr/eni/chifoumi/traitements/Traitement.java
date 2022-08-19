@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Traitement")
 public class Traitement extends HttpServlet {
+	
+	private static final String PIERRE = "pierre";
+	private static final String FEUILLE = "feuille";
+	private static final String CISEAUX = "ciseaux";
+	
 	private static final long serialVersionUID = 1L;
 	
 	private int nbRand;
@@ -37,12 +42,12 @@ public class Traitement extends HttpServlet {
 		Random rand = new Random();
 		nbRand = rand.nextInt(NB_MAX_RAND);
 		switch (nbRand) {
-		case 0: coupIa = "pierre";
+		case 0: coupIa = PIERRE;
 			break;
-		case 1: coupIa = "feuille";
+		case 1: coupIa = FEUILLE;
 		break;
 
-		default: coupIa = "ciseaux";
+		default: coupIa = CISEAUX;
 			break;
 		}
 	}
@@ -60,16 +65,16 @@ public class Traitement extends HttpServlet {
 		if(coupUser.equals(coupIa)) {
 			win = "Egalité !";
 			imgResult = imgEven;
-		}else if(coupUser.equals("pierre")) {
-			if(coupIa.equals("ciseaux")) {
+		}else if(coupUser.equals(PIERRE)) {
+			if(coupIa.equals(CISEAUX)) {
 				win = "Gagné !";
 				imgResult = imgWin;
 			}else {
 				win = "Perdu...";
 				imgResult = imgLose;
 			}
-		}else if(coupUser.equals("ciseaux")) {
-			if(coupIa.equals("pierre")) {
+		}else if(coupUser.equals(CISEAUX)) {
+			if(coupIa.equals(PIERRE)) {
 				win = "Perdu...";
 				imgResult = imgLose;
 			}
@@ -78,7 +83,7 @@ public class Traitement extends HttpServlet {
 				imgResult = imgWin;
 			}
 		}else {
-			if(coupIa.equals("ciseaux")) {
+			if(coupIa.equals(CISEAUX)) {
 				win = "Perdu...";
 				imgResult = imgLose;
 			}

@@ -8,6 +8,7 @@
 	<title>Chifoumi - Jeu</title>
 </head>
 <body>
+
 	<%
 		String coupIa = (String)request.getAttribute("valIa");
 		String coupUser = (String)request.getAttribute("valUser");
@@ -19,6 +20,7 @@
 		int nbParties = (int)request.getAttribute("nbParties");
 		String imgResult = (String)request.getAttribute("urlImgResult");
 	%>
+	
 	<header>
 		<h1>Chifoumi</h1>
 	</header>
