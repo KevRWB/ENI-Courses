@@ -3,11 +3,11 @@
 	<Resource
 		name="jdbc/pool_cnx"
 		
-		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		driverClassName="org.h2.Driver"
 		type="javax.sql.DataSource"
 		
-		url="jdbc:sqlserver://localhost;databasename=BDD_DEMO"
-		username="utilisateurBDD"
+		url="jdbc:h2:~/formation"
+		username="sa"
 		password="Pa$$w0rd"
 		
 		maxTotal="100"

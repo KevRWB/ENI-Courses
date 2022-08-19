@@ -152,7 +152,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TPChifoumi" path="/TPChifoumi" reloadable="true" source="org.eclipse.jst.jee.server:TPChifoumi"/><Context docBase="D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\01AppliDemo" path="/01AppliDemo" reloadable="true" source="org.eclipse.jst.jee.server:01AppliDemo"/></Host>
+      <Context docBase="D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\01AppliDemo" path="/01AppliDemo" reloadable="true" source="org.eclipse.jst.jee.server:01AppliDemo">
+	<Resource driverClassName="org.h2.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/pool_cnx" password="Pa$$w0rd" type="javax.sql.DataSource" url="jdbc:h2:~/formation" username="sa"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
