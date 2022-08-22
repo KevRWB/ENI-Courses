@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,6 +21,7 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 	
 	private static final String INSERT_REPAS = "INSERT INTO REPAS (DATE_REPAS, HEURE_REPAS) VALUES(?,?)";
 	private static final String INSERT_ALIMENTS = "INSERT INTO ALIMENTS(NOM, ID_REPAS) VALUES (?,?)";
+	private static final String SELECT_ALL = "SELECT * FROM REPAS JOIN ALIMENTS";
 	
 	@Override
 	public void insert(Repas repas) throws BusinessException, SQLException{
@@ -45,11 +50,41 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 			
 		}
 	}
+	
+	private Repas mapRepas(ResultSet rs, List<Aliment> list) throws SQLException {
+		Repas repas = null;
+		
+		int idArticle = rs.getInt("idArticle");
+		LocalDate date =  (LocalDate) rs.getString("DATE_REPAS").toLocalDate();
+		LocalTime marque = (LocalTime)rs.getString("HEURE_REPAS").toLocalTime();
+			
+		return repas;
+	}
+	
+	private Aliment mapAliments(ResultSet rs)throws SQLException {
+		Aliment aliment = null;
+		
+		String nom = rs.getString("NOM");
+		int idRepas = rs.getInt("ID_REPAS");
+		
+		return aliment;
+	}
 
 	@Override
-	public List<Repas> selectAll() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Repas> selectAll() throws BusinessException, SQLException {
+		List<Repas> list = new ArrayList<>();
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			Statement stmt = cnx.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(SELECT_ALL);
+			while(rs.next()) {
+				Repas r = map(rs); //transforme une ligne d'enregistrement en objet
+				list.add(r); //ajoute l'objet � la liste
+			}
+					 			
+		}
+				
+		return list;
 	}
 
 }

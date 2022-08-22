@@ -6,6 +6,13 @@ public class Aliment {
 	private int idRepas;
 	
 	
+	public Aliment(String nom, int idRepas) {
+		super();
+		this.nom = nom;
+		this.idRepas = idRepas;
+	}
+
+
 	public Aliment(String nom) {
 		this.nom = nom;
 	}

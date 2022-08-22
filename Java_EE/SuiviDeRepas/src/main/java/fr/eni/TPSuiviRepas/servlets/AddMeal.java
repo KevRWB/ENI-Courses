@@ -30,7 +30,7 @@ import fr.eni.TPSuiviRepas.bo.Repas;
 @WebServlet("/AddMeal")
 public class AddMeal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+	RepasManager repasManager = new RepasManager();
 	private LocalDate date;
 	private LocalTime heure;
 	private String[] listeRepasTxt;
