@@ -45,6 +45,22 @@ public class Repas {
 	public void setHeure(LocalTime heure) {
 		this.heure = heure;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Repas [id=");
+		builder.append(id);
+		builder.append(", date=");
+		builder.append(date);
+		builder.append(", heure=");
+		builder.append(heure);
+		builder.append(", listeAliments=");
+		builder.append(listeAliments);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 	
 	
 

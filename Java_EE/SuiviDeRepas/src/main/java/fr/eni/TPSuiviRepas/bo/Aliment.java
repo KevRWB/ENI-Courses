@@ -23,6 +23,20 @@ public class Aliment {
 	}
 
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Aliment [id=");
+		builder.append(id);
+		builder.append(", nom=");
+		builder.append(nom);
+		builder.append(", idRepas=");
+		builder.append(idRepas);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}

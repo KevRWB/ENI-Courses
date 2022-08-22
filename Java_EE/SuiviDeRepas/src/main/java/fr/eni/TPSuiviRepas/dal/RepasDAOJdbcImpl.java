@@ -21,7 +21,7 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 	
 	private static final String INSERT_REPAS = "INSERT INTO REPAS (DATE_REPAS, HEURE_REPAS) VALUES(?,?)";
 	private static final String INSERT_ALIMENTS = "INSERT INTO ALIMENTS(NOM, ID_REPAS) VALUES (?,?)";
-	private static final String SELECT_ALL = "SELECT * FROM REPAS JOIN ALIMENTS";
+	private static final String SELECT_ALL = "SELECT * FROM REPAS JOIN ALIMENTS ON REPAS.ID=ALIMENTS.ID_REPAS";
 	
 	@Override
 	public void insert(Repas repas) throws BusinessException, SQLException{
@@ -54,9 +54,9 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 	private Repas mapRepas(ResultSet rs, List<Aliment> list) throws SQLException {
 		Repas repas = null;
 		
-		int idArticle = rs.getInt("idArticle");
-		LocalDate date =  (LocalDate) rs.getString("DATE_REPAS").toLocalDate();
-		LocalTime marque = (LocalTime)rs.getString("HEURE_REPAS").toLocalTime();
+		int idRepas = rs.getInt("idArticle");
+		LocalDate date =  (LocalDate) rs.getDate("DATE_REPAS").toLocalDate();
+		LocalTime marque = (LocalTime)rs.getTime("HEURE_REPAS").toLocalTime();
 			
 		return repas;
 	}
@@ -64,27 +64,40 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 	private Aliment mapAliments(ResultSet rs)throws SQLException {
 		Aliment aliment = null;
 		
-		String nom = rs.getString("NOM");
-		int idRepas = rs.getInt("ID_REPAS");
+		String nomAliment = rs.getString("NOM");
+		int idAliment = rs.getInt("ID_REPAS");
 		
 		return aliment;
 	}
 
 	@Override
 	public List<Repas> selectAll() throws BusinessException, SQLException {
-		List<Repas> list = new ArrayList<>();
+		List<Repas> listRepas = new ArrayList<>();
+		List<Aliment> listAliments = new ArrayList<>();
+		Repas repas;
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			Statement stmt = cnx.createStatement();
 			
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
+			
+			rs.next();
+			int id = rs.getInt("ID");
+	
+			
 			while(rs.next()) {
-				Repas r = map(rs); //transforme une ligne d'enregistrement en objet
-				list.add(r); //ajoute l'objet � la liste
+				while(rs.getInt("ID") == id) {
+					mapAliments(rs);
+					rs.next();
+				}
+				repas = mapRepas(rs, listAliments);
+				listRepas.add(repas);
+				id = rs.getInt("ID");
+				listAliments.clear();
 			}
-					 			
+				 			
 		}
 				
-		return list;
+		return listRepas;
 	}
 
 }

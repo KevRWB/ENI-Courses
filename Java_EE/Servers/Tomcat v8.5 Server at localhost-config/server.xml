@@ -153,7 +153,11 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <Context docBase="SuiviDeRepas" path="/SuiviDeRepas" reloadable="true" source="org.eclipse.jst.jee.server:SuiviDeRepas"/><Context docBase="01AppliDemo" path="/01AppliDemo" reloadable="true" source="org.eclipse.jst.jee.server:01AppliDemo"/></Host>
+=======
+      <Context docBase="TPTirageAuSortSuite" path="/TPRechercherNombre-Correction" reloadable="true" source="org.eclipse.jst.jee.server:TPTirageAuSortSuite"/><Context docBase="testServer" path="/testServer" reloadable="true" source="org.eclipse.jst.jee.server:testServer"/></Host>
+>>>>>>> Stashed changes
 =======
       <Context docBase="TPTirageAuSortSuite" path="/TPRechercherNombre-Correction" reloadable="true" source="org.eclipse.jst.jee.server:TPTirageAuSortSuite"/><Context docBase="testServer" path="/testServer" reloadable="true" source="org.eclipse.jst.jee.server:testServer"/></Host>
 >>>>>>> Stashed changes

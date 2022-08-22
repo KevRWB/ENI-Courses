@@ -16,6 +16,10 @@ org.eclipse.egit.ui.DiffHeadlineFont=1|Courier New|11.25|0|WINDOWS|1|-15|0|0|0|4
 org.eclipse.jdt.internal.ui.compare.JavaMergeViewer=1|Courier New|11.25|0|WINDOWS|1|-15|0|0|0|400|0|0|0|0|3|2|1|49|Courier New;
 org.eclipse.jdt.internal.ui.compare.PropertiesFileMergeViewer=1|Courier New|11.25|0|WINDOWS|1|-15|0|0|0|400|0|0|0|0|3|2|1|49|Courier New;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+org.eclipse.jdt.ui.ColoredLabels.match_highlight=206,92,0
+>>>>>>> Stashed changes
 =======
 org.eclipse.jdt.ui.ColoredLabels.match_highlight=206,92,0
 >>>>>>> Stashed changes
