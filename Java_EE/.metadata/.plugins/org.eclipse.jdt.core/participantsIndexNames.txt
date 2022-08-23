@@ -1,35 +1,23 @@
 INDEX VERSION 1.131
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2337769659.index
 \01AppliDemo\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2966963221.index
 \SuiviDeRepas\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1485995392.index
-\SuiviDeRepas\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1491872640.index
-\01AppliDemo\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2606470712.index
-\TPChifoumi\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1799749622.index
-\TPChifoumiAvanceCorrection\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2617869975.index
-\TPChifoumi\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2014381411.index
+\TPPreferencesDUsageCorrection\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2380304312.index
 \01AppliDemo\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1780430830.index
+\TPSuiviDesRepasCorrection\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\183218160.index
 \SuiviDeRepas\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\78956692.index
-=======
-C:\Users\Team Reno\OneDrive - ENI Ecole Informatique\Desktop\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\78956692.index
->>>>>>> Stashed changes
-=======
-C:\Users\Team Reno\OneDrive - ENI Ecole Informatique\Desktop\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\78956692.index
->>>>>>> Stashed changes
-\AppliDemo\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3846604075.index
+\TPSuiviDesRepasCorrection\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1867437026.index
+\01AppliDemo\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\802616303.index
 \01AppliDemo\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3645271088.index
-\TPChifoumiAvance\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2771335112.index
-\AppliCalculAllure\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\888425249.index
+\TPChoixCouleur\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1533677988.index
+\TPPreferencesDUsageCorrection\src\main\java

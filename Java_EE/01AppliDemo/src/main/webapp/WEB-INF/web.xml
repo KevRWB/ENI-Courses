@@ -16,6 +16,15 @@
     <servlet-name>ServletAvecParametreInitialisationWebXML</servlet-name>
     <url-pattern>/modules/module2/ServletAvecParametreInitialisationWebXML</url-pattern>
   </servlet-mapping>
+  
+  
+ 	<context-param>
+	  <description>Un paramètre d'application</description>
+	  <param-name>EMAIL_ADMINISTRATEUR</param-name>
+	  <param-value>administrateur@monapplication.fr</param-value>
+	</context-param>
+  
+  
   <error-page>
     <error-code>500</error-code>
     <location>/modules/module2/demonstrations/erreur500.html</location>

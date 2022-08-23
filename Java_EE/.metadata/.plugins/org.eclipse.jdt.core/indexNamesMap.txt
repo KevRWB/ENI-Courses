@@ -1,3 +1,1 @@
 INDEX VERSION 1.131
-file:/C:/Users/Team%20Reno/OneDrive%20-%20ENI%20Ecole%20Informatique/Desktop/ENI-_Courses/Java_EE/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index
-meta_index
