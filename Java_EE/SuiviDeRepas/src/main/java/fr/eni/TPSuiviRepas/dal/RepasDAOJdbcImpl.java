@@ -54,7 +54,7 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 	private Repas mapRepas(ResultSet rs, List<Aliment> list) throws SQLException {
 		Repas repas = null;
 		
-		int idRepas = rs.getInt("idArticle");
+		int idRepas = rs.getInt("ID_REPAS");
 		LocalDate date =  (LocalDate) rs.getDate("DATE_REPAS").toLocalDate();
 		LocalTime marque = (LocalTime)rs.getTime("HEURE_REPAS").toLocalTime();
 			
@@ -80,20 +80,29 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 			
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			
-			rs.next();
-			int id = rs.getInt("ID");
+//			rs.next();
+//			int id = rs.getInt("ID");
 	
 			
 			while(rs.next()) {
-				while(rs.getInt("ID") == id) {
-					mapAliments(rs);
-					rs.next();
+				Aliment aliment = mapAliments(rs);
+				listAliments.add(aliment);
+				
+				for(Aliment alime : listAliments) {
+					System.out.println(alime);
 				}
-				repas = mapRepas(rs, listAliments);
-				listRepas.add(repas);
-				id = rs.getInt("ID");
-				listAliments.clear();
 			}
+			
+//			while(rs.next()) {
+//				while(rs.getInt("ID") == id) {
+//					mapAliments(rs);
+//					rs.next();
+//				}
+//				repas = mapRepas(rs, listAliments);
+//				listRepas.add(repas);
+//				id = rs.getInt("ID");
+//				listAliments.clear();
+//			}
 				 			
 		}
 				
