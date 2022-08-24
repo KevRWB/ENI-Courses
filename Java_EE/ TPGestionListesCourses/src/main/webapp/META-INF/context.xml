@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+		name="jdbc/pool_cnx"
+		
+		driverClassName="org.h2.Driver"
+		type="javax.sql.DataSource"
+		
+		url="jdbc:h2:~/tpListeCourses"
+		username="sa"
+		password="Pa$$w0rd"
+		
+		maxTotal="10"
+		maxIdle="3"
+		maxWaitMillis="100"
+	/>
+</Context>
