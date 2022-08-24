@@ -15,6 +15,8 @@ import fr.eni.tpGestionListesCourses.bo.Liste;
 public class ListesCourseDAOJdbcImpl implements ListesCourseDAO {
 
 	private final String SELECT_ALL = "SELECT l.ID as ID, l.NOM as NOM_LISTE, a.NOM as NOM_ARTICLE FROM LISTES l JOIN ARTICLES a ON l.ID = a.ID_LISTE";
+	private final String DELETE_LIST = "DELETE FROM LISTES WHERE ID = ?";
+	private final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE NOM = ?";
 	
 	@Override
 	public void insertList(Liste liste) throws BusinessException {
@@ -52,6 +54,47 @@ public class ListesCourseDAOJdbcImpl implements ListesCourseDAO {
 		return listeListes;
 	}
 
+
+
+	@Override
+	public void deleteList(int idListe) throws BusinessException {
+
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{	
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_LIST);
+			pstmt.setInt(1, idListe);
+			pstmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_REPAS_ECHEC);
+			throw businessException;
+		}
+		
+	}
+
+	@Override
+	public void deleteArticle(String nomArticle) throws BusinessException {
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{	
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE);
+			pstmt.setString(1, nomArticle);
+			pstmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_REPAS_ECHEC);
+			throw businessException;
+		}
+		
+		
+	}
+	
+	//---BUILDERS
 	private Liste listBuilder(ResultSet rs) throws SQLException {
 		Liste liste = new Liste();
 		liste.setIdListe(rs.getInt("ID"));

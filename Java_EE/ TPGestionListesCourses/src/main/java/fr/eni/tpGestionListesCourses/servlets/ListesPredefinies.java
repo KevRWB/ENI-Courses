@@ -37,11 +37,6 @@ public class ListesPredefinies extends HttpServlet {
 		
 		this.getServletContext().setAttribute("listeListe",listeListes );
 		
-		for(Liste list : listeListes) {
-			System.out.println(list);
-		}
-		
-		
 		request.setAttribute("listeListes", listeListes);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/listesPredefinies.jsp");

@@ -15,10 +15,14 @@
 	<ul>
 		<c:forEach var="article" items="${listeArticles}">
 				<li>${article.nom}</li>	
+				<form action="DeleteArticle" method="GET">
+					<input type="hidden" value="${article.nom}" name="nomArticle">
+					<input type="submit" value="supprimer article">
+				</form>
 		</c:forEach>	
 	</ul>
 	
-	<form action="ListesPredefinies" method="POST">
+	<form action="ListesPredefinies" method="GET">
 		<input type="submit" value="Retour liste prédéfinies">
 	</form>
 </body>

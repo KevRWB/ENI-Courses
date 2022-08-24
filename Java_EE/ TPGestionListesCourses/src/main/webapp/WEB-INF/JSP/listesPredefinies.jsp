@@ -18,6 +18,10 @@
 					<input type="hidden" name="idListe" value="${liste.idListe}">
 					<input type="submit" value="Panier">
 				</form>
+				<form action="DeleteListe" method="get">
+					<input type="hidden" name="idListe" value="${liste.idListe}">
+					<input type="submit" value="Supprimer liste">
+				</form>
 			</li>
 		</c:forEach>
 	</ul>
