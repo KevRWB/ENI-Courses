@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>01AppliDemo</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>ServletAvecParametreInitialisationWebXML</servlet-name>
+    <servlet-class>fr.eni.javaee.module2.ServletAvecParametreInitialisationWebXML</servlet-class>
+    <init-param>
+      <param-name>nom_ecole</param-name>
+      <param-value>ENI Ecole Rennes</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletAvecParametreInitialisationWebXML</servlet-name>
+    <url-pattern>/modules/module2/ServletAvecParametreInitialisationWebXML</url-pattern>
+  </servlet-mapping>
+  
+  
+ 	<context-param>
+	  <description>Un paramètre d'application</description>
+	  <param-name>EMAIL_ADMINISTRATEUR</param-name>
+	  <param-value>administrateur@monapplication.fr</param-value>
+	</context-param>
+  
+  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/modules/module2/demonstrations/erreur500.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/modules/module2/demonstrations/erreur404.html</location>
+  </error-page>
+</web-app>
