@@ -45,6 +45,15 @@
 		<servlet-name>formatageDate</servlet-name>
 		<url-pattern>/modules/module8/formatageDates</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+    <servlet-name>JSPformatageNombres</servlet-name>
+    <jsp-file>/WEB-INF/modules/module8/formatageNombres.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  	<servlet-name>JSPformatageNombres</servlet-name>
+  	<url-pattern>/modules/module8/formatageNombres</url-pattern>
+</servlet-mapping> 
   
   
   <error-page>
