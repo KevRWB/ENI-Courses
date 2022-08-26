@@ -16,11 +16,20 @@
     <fullyQualifiedTypeName name="org.apache.tomcat.jdbc.pool.DataSource"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.Enumeration"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="javax.ws.rs.core.Application"/>
+    <fullyQualifiedTypeName name="javax.ws.rs.ApplicationPath"/>
+    <fullyQualifiedTypeName name="javax.websocket.server.PathParam"/>
+    <fullyQualifiedTypeName name="javax.ws.rs.PathParam"/>
+    <fullyQualifiedTypeName name="javax.ws.rs.Path"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="fr.eni.javaee.module9.bo.Crayon"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javax.ws.rs.GET"/>
+    <fullyQualifiedTypeName name="javax.xml.bind.annotation.XmlRootElement"/>
 </qualifiedTypeNameHistroy>
