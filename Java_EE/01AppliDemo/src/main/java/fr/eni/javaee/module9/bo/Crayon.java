@@ -40,5 +40,10 @@ public class Crayon {
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
 	}
+	@Override
+	public String toString() {
+		return "Crayon [id=" + id + ", type=" + type + ", couleur=" + couleur + "]";
+	}
+	
 	
 }
