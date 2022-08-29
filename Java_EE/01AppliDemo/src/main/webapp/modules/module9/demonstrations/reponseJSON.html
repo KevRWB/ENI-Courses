@@ -20,6 +20,10 @@
 		<a href="demonstration4.html">Retour</a>
 	</div>
 	
+	<ul id="liste">
+		
+	</ul>
+	
 	
 	
 	<script type="text/javascript">
@@ -53,14 +57,24 @@
 	        }
 	    };
 
-	    xhr.open("GET", "/AppliDemo/modules/module9/rest/crayons", true);
+	    xhr.open("GET", "/01AppliDemo/modules/module9/rest/crayons", true);
 	    xhr.setRequestHeader("Accept","application/json");
 	    xhr.send(null);
 	}	
 	
 	function succes(reponse)
-	{
-		document.getElementById("succes").innerHTML=reponse;
+	{	var listeCrayons = JSON.parse(reponse);
+		var nombreCrayons = listeCrayons.length;
+		
+		document.getElementById("succes").innerHTML=nombreCrayons;
+				
+		var divC = "<ul>";
+			for(var i = 0; i < nombreCrayons; i++){
+				divC += "<li>crayon " + listeCrayons[i].couleur + "</li>";
+			}
+		
+		divC += "</ul>"
+		document.getElementById("succes").innerHTML=divC;
 		document.getElementById("echec").innerHTML="";
 	}
 	

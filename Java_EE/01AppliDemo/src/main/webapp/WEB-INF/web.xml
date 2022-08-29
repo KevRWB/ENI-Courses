@@ -24,6 +24,37 @@
 	  <param-value>administrateur@monapplication.fr</param-value>
 	</context-param>
   
+  	<servlet>
+  		<servlet-name>i18n</servlet-name>
+  		<jsp-file>/WEB-INF/modules/module8/internationalisationMessages.jsp</jsp-file>
+  	</servlet>
+  	
+  
+	<servlet-mapping>
+		<servlet-name>i18n</servlet-name>
+		<url-pattern>/modules/module8/internationalisationMessages</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+  		<servlet-name>formatageDate</servlet-name>
+  		<jsp-file>/WEB-INF/modules/module8/formatageDates.jsp</jsp-file>
+  	</servlet>
+  	
+  
+	<servlet-mapping>
+		<servlet-name>formatageDate</servlet-name>
+		<url-pattern>/modules/module8/formatageDates</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    <servlet-name>JSPformatageNombres</servlet-name>
+    <jsp-file>/WEB-INF/modules/module8/formatageNombres.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  	<servlet-name>JSPformatageNombres</servlet-name>
+  	<url-pattern>/modules/module8/formatageNombres</url-pattern>
+</servlet-mapping> 
+  
   
   <error-page>
     <error-code>500</error-code>

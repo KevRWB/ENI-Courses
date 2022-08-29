@@ -1,29 +1,23 @@
 INDEX VERSION 1.131
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2337769659.index
 \01AppliDemo\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2966963221.index
-\SuiviDeRepas\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3579438054.index
-\01AppliDemo\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\623622991.index
 \ TPGestionListesCourses\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2014381411.index
-\TPPreferencesDUsageCorrection\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\301969247.index
+\01AppliDemo\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3112313097.index
+\TPGestionListesCoursesCorrection\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2456355485.index
+\TPGestionListesCoursesCorrection\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1780430830.index
 \TPSuiviDesRepasCorrection\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2380304312.index
 \01AppliDemo\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\183218160.index
-\SuiviDeRepas\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3846604075.index
 \TPSuiviDesRepasCorrection\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1867437026.index
 \01AppliDemo\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\802616303.index
-\01AppliDemo\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\888425249.index
-\TPChoixCouleur\src\main\java
-D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1533677988.index
-\TPPreferencesDUsageCorrection\src\main\java
 D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4131881560.index
+\01AppliDemo\src\main\java
+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\802616303.index
 \01AppliDemo\src\main\java
