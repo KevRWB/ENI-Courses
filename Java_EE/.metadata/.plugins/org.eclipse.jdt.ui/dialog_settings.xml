@@ -80,4 +80,14 @@
 		<item key="DIALOG_HEIGHT" value="860"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|12.0|0|WINDOWS|1|-16|0|0|0|400|0|0|0|0|3|2|1|34|Segoe UI"/>
 	</section>
+	<section name="org.eclipse.jdt.internal.ui.wizards.buildpaths.NewVariableEntryDialog">
+		<item key="DIALOG_X_ORIGIN" value="133"/>
+		<item key="DIALOG_Y_ORIGIN" value="10"/>
+		<item key="DIALOG_WIDTH" value="845"/>
+		<item key="DIALOG_HEIGHT" value="517"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|12.0|0|WINDOWS|1|-16|0|0|0|400|0|0|0|0|3|2|1|34|Segoe UI"/>
+	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item key="index" value="7"/>
+	</section>
 </section>

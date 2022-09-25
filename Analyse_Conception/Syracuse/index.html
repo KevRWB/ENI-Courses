@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" text="text/css">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+    <h1>Conjecture de Syracuse</h1>
+
+    <h3>Enoncé :</h3>
+    <p>Pour un nombre donné, s'il est pair, il est divisé par 2, s'il est impair, il est multiplié par 3 et on lui ajoute 1.</p>
+    <p>Quelle que soit la valeur initiale du nombre, la suite de résultats se terminera invariablement par 4, 2, 1.</p>
+    <p>Cette énigme mathématique n'a jamais été démontrée.</p>
+    <br>
+    <p>Vous voulez vérifier par vous même ?</p>
+    <br>
+
+    <label for ="nbChoosen">Saisissez un nombre</label>
+    <input type="number" id="nbChoosen">
+    <input type="button" value="Valider" onclick="algoSyracuse()">
+
+    <div id="chartAndList">
+
+        <div id="chart_div"></div>
+
+        <div id="liste">
+            <h3>Liste des nombres :</h3>
+            <ul id="nbList">
+                <li>Nombre de départ : <span id="nbDepart"></span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    
+</body>
+
+<!-- 
+Scripts
+-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+</html>

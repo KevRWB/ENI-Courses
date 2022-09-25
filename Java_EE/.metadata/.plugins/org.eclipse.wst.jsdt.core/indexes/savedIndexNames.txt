@@ -1,12 +1,8 @@
-INDEX VERSION 1.4+D:\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-301969247.index
-106343358.index
-567163749.index
+INDEX VERSION 1.4+C:\Users\Team Reno\OneDrive - ENI Ecole Informatique\Desktop\ENI-_Courses\Java_EE\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+224920018.index
 2216480257.index
-1541838600.index
-3680848323.index
-1763201272.index
-3646155457.index
+608349110.index
+84250880.index
 3624816792.index
-3913687824.index
-2019848577.index
+325580790.index
+2228153979.index
