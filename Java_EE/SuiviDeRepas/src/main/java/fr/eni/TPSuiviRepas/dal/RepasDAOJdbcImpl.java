@@ -47,7 +47,6 @@ public class RepasDAOJdbcImpl implements RepasDAO{
 				pstmpAliment.setInt(2, repasId);
 				pstmpAliment.executeUpdate();
 			}
-			
 		}
 	}
 	
