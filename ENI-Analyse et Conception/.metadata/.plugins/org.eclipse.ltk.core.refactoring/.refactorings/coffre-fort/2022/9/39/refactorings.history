@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;fr.eni.vault.TestFermeture&apos; to &apos;TestRemoveObject&apos;&#x0D;&#x0A;- Original project: &apos;coffre-fort&apos;&#x0D;&#x0A;- Original element: &apos;fr.eni.vault.TestFermeture&apos;&#x0D;&#x0A;- Renamed element: &apos;fr.eni.vault.TestRemoveObject&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;TestFermeture&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/test&lt;fr.eni.vault{TestFermeture.java[TestFermeture" matchStrategy="1" name="TestRemoveObject" qualified="false" references="true" similarDeclarations="false" stamp="1664366410508" textual="false" version="1.0"/>
+</session>

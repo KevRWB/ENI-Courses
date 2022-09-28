@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+D:\ENI-Analyse et Conception\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+981534131.index
+2238438644.index
+2679837177.index

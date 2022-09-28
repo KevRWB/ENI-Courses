@@ -1,0 +1,30 @@
+package fr.eni.vault;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import com.eni.vault.bll.BLLException;
+import com.eni.vault.bll.Vault;
+
+public class TestOpenVault {
+	
+	@Test
+	public void testOpenVault() throws BLLException {
+		//Arrange - préparerletest
+		Vault vault = new Vault();
+		
+		//Act -lock the vault
+		boolean canLock = vault.lock("1234");
+		//Assert -Comparer le resultat renvoyé avec le résultat attendu
+		assertEquals(canLock, true, "Echec fonction lock");
+		
+		//Act open with code
+		vault.unlock("1234");
+		String password = vault.getPassword();
+		//Assert
+		assertEquals(password, "1234", "Echec fonction unLock");
+	
+	}
+
+}

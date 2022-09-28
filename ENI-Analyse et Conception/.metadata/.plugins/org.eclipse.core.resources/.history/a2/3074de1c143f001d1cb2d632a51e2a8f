@@ -1,0 +1,40 @@
+package fr.eni.vault;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import com.eni.vault.bll.BLLException;
+import com.eni.vault.bll.Vault;
+
+public class TestVaultClose {
+
+	@Test
+	public void testFermetureCode() throws BLLException {
+		//Arrange - préparerletest
+		Vault vault = new Vault();
+		
+		//Act -Vérifierlaméthode
+		boolean resultat = vault.lock("1234");
+		
+		//Assert -Comparer le resultat renvoyé avec le résultat attendu
+		assertEquals(resultat, true, "Echec Additionner cas nominal");
+		
+
+		//Act -Vérifierlaméthode
+		boolean resultat = vault.lock("1234");
+		
+		//Assert isClosed
+		assertEquals(resultat, true, "Echec Additionner cas nominal");
+	}
+	
+	
+	
+	@Test
+	public void testCoffreDejaFerme() throws BLLException {
+		//Arrange - préparerletest
+		Vault vault = new Vault();
+		//Act / Assert
+		assertThrows(BLLException.class,() -> vault.lock("1234"));
+	}
+}

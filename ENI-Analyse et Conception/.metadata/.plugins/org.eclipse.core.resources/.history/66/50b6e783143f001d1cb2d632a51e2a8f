@@ -1,0 +1,13 @@
+package fr.eni.vault;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import com.eni.vault.bll.BLLException;
+import com.eni.vault.bll.Vault;
+
+public class TestOpenVault {
+
+}

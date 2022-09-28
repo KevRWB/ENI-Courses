@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.eni.vault.bll.Vault"/>
+    <fullyQualifiedTypeName name="com.eni.vault.bll.Storable"/>
+    <fullyQualifiedTypeName name="com.eni.vault.bo.Gold"/>
+    <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
+    <fullyQualifiedTypeName name="org.junit.runners.Suite.SuiteClasses"/>
+</qualifiedTypeNameHistroy>

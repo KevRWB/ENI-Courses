@@ -1,0 +1,7 @@
+package fr.eni.demoJUnit;
+
+public class Calculatrice {
+	
+	public long additionner(long a, long b) {
+		return a+b;}
+}

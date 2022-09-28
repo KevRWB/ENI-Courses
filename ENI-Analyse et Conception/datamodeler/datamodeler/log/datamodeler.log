@@ -1,0 +1,14 @@
+2022-09-26 09:31:52 INFO - Oracle SQL Developer Data Modeler 22.2.0.165.1149
+2022-09-26 10:21:11 SEVERE - Impossible d'écrire le document dans le fichier : C:\TP_Video.dmd
+java.io.FileNotFoundException: C:\TP_Video.dmd (Accès refusé)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(Unknown Source)
+	at java.base/java.io.FileOutputStream.<init>(Unknown Source)
+	at java.base/java.io.FileOutputStream.<init>(Unknown Source)
+	at oracle.dbtools.crest.model.metadata.XMLTransformationManager.saveContentOfObject(XMLTransformationManager.java:4187)
+	at oracle.dbtools.crest.model.metadata.XMLTransformationManager.saveObject(XMLTransformationManager.java:1684)
+	at oracle.dbtools.crest.model.metadata.XMLTransformationManager.saveDesign(XMLTransformationManager.java:643)
+	at oracle.dbtools.crest.model.design.Design.saveAll(Design.java:2424)
+	at oracle.dbtools.crest.swingui.ControllerApplication.saveAll(ControllerApplication.java:4148)
+	at oracle.dbtools.crest.swingui.ControllerApplication.saveAsDesign(ControllerApplication.java:3880)
+	at oracle.dbtools.crest.swingui.ControllerApplication$SaveAs$1.run(ControllerApplication.java:3739)

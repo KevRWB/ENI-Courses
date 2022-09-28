@@ -1,0 +1,21 @@
+package fr.eni.demoJUnit;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+public class CalculatriceTest {
+	@Test
+	public void testAdditionerCasPositif() {
+		//Arrange - préparerletest
+		Calculatrice calc = new Calculatrice();
+		long nombre1 = 30;
+		long nombre2= 20;
+		
+		//Act -Vérifierlaméthode
+		long resultat = calc.additionner(nombre1, nombre2);
+		
+		//Assert -Comparer le resultat renvoyé avec le résultat attendu
+		assertEquals(resultat, 50, "Echec Additionner cas nominal");
+	}
+}
