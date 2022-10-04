@@ -1,3 +1,15 @@
 /*
 Style CSS - Cours JS - DOM - ENI
 */
+
+body{
+    background-image: url("dom.jpg");
+    text-align: center;
+    color: white;
+}
+
+#hello{
+    color: red;
+    font-size: 5em;
+}
+
