@@ -35,8 +35,8 @@ function addDivLorem(){
 
 /////////////////////////////////////////////////
 ////Popups
-
-let age = prompt('Quel age avez-vous ?');
+function loadPopup(){
+    let age = prompt('Quel age avez-vous ?');
 if(age){
     alert("Vous avez " + age + " ans");
 
@@ -47,4 +47,19 @@ if(age){
     }else {
         alert("Bravo tu connais ton âge !");
     }
+
+    //affichage de l'age dans une balise h2, dans une div
+    let divH2 = document.createElement('div');
+    let h2 = document.createElement('h2');
+
+    h2.innerText = age;
+
+    divH2.appendChild(h2);
+    document.body.appendChild(divH2);
 }
+}
+
+
+
+//////////////////////////////////////////////
+
