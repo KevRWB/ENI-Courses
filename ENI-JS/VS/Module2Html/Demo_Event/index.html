@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="event.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Demo events JS</title>
 </head>
+
 <body>
-    
+    <h1>Gestion des évènements</h1>
+
+    <div>
+        <input type="text" id="theInput">
+        <input type="button" id="theButton" value="Valider la saisie" onclick="validateTheInput()">
+    </div>
+
+    <input type="button" value="Clique ici !" id="theSecondButton">
+
+    <input type="button" id="theLinkButton" value="Ajout un lien vers site de l'eni" onclick="addlink()">
+
+    <input type="button" value="Rends les boutons jolis" onclick="colorButtons()">
+
 </body>
+
 </html>
