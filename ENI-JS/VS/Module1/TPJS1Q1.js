@@ -12,6 +12,7 @@ while(aNumbers.length < 100){
     // si numero tiré n'est pas présent dans le tableau, on ajoute ce numero au tableau
     if(!aNumbers.includes(randNb)){
         aNumbers.push(randNb);
+        aNumbers.sort((a,b) => a - b);
     }
     nbTirages ++; //incrément de nombre de tirages
 }

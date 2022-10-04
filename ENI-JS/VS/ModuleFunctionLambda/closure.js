@@ -17,9 +17,8 @@ const affichageDuMetier = function(){
 
         console.log("Le nouveau métier est " + metier);
     }
-
-   
 }
+
 //stockage de le valeur de retour de la fonction dans une variable
 let quelMetier = affichageDuMetier();
 
