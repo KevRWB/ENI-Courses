@@ -21,7 +21,16 @@ let newList = doSthgToAString(strList, (word) => word.toUpperCase());
 let otherList = doSthgToAString(strList, (word) => word.concat(" ", word.length));
 
 //Print result
+// console.log(strList);
+// console.log(newList);
+// console.log(otherList);
+
+//With map method
+thirdList = strList.map((word) => word.replace("o", "A"));
+fourthList = strList.map(function(){return strList.join("-")});
+fifthList = strList.map(function(word){return word.toUpperCase()});
 console.log(strList);
-console.log(newList);
-console.log(otherList);
+console.log(thirdList);
+console.log(fifthList);
+
 
