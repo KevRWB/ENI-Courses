@@ -1,0 +1,15 @@
+{
+    "cirque" : [
+        {"clown" : "ça", "pointure" : 250},
+        {"funambule" : "fufu", "pointure" : 39}
+    ],
+    "la_communaute_de_l_anneau" : {
+        "hobbits" : ["Frodon", "Sam", "Raymond"],
+        "elfes" : [
+            {"nom" : "Legolas", "age" : 2500, "arme" : "arc"},
+            {"nom" : "Elrond", "age" : 4500, "arme" : "épee"}
+
+        ],
+        "anneau" : "unique"
+    }
+}
