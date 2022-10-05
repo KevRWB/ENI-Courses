@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="event.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <select onchange="changeColor(event);">
+        <option value="" disabled selected>-Couleur-</option>
+        <option value="blue">Bleu</option>
+        <option value="red">Rouge</option>
+        <option value="pink">Rose</option>
+    </select>
+
+    <select onchange="changeColor2(this.value);">
+        <option value="" disabled selected>-Couleur-</option>
+        <option value="blue">Bleu</option>
+        <option value="red">Rouge</option>
+        <option value="pink">Rose</option>
+    </select>
+
+    <select id="theSelect">
+        <option value="" disabled selected>-Couleur-</option>
+        <option value="blue">Bleu</option>
+        <option value="red">Rouge</option>
+        <option value="pink">Rose</option>
+    </select>
+
+    <h1 id="title" onmouseover="onHover(this);" onmouseout="onOut(this)">Mon ancien titre </h1>
+    <h2 id="title2" onmouseover="onHover(this);" onmouseout="onOut(this)">Mon ancien titre </h2>
+
+    <h1 id="title3">Mon ancien titre </h1>
+    <h2 id="title4">Mon ancien titre </h2>
+
+    <div onclick="oneClick(this);" ondblclick="doubleClick(this);">1 Clic ou 2</div>
+
+    <div>
+        <input type="text" oninput="putButtonBack();"><button onmouseover="moveButton()">Clic !</button>
+    </div>
+   
+   
+   
+</body>
+</html>
