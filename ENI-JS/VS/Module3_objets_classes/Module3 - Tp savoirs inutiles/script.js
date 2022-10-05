@@ -2,11 +2,14 @@
  * Script TP savoir inutiles
  * 
  */
+///// Onload
 
-//////////// Classes
+
+
+//////////// Classe
 
 class Savoir {
-    constructor( txt, auteur, date,id = 0){
+    constructor( txt, auteur, date, id = 0){
         this.txt = txt;
         this.auteur = auteur;
         this.date = date;
@@ -18,20 +21,30 @@ class Savoir {
 let listSavoir = [];
 let id = 0;
 
+
 //listener sur bouton valider
 document.getElementById("valider").addEventListener("click", function(){
 
     let txt = document.getElementById("inputSavoir").value;
     let auteur = document.getElementById("auteur").value;
-    let date = document.getElementById("date").value;
+    let date = document.getElementById("date").valueAsDate;
 
-    let tempSavoir = new Savoir(txt, auteur, date);
-    id++;
-    this.id = id;
-    listSavoir.push(tempSavoir);
-
-    affichageSavoirs(listSavoir);
-
+    if(txt && auteur && date){
+        let tempSavoir = new Savoir(txt, auteur, date);
+        id++;
+        this.id = id;
+        listSavoir.push(tempSavoir);
+    
+        //clear fields
+        document.getElementById("inputSavoir").value = "";
+        document.getElementById("auteur").value = "";
+        document.getElementById("date").valueAsDate = new Date();
+    
+        //print results
+        affichageSavoirs(listSavoir); 
+    }else {
+        alert("Veuillez saisir tous les champs")
+    }
 })
 
 //Fonction affichage
@@ -47,35 +60,42 @@ function affichageSavoirs(list){
     divContainer.setAttribute("id", "divContainer");
 
     for (const savoir of list) {
-       
+        let title = document.createElement('h2');
         let div = document.createElement('div');
         let txt = document.createElement('p');
         let auteur = document.createElement('p');
         let date = document.createElement('p');
 
-        txt.innerText = "Savoir : " + savoir.txt;
+        title.innerText = "Savoir"
+        txt.innerText = savoir.txt;
         auteur.innerText = "Auteur : " + savoir.auteur;
-        date.innerText = "Date : " + savoir.date;
+        date.innerText = "Date : " + savoir.date.toLocaleDateString();
         
+        div.appendChild(title);
         div.appendChild(txt);
         div.appendChild(auteur);
         div.appendChild(date);
         div.setAttribute("onclick", "supp(this)");
         div.setAttribute("id", savoir.id);
+        div.className = "divSavoir";
 
         divContainer.appendChild(div);
     }
     document.body.appendChild(divContainer);
 }
 
-//delete savoir
+///////////////////  delete savoir
 function supp(elem){
-    let index = elem.id;
-    console.log(index);
-    listSavoir.splice(index-1, 1);
-    console.log(listSavoir);
-    elem.remove();
-    affichageSavoirs(listSavoir);
+    let confirmation = confirm("Voulez-vous vraiment supprimer ce savoir ?");
+
+    if(confirmation){
+        let index = elem.id;
+        console.log(index);
+        listSavoir.splice(index-1, 1);
+        console.log(listSavoir);
+        elem.remove();
+        affichageSavoirs(listSavoir);
+    }
 }
 
 ///// Sorted methods

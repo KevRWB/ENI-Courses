@@ -1,0 +1,10 @@
+
+.divSavoir{
+    margin: 20px;
+    border-radius: 20px;
+    background-color: rgb(9, 104, 104);
+    color: white;
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+}
