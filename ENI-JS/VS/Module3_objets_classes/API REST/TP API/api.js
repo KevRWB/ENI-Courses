@@ -9,26 +9,27 @@ let datas;
 function fillSelect(){
     let depNo;
 
-    depNo = document.getElementById("searchInput").value;
-    if(depNo.length < 2){
-        depNo = "0" + depNo;
-    }
-
-    fetch(`https://geo.api.gouv.fr/departements/${depNo}/communes`).then(response => response.json()).then(data => useData(data)).catch((error) => gestionError(error));
-    
+    depNo = document.getElementById("searchInput").value.padStart(2, "0");
+  
+    depNo = depNo.toUpperCase();
+       
+    fetch(`https://geo.api.gouv.fr/departements/${depNo}/communes`)
+    .then(response => response.json())
+    .then(data => useData(data))
+    .catch(error => gestionError(error));
 }
 
 /////////////////////////////////////////////////
 function useData(data){
-    console.log(data);
+    //select 
     let selectHtml =  document.getElementById("selectCP");
     //reset select
     selectHtml.innerHTML = "";
+
     for (const ville of data) {
       
         let option = document.createElement('option');
         option.innerText = ville.nom;
-        option.value = ville.nom;
         selectHtml.appendChild(option);
         datas = data;
     }
@@ -74,7 +75,6 @@ function printCity(elem){
 /////////////////////////////////////////
 function gestionError(error){
     alert("Code postal inconnu");
-
 }
 
 
