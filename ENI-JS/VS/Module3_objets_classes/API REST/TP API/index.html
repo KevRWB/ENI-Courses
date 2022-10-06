@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP API Villes</title>
+</head>
+<body>
+    <label for="searchInput">Saisissez un numero de departement :</label>
+    <input type="text" id="searchInput" minlength="2" maxlength="3" placeholder="ex : 35 ou 971">
+    <button id="search" onclick="fillSelect()">Rechercher</button>
+    <br>
+    <select name="selectCP" id="selectCP" onchange = 'printCity(this)'>
+
+    </select>
+
+    <div id="container">
+
+    </div>
+
+
+    
+    <script src="api.js"></script>
+</body>
+</html>
