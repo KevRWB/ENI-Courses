@@ -1,0 +1,26 @@
+PHP
+	Créateurs
+		Rasmus Lerdof
+		Andi Gutmans
+		Zeev Suraski
+	Années
+		1994
+		1995 publication
+		2004 Version 5
+		2016 Version 7
+	Concurrence
+		JAVA
+		ASP.NET
+		HTML seul
+		Coldfucion
+		Ruby
+		Perl
+		JS
+	Plateformes
+		Xampp
+		WampServer
+		EasyPHP
+		DeviBox
+		MAMP
+		
+	
